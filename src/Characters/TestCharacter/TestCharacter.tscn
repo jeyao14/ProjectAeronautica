@@ -78,6 +78,7 @@ shape = SubResource( 11 )
 disabled = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 11

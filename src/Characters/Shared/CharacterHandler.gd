@@ -7,6 +7,8 @@ extends KinematicBody
 export var speed = Vector3(10, -10, 10)
 var velocity = Vector3.ZERO
 
+onready var CAMERABOOM = $Camera/CameraBoom
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,11 +17,13 @@ func _ready():
 
 func _physics_process(delta):
 	calculate_movement()
+	rotate_handler()
 
 func calculate_movement():
 	var x = 0
 	var z = 0
 	var y = speed.y
+	var forward = -CAMERABOOM.transform.basis.z.normalized();
 	if Input.is_action_pressed("move_forward"):
 		z = -1
 	elif Input.is_action_pressed("move_back"):
@@ -33,7 +37,15 @@ func calculate_movement():
 	if(is_on_floor()):
 #		print("ON FLOOR")
 		y = 0
-	velocity = Vector3(speed.x * x, y, speed.z * z)
+	forward.x *= x * speed.x;
+	forward.z *= z * speed.z;
+	velocity = Vector3(forward.x, y, forward.z);
 	
 	move_and_slide(velocity, Vector3.UP, true)
 	pass
+	
+func rotate_handler():
+	rotation_degrees.y = $Camera/CameraBoom.rotation_degrees.y;
+	pass
+	
+	
