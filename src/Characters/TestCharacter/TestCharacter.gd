@@ -4,7 +4,8 @@ extends Player
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+#onready var ANIMATION = $AnimationTree.get("parameters/playback")
+#onready var SPRITE = $Sprite3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +14,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	calculate_movement()
+#	$Projectile.global_transform.origin = global_transform.origin
+#	global_transform.origin = $Projectile.global_transform.origin
+#	calculate_movement()
 	set_animation()
 	set_facing()
 

@@ -75,6 +75,7 @@ script = ExtResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.047211, 0 )
 shape = SubResource( 11 )
+disabled = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource( 1 )
@@ -105,9 +106,10 @@ transform = Transform( 0.643798, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="Projectile" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.61149, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98647, -0.217775, 0 )
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 
 [editable path="HitBox"]
+[editable path="Projectile"]
