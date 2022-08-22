@@ -67,7 +67,7 @@ start_node = "Idle"
 [sub_resource type="BoxShape" id=12]
 extents = Vector3( 1, 1.08064, 1 )
 
-[node name="Node2D" type="KinematicBody"]
+[node name="Calliope" type="KinematicBody"]
 collision_layer = 2
 collision/safe_margin = 1.0
 script = ExtResource( 2 )

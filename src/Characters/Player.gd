@@ -2,7 +2,8 @@ extends KinematicBody
 
 class_name Player
 
-export var speed = Vector3(10, -10, 10)
+export var gravity = -10
+export var speed = 10
 var velocity = Vector3.ZERO
 var facing = 1
 
@@ -16,11 +17,16 @@ func _ready():
 	pass # Replace with function body.
 
 func set_facing():
-	if is_movement_pressed().x == 1:
+	print(facing)
+	if is_movement_pressed().x > 0:
 		facing = 1
-	elif is_movement_pressed().x == -1:
+	elif is_movement_pressed().x < 0:
 		facing = -1
-	SPRITE.scale.x = facing
+	
+	if facing > 0:
+		SPRITE.flip_h = false
+	else:
+		SPRITE.flip_h = true
 
 func set_animation():
 	if is_movement_pressed() != Vector2.ZERO:
@@ -33,7 +39,6 @@ func set_animation():
 func is_movement_pressed():
 	var x = 0
 	var z = 0
-	var y = speed.y
 	if Input.is_action_pressed("move_forward"):
 		z = -1
 	elif Input.is_action_pressed("move_back"):

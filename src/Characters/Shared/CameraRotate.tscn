@@ -9,5 +9,5 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="CameraBoom"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.1843 )
+transform = Transform( 1, 0, 0, 0, 0.857248, -0.514903, 0, 0.514903, 0.857248, 0, -4.59472, 8.0317 )
 current = true
