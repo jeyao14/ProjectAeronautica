@@ -22,11 +22,12 @@ func _ready():
 	CHARACTER_1 = c_1.instance()
 	CHARACTER_2 = c_2.instance()
 	CHARACTER_3 = c_3.instance()
-	CHARACTER_1.active = true
-	ACTIVE_CHARACTER = CHARACTER_1
 	add_child(CHARACTER_1)
 	add_child(CHARACTER_2)
 	add_child(CHARACTER_3)
+	CHARACTER_1.active = true
+	ACTIVE_CHARACTER = CHARACTER_1
+	swap_character_stats()
 
 
 func _physics_process(delta):

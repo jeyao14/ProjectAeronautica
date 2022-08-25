@@ -14,5 +14,9 @@ transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, -0.419969, 0 )
 shape = SubResource( 1 )
 
 [node name="Camera" parent="." instance=ExtResource( 3 )]
+rotate_speed = 3
+
+[node name="Camera" parent="Camera/CameraBoom" index="0"]
+transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, -4.69683, 17.9598 )
 
 [editable path="Camera"]

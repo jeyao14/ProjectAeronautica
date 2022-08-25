@@ -1,9 +1,7 @@
 extends Spatial
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var rotate_speed = 5
 onready var CAMERABOOM = $CameraBoom
 
 # Called when the node enters the scene tree for the first time.
@@ -12,10 +10,10 @@ func _ready():
 
 func rotate_camera(delta):
 	if Input.is_action_pressed("c_rotate_left"):
-		CAMERABOOM.rotate_y(5*delta)
+		CAMERABOOM.rotate_y(rotate_speed*delta)
 		pass
 	if Input.is_action_pressed("c_rotate_right"):
-		CAMERABOOM.rotate_y(-5*delta)
+		CAMERABOOM.rotate_y(-rotate_speed*delta)
 		pass
 	pass
 	
