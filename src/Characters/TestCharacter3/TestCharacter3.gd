@@ -8,7 +8,7 @@ func _ready():
 func _physics_process(delta):
 	set_animation()
 	set_facing()
-
+	
 func _on_HitBox_area_entered(area):
 	print("AREA ENTERED")
 	hurt_player()
@@ -23,3 +23,5 @@ func _on_HitBox_body_entered(body):
 
 func test_signal_receive():
 	print("SIGNAL")
+
+
