@@ -2,6 +2,7 @@ extends KinematicBody
 
 export var gravity = -10
 export var speed = 1
+export var dodge_markiplier = 3;
 var velocity = Vector3.ZERO
 
 export var character_path_1 = "res://Characters/TestCharacter/TestCharacter.tscn"
@@ -12,6 +13,7 @@ var CHARACTER_2
 var CHARACTER_3
 var ACTIVE_CHARACTER 
 onready var CAMERABOOM = $Camera/CameraBoom
+var dash_timer = false;
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,36 +33,51 @@ func _ready():
 
 
 func _physics_process(delta):
-	calculate_movement()
+	calculate_movement(delta)
 	swap_handler()
-	
 
-func calculate_movement():
-	var x = 0
-	var z = 0
-	var y = 0
-	if Input.is_action_pressed("move_forward"):
-		z = -1
-	elif Input.is_action_pressed("move_back"):
-		z = 1
+func calculate_movement(delta):
+	var l_speed = speed;
+	if(!dash_timer):
+		if Input.is_action_pressed("move_forward"):
+			velocity.z = -1
+		elif Input.is_action_pressed("move_back"):
+			velocity.z = 1
+		else:
+			velocity.z = 0;
+		if Input.is_action_pressed("move_right"):
+			velocity.x = 1
+		elif Input.is_action_pressed("move_left"):
+			velocity.x = -1
+		else:
+			velocity.x = 0;
+	else:
+		l_speed *= dodge_markiplier;
 	
-	if Input.is_action_pressed("move_right"):
-		x = 1
-	elif Input.is_action_pressed("move_left"):
-		x = -1
+	if Input.is_action_just_pressed("dodgeroll"):
+		dodge()
 	
 	if(is_on_floor()):
-		y = 0
+		velocity.y = 0
+
+	var l_velocity = velocity.rotated(Vector3.UP, CAMERABOOM.rotation.y).normalized()
+	l_velocity.x *= l_speed
+	l_velocity.z *= l_speed
+	l_velocity.y = gravity
 	
-	velocity = Vector3(x, y, z);
-	velocity = velocity.rotated(Vector3.UP, CAMERABOOM.rotation.y).normalized()
-	velocity.x *= speed
-	velocity.z *= speed
-	velocity.y = gravity
-	
-	move_and_slide(velocity, Vector3.UP, true)
+	move_and_slide(l_velocity, Vector3.UP, true)
 	pass
 	
+func dodge():
+#	move_and_slide(velocity, Vector3.UP, true)
+	dash_timer = true;
+	ACTIVE_CHARACTER.disable_hitbox(true);
+	yield(get_tree().create_timer(0.5,false),"timeout");
+	dash_timer = false;
+	ACTIVE_CHARACTER.disable_hitbox(true);
+#	while()
+	
+
 func swap_handler():
 	var next_character = null
 	if Input.is_action_just_pressed("swap_character_1"):
