@@ -88,7 +88,6 @@ shape = SubResource( 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.826, -36.648 )
 
 [node name="KinematicBody" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.35707, 0 )
 
 [node name="Projectile" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.817, 17.565 )
@@ -100,4 +99,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.817, 20.4083 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9954, 1.01308, 1.72486 )
 
 [editable path="KinematicBody"]
-[editable path="KinematicBody/Camera"]
+[editable path="KinematicBody/CameraObject"]

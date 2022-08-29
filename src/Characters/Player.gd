@@ -53,7 +53,19 @@ func is_movement_pressed():
 		x = -1
 	
 	return Vector2(x, z)
-	
+
+func use_attack():
+	print("using attack");
+
+func use_ability():
+	print("using ability")
+
+func use_ult():
+	print("using ult")
+
+func set_hitbox(active):
+	HITBOX.set_disabled(!active)
+
 func active_set(new_value):
 	active = new_value
 	self.visible = new_value

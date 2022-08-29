@@ -2,7 +2,7 @@ extends Player
 
 
 func _ready():
-	$Projectile.connect("test_signal", self, "test_signal_receive")
+#	$Projectile.connect("test_signal", self, "test_signal_receive")
 	pass # Replace with function body.
 
 func _physics_process(delta):
