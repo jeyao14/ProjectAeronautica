@@ -20,6 +20,8 @@ onready var CAMERA = $CameraObject/CameraBoom/Camera
 onready var CAMERARAY = $CameraObject/CameraBoom/Camera/RayCast
 onready var CURSOR = $Cursor;
 var dash_timer = false;
+var can_dash = true
+var dash_cooldown = .5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -59,11 +61,13 @@ func calculate_movement():
 			velocity.x = -1
 		else:
 			velocity.x = 0;
+		
+		if Input.is_action_just_pressed("dodgeroll") and can_dash:
+			dodge()
 	else:
 		l_speed *= dodge_markiplier;
 	
-	if Input.is_action_just_pressed("dodgeroll"):
-		dodge()
+	
 	
 	if(is_on_floor()):
 		velocity.y = 0
@@ -77,12 +81,15 @@ func calculate_movement():
 	pass
 	
 func dodge():
-#	move_and_slide(velocity, Vector3.UP, true)
+	can_dash = false
 	dash_timer = true;
 	ACTIVE_CHARACTER.set_hitbox(false);
 	yield(get_tree().create_timer(0.5,false),"timeout");
 	dash_timer = false;
 	ACTIVE_CHARACTER.set_hitbox(true);
+	yield(get_tree().create_timer(dash_cooldown, false), "timeout")
+	can_dash = true
+	
 #	while()
 	
 func process_actions():
@@ -108,30 +115,26 @@ func swap_handler():
 		swap_character_stats()
 
 func get_global_cursor_pos():
+	# get world state reference
 	var space = get_world().direct_space_state
 	var playerpos = ACTIVE_CHARACTER.global_transform.origin
-#	var dropPlane = Plane(Vector3(0,1,0), 0)
-	
+
+	# create raycast from camera to mouse
 	var mousepos = get_viewport().get_mouse_position();
 	var origin = CAMERA.project_ray_origin(mousepos);
 	var target = origin + CAMERA.project_ray_normal(mousepos) * 1000;
 	
+	# find intersection between raycast and world
 	var result = space.intersect_ray(origin, target);
+	
+	# if result has a value update cursor to result.position
 	if(result):
 		CURSOR.visible = true;
 		CURSOR.global_transform.origin = result.position;
+	# else turn off visibility of cursor
 	else:
 		CURSOR.visible = false;
-	
-#	CAMERARAY.global_transform_origin = origin;
-#	CAMERARAY.cast_to = CAMERA.project_ray_normal(mousepos) * 1000;
-#	CURSOR.global_transform.origin = CAMERARAY.get_
-	
-	if Input.is_action_just_pressed("testinput"):
-		print("Mouse Position: ", mousepos)
-		print("Global Position: ", CURSOR.global_transform.origin)
-	
-			
+
 
 #signals
 func swap_character_stats():
