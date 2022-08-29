@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Characters/Shared/BulletSpawner.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="Spawner" type="Spatial"]
+script = ExtResource( 1 )
+burst_count = 10
+
+[node name="BulletGroup" type="Node" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BurstTimer" type="Timer" parent="."]
+one_shot = true
