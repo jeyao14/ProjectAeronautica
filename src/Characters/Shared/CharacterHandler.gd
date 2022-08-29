@@ -5,6 +5,9 @@ export var speed = 1
 export var dodge_markiplier = 3;
 var velocity = Vector3.ZERO
 
+var ray_origin = Vector3();
+var ray_target = Vector3();
+
 export var character_path_1 = "res://Characters/TestCharacter/TestCharacter.tscn"
 export var character_path_2 = "res://Characters/TestCharacter2/TestCharacter2.tscn"
 export var character_path_3 = "res://Characters/TestCharacter3/TestCharacter3.tscn"
@@ -12,7 +15,9 @@ var CHARACTER_1
 var CHARACTER_2
 var CHARACTER_3
 var ACTIVE_CHARACTER 
-onready var CAMERABOOM = $Camera/CameraBoom
+onready var CAMERABOOM = $CameraObject/CameraBoom
+onready var CAMERA = $CameraObject/CameraBoom/Camera
+onready var CURSOR = $Cursor;
 var dash_timer = false;
 
 
@@ -33,10 +38,12 @@ func _ready():
 
 
 func _physics_process(delta):
-	calculate_movement(delta)
+	calculate_movement()
 	swap_handler()
+	process_actions()
+	get_global_cursor_pos()
 
-func calculate_movement(delta):
+func calculate_movement():
 	var l_speed = speed;
 	if(!dash_timer):
 		if Input.is_action_pressed("move_forward"):
@@ -77,6 +84,13 @@ func dodge():
 	ACTIVE_CHARACTER.set_hitbox(true);
 #	while()
 	
+func process_actions():
+	if Input.is_action_pressed("shoot"):
+		ACTIVE_CHARACTER.use_attack()
+	if Input.is_action_just_pressed("use_ability"):
+		ACTIVE_CHARACTER.use_ability()
+	if Input.is_action_just_pressed("use_ult"):
+		ACTIVE_CHARACTER.use_ult();
 
 func swap_handler():
 	var next_character = null
@@ -91,6 +105,20 @@ func swap_handler():
 		next_character.active = true
 		ACTIVE_CHARACTER = next_character
 		swap_character_stats()
+
+func get_global_cursor_pos():
+	
+	var playerpos = ACTIVE_CHARACTER.global_transform.origin
+	var dropPlane = Plane(Vector3(0,1,0), playerpos.y)
+	
+	var mousepos = get_viewport().get_mouse_position();
+	var origin = CAMERA.project_ray_origin(mousepos);
+	var target = origin + CAMERA.project_ray_normal(mousepos) * 1000;
+
+	CURSOR.global_transform.origin = dropPlane.intersects_ray(origin, target) + Vector3(0,1,0);
+	
+			
+
 #signals
 func swap_character_stats():
 	self.speed = ACTIVE_CHARACTER.speed

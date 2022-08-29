@@ -81,7 +81,6 @@ shape = SubResource( 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82629, -4.87175 )
 
 [node name="KinematicBody" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.35707, 0 )
 
 [editable path="KinematicBody"]
-[editable path="KinematicBody/Camera"]
+[editable path="KinematicBody/CameraObject"]
