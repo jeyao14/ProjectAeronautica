@@ -54,8 +54,8 @@ func is_movement_pressed():
 	
 	return Vector2(x, z)
 	
-func disable_hitbox(toggle):
-	HITBOX.set_disabled(toggle)
+func set_hitbox(active):
+	HITBOX.set_disabled(!active)
 
 func active_set(new_value):
 	active = new_value

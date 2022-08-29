@@ -71,10 +71,10 @@ func calculate_movement(delta):
 func dodge():
 #	move_and_slide(velocity, Vector3.UP, true)
 	dash_timer = true;
-	ACTIVE_CHARACTER.disable_hitbox(true);
+	ACTIVE_CHARACTER.set_hitbox(false);
 	yield(get_tree().create_timer(0.5,false),"timeout");
 	dash_timer = false;
-	ACTIVE_CHARACTER.disable_hitbox(true);
+	ACTIVE_CHARACTER.set_hitbox(true);
 #	while()
 	
 
