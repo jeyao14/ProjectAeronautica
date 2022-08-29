@@ -17,6 +17,7 @@ var CHARACTER_3
 var ACTIVE_CHARACTER 
 onready var CAMERABOOM = $CameraObject/CameraBoom
 onready var CAMERA = $CameraObject/CameraBoom/Camera
+onready var CAMERARAY = $CameraObject/CameraBoom/Camera/RayCast
 onready var CURSOR = $Cursor;
 var dash_timer = false;
 
@@ -107,15 +108,28 @@ func swap_handler():
 		swap_character_stats()
 
 func get_global_cursor_pos():
-	
+	var space = get_world().direct_space_state
 	var playerpos = ACTIVE_CHARACTER.global_transform.origin
-	var dropPlane = Plane(Vector3(0,1,0), playerpos.y)
+#	var dropPlane = Plane(Vector3(0,1,0), 0)
 	
 	var mousepos = get_viewport().get_mouse_position();
 	var origin = CAMERA.project_ray_origin(mousepos);
 	var target = origin + CAMERA.project_ray_normal(mousepos) * 1000;
-
-	CURSOR.global_transform.origin = dropPlane.intersects_ray(origin, target) + Vector3(0,1,0);
+	
+	var result = space.intersect_ray(origin, target);
+	if(result):
+		CURSOR.visible = true;
+		CURSOR.global_transform.origin = result.position;
+	else:
+		CURSOR.visible = false;
+	
+#	CAMERARAY.global_transform_origin = origin;
+#	CAMERARAY.cast_to = CAMERA.project_ray_normal(mousepos) * 1000;
+#	CURSOR.global_transform.origin = CAMERARAY.get_
+	
+	if Input.is_action_just_pressed("testinput"):
+		print("Mouse Position: ", mousepos)
+		print("Global Position: ", CURSOR.global_transform.origin)
 	
 			
 
