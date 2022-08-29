@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Characters/Shared/CharacterHandler.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.tscn" type="PackedScene" id=2]
@@ -7,20 +7,75 @@
 
 [sub_resource type="BoxShape" id=2]
 
+[sub_resource type="BoxShape" id=4]
+
 [node name="Spatial" type="Spatial"]
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, -1.3434, 0 )
-mesh = SubResource( 3 )
-material/0 = null
+[node name="Arena" type="Node" parent="."]
 
-[node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.849584, 0, 0, 0, 1, 0, 0, 0 )
+[node name="Arena" type="StaticBody" parent="Arena"]
 collision_mask = 2
 
-[node name="HitBox" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 19.643, 0, 0, 0, 1.485, 0, 0, 0, 20, 0, -2.12299, 0 )
+[node name="MeshInstance" type="MeshInstance" parent="Arena/Arena"]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, -1.3434, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../../..")
+
+[node name="HitBox" type="CollisionShape" parent="Arena/Arena"]
+transform = Transform( 50, 0, 0, 0, 1.26163, 0, 0, 0, 50, 0, -1.80366, 0 )
 shape = SubResource( 2 )
+
+[node name="Spatial" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143188, 0.100897, -49.1252 )
+collision_mask = 2
+
+[node name="MeshInstance2" type="MeshInstance" parent="Arena/Spatial"]
+transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial"]
+transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Spatial2" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143, 0.101, 49.125 )
+collision_mask = 2
+
+[node name="MeshInstance2" type="MeshInstance" parent="Arena/Spatial2"]
+transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial2"]
+transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Spatial3" type="StaticBody" parent="Arena"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49.125, 0, 0 )
+collision_mask = 2
+
+[node name="MeshInstance2" type="MeshInstance" parent="Arena/Spatial3"]
+transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial3"]
+transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Spatial4" type="StaticBody" parent="Arena"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 49.125, 0, 0 )
+collision_mask = 2
+
+[node name="MeshInstance2" type="MeshInstance" parent="Arena/Spatial4"]
+transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial4"]
+transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 4 )
 
 [node name="Area" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82629, -4.87175 )
