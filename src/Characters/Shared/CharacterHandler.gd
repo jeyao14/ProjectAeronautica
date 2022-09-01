@@ -124,7 +124,7 @@ func get_global_cursor_pos():
 	var origin = CAMERA.project_ray_origin(mousepos);
 	var target = origin + CAMERA.project_ray_normal(mousepos) * 1000;
 	
-	# find intersection between raycast and world
+	# find intersection between raycast and worldz
 	var result = space.intersect_ray(origin, target);
 	
 	# if result has a value update cursor to result.position
