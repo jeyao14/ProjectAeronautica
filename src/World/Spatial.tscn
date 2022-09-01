@@ -22,7 +22,6 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, -1.3434, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
-material/0 = null
 
 [node name="HitBox" type="CollisionShape" parent="Arena/Arena"]
 transform = Transform( 50, 0, 0, 0, 1.26163, 0, 0, 0, 50, 0, -1.80366, 0 )
@@ -36,7 +35,6 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial"]
 transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
@@ -50,7 +48,6 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial2"]
 transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
@@ -64,7 +61,6 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial3"]
 transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
@@ -78,7 +74,6 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial4"]
 transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )

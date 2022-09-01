@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 
 [node name="CameraBoom" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="CameraBoom"]
 transform = Transform( 1, 0, 0, 0, 0.857248, -0.514903, 0, 0.514903, 0.857248, 0, -4.59472, 8.0317 )
@@ -14,3 +14,5 @@ current = true
 
 [node name="RayCast" type="RayCast" parent="CameraBoom/Camera"]
 enabled = true
+
+[node name="Tween" type="Tween" parent="."]
