@@ -1,11 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Characters/Shared/CharacterHandler.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/TestCharacter/TestProjectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Shared/BulletSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Tiles/cgshare-book-ground-floor-003.jpg" type="Texture" id=5]
 
 [sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 1, 1, 1, 0 )
+albedo_texture = ExtResource( 5 )
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_gloss = 0.38
+uv1_scale = Vector3( 15, 15, 15 )
 
 [sub_resource type="BoxShape" id=2]
 
@@ -22,6 +31,7 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, -1.3434, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
+material/0 = SubResource( 5 )
 
 [node name="HitBox" type="CollisionShape" parent="Arena/Arena"]
 transform = Transform( 50, 0, 0, 0, 1.26163, 0, 0, 0, 50, 0, -1.80366, 0 )
@@ -33,6 +43,7 @@ collision_mask = 2
 
 [node name="MeshInstance2" type="MeshInstance" parent="Arena/Spatial"]
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
+visible = false
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
 
@@ -46,6 +57,7 @@ collision_mask = 2
 
 [node name="MeshInstance2" type="MeshInstance" parent="Arena/Spatial2"]
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
+visible = false
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
 
@@ -59,6 +71,7 @@ collision_mask = 2
 
 [node name="MeshInstance2" type="MeshInstance" parent="Arena/Spatial3"]
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
+visible = false
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
 
@@ -72,6 +85,7 @@ collision_mask = 2
 
 [node name="MeshInstance2" type="MeshInstance" parent="Arena/Spatial4"]
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
+visible = false
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
 
