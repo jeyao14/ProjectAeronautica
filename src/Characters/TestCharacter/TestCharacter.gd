@@ -1,5 +1,6 @@
 extends Player
 
+onready var SPAWNER = $Spawner
 
 func _ready():
 #	$Projectile.connect("test_signal", self, "test_signal_receive")
@@ -8,6 +9,13 @@ func _ready():
 func _physics_process(delta):
 	set_animation()
 	set_facing()
+
+
+func use_attack():
+	SPAWNER.mouse_direction = mouse_direction
+	SPAWNER.fire()
+	print("using attack");
+
 
 func _on_HitBox_area_entered(area):
 	print("AREA ENTERED")
