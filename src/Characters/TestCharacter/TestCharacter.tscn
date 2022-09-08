@@ -11,12 +11,18 @@ extents = Vector3( 0.605, 0.175, 1.14 )
 [sub_resource type="SpatialMaterial" id=13]
 flags_transparent = true
 flags_ensure_correct_normals = true
-params_billboard_mode = 2
+params_diffuse_mode = 1
+params_cull_mode = 2
+params_depth_draw_mode = 1
+params_billboard_mode = 1
 params_billboard_keep_scale = true
 albedo_texture = ExtResource( 1 )
-rim_enabled = true
-rim = 0.03
-rim_tint = 0.0
+ao_enabled = true
+ao_light_affect = 0.0
+ao_on_uv2 = false
+ao_texture_channel = 0
+transmission_enabled = true
+transmission = Color( 1, 1, 1, 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
