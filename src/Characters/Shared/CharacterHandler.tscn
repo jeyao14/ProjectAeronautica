@@ -24,7 +24,8 @@ shape = SubResource( 1 )
 rotate_speed = 3
 
 [node name="Camera" parent="CameraObject/CameraBoom" index="0"]
-transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, -7.61629, 16.519 )
+transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, -0.00210762, -7.59292, 16.5704 )
+fov = 60.0
 
 [node name="RayCast" parent="CameraObject/CameraBoom/Camera" index="0"]
 cast_to = Vector3( 0, 0, -30 )
