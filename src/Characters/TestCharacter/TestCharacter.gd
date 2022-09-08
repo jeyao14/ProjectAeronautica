@@ -14,7 +14,11 @@ func _on_HitBox_area_entered(area):
 	hurt_player()
 	pass # Replace with function body.
 
+func use_attack():
+	print("using test character 1 attack");
 
+func use_ability():
+	print("using test character 1 ability")
 
 func _on_HitBox_body_entered(body):
 	print("BODY ENTERED")
