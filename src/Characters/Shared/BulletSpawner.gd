@@ -43,7 +43,6 @@ func fire():
 		is_firing = false
 
 func spawn_bullet():
-#	print(self.translation)
 	var global_pos = self.global_transform.origin
 	var angle = Vector2(global_pos.x, global_pos.z).angle_to(Vector2(mouse_direction.x, mouse_direction.z))
 	print(angle)
@@ -53,7 +52,6 @@ func spawn_bullet():
 	var direction_vector = (mouse_direction - self.global_transform.origin).normalized()
 	
 	instance.direction = direction_vector
-#	print(instance.translation)
 	BULLET_GROUP.add_child(instance)
 	instance.translation = self.global_transform.origin
 	mouse_direction = Vector3.ZERO
