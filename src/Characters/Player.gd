@@ -12,6 +12,8 @@ onready var ANIMATION = $AnimationTree.get("parameters/playback")
 onready var SPRITE = $Sprite3D
 onready var HITBOX = get_node("HitBox/CollisionShape")
 
+var mouse_direction = Vector3.ZERO
+
 signal character_active(speed)
 
 # Called when the node enters the scene tree for the first time.
