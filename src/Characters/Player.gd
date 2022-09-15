@@ -57,7 +57,10 @@ func is_movement_pressed():
 	return Vector2(x, z)
 
 func use_attack():
-	print("using attack");
+	print("using attack")
+
+func stop_attack():
+	print("stop attack")
 
 func use_ability():
 	print("using ability")

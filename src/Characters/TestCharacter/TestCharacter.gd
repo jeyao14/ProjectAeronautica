@@ -13,9 +13,10 @@ func _physics_process(delta):
 
 func use_attack():
 	SPAWNER.mouse_direction = mouse_direction
-	SPAWNER.fire()
-	print("using attack");
+	SPAWNER.shoot = true
 
+func stop_attack():
+	SPAWNER.shoot = false
 
 func _on_HitBox_area_entered(area):
 	print("AREA ENTERED")
