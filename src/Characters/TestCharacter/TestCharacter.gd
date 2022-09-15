@@ -25,6 +25,11 @@ func use_attack():
 func reload():
 	ammocount = magsize;
 	print("Ammo: ", ammocount, "/", magsize)
+	SPAWNER.mouse_direction = mouse_direction
+	SPAWNER.shoot = true
+
+func stop_attack():
+	SPAWNER.shoot = false
 
 func _on_HitBox_area_entered(area):
 	print("AREA ENTERED")

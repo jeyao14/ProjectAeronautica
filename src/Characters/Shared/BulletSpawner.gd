@@ -3,7 +3,7 @@ extends Spatial
 
 export var bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
 export(int) var burst_count = 0
-var burst_timer = 0 setget set_burst_timer
+var burst_timer = .1 setget set_burst_timer
 var cooldown = .5 setget set_cooldown
 
 onready var BULLET_GROUP = $BulletGroup
@@ -11,7 +11,7 @@ onready var COOLDOWN = $CooldownTimer
 onready var BURST_TIMER = $BurstTimer
 onready var mouse_direction = Vector3.ZERO
 var BULLET
-var shoot = true
+var shoot = false
 var is_firing = false
 
 # Called when the node enters the scene tree for the first time.
@@ -22,11 +22,14 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	if shoot and not is_firing:
+		fire()
 	pass
 
 
 func fire():
 	if not is_firing:
+		print(burst_count)
 		is_firing = true
 		if burst_count > 0 and burst_timer > 0:
 			for i in burst_count:
@@ -35,6 +38,7 @@ func fire():
 				spawn_bullet()
 				BURST_TIMER.start()
 				yield(BURST_TIMER, "timeout")
+				print("BULLET")
 		else:
 			spawn_bullet()
 		COOLDOWN.start()
@@ -46,7 +50,6 @@ func fire():
 func spawn_bullet():
 	var global_pos = self.global_transform.origin
 	var angle = Vector2(global_pos.x, global_pos.z).angle_to(Vector2(mouse_direction.x, mouse_direction.z))
-	print(angle)
 	var instance = BULLET.instance()
 	mouse_direction.y = self.global_transform.origin.y
 	

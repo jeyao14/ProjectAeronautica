@@ -68,6 +68,10 @@ func use_attack():
 func reload():
 	print("reloading");
 
+func stop_attack():
+	print("stop attack")
+
+
 func use_ability():
 	print("using ability")
 

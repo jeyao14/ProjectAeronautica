@@ -6,7 +6,6 @@
 
 [node name="Spawner" type="Spatial"]
 script = ExtResource( 1 )
-burst_count = 10
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )

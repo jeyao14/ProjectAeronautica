@@ -2,7 +2,7 @@ extends Area
 
 
 export var direction = Vector3.FORWARD
-export var speed = 40
+export var speed = 50
 export var damage = 10
 export var max_distance = 0.0
 
