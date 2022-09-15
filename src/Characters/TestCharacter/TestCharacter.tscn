@@ -104,6 +104,8 @@ shape = SubResource( 12 )
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
 burst_count = 5
 
+[node name="ShootTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 

@@ -3,6 +3,12 @@ class_name Player
 
 export var gravity = -10
 export var speed = 10
+export var hp = 100
+export var att = 10
+export var def = 10
+export var dex = 10
+export var crit = 10
+export var magsize = 10
 var velocity = Vector3.ZERO
 var facing = 1
 onready var active = false  setget active_set
@@ -58,6 +64,9 @@ func is_movement_pressed():
 
 func use_attack():
 	print("using attack");
+	
+func reload():
+	print("reloading");
 
 func use_ability():
 	print("using ability")

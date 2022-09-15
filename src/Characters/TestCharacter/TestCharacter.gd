@@ -1,9 +1,12 @@
 extends Player
 
 onready var SPAWNER = $Spawner
+onready var SHOOTTIMER = $ShootTimer
+var ammocount = magsize
 
 func _ready():
 #	$Projectile.connect("test_signal", self, "test_signal_receive")
+	print("Ammo: ", ammocount, "/", magsize)
 	pass # Replace with function body.
 
 func _physics_process(delta):
@@ -12,18 +15,21 @@ func _physics_process(delta):
 
 
 func use_attack():
-	SPAWNER.mouse_direction = mouse_direction
-	SPAWNER.fire()
-	print("using attack");
+	if(ammocount > 0):
+		SPAWNER.mouse_direction = mouse_direction
+		var fireSuccess = SPAWNER.fire()
+		if(fireSuccess):
+			ammocount -= 1;
+			print("Ammo: ", ammocount, "/", magsize)
 
+func reload():
+	ammocount = magsize;
+	print("Ammo: ", ammocount, "/", magsize)
 
 func _on_HitBox_area_entered(area):
 	print("AREA ENTERED")
 	hurt_player()
 	pass # Replace with function body.
-
-func use_attack():
-	print("using test character 1 attack");
 
 func use_ability():
 	print("using test character 1 ability")

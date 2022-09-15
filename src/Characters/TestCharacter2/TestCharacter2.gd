@@ -16,6 +16,9 @@ func _on_HitBox_area_entered(area):
 
 func use_attack():
 	print("using test character 2 attack");
+	
+func reload():
+	print("reloading");
 
 func use_ability():
 	print("using test character 2 ability")

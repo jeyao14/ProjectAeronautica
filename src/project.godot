@@ -30,6 +30,10 @@ config/name="Src"
 run/main_scene="res://World/Spatial.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ImportData="*res://Characters/Shared/ImportData.gd"
+
 [display]
 
 window/size/width=1920
@@ -118,6 +122,11 @@ testinput={
 reset_camera={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+reload={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
