@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Characters/Shared/CharacterHandler.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/TestCharacter/TestProjectile.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Characters/Shared/BulletSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Characters/TestCharacter/TemplateTurret.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CubeMesh" id=3]
@@ -90,9 +89,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.817, 17.565 )
 
 [node name="Projectile2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.817, 20.4083 )
-
-[node name="Spawner" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9954, 1.01308, 1.72486 )
 
 [node name="KinematicBody2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.23049, -8.78869, 0.901168, -7.72448 )

@@ -71,6 +71,7 @@ extents = Vector3( 1, 1.08064, 1 )
 collision_layer = 2
 collision/safe_margin = 1.0
 script = ExtResource( 2 )
+dex = 100
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.047211, 0 )

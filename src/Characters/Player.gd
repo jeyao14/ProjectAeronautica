@@ -3,6 +3,7 @@ class_name Player
 
 export var gravity = -10
 export var speed = 10
+#ALL STATS ARE CAPPED AT 100
 export var hp = 100
 export var att = 10
 export var def = 10

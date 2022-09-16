@@ -3,8 +3,9 @@ extends Spatial
 
 export var bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
 export(int) var burst_count = 0
+export(int) var ammocount =  0
 var burst_timer = .1 setget set_burst_timer
-var cooldown = .5 setget set_cooldown
+var cooldown = 1 setget set_cooldown
 
 onready var BULLET_GROUP = $BulletGroup
 onready var COOLDOWN = $CooldownTimer
@@ -14,10 +15,13 @@ var BULLET
 var shoot = false
 var is_firing = false
 
+signal update_ammo;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	BULLET = load(bullet_path)
 	COOLDOWN.wait_time = cooldown
+	print("spawner cooldown: ", cooldown)
 	BURST_TIMER.wait_time = burst_timer
 	pass # Replace with function body.
 
@@ -26,6 +30,8 @@ func _physics_process(delta):
 		fire()
 	pass
 
+func setShotCooldown():
+	pass
 
 func fire():
 	if not is_firing:
@@ -59,6 +65,7 @@ func spawn_bullet():
 	BULLET_GROUP.add_child(instance)
 	instance.translation = self.global_transform.origin
 	mouse_direction = Vector3.ZERO
+	ammocount -= 1;
 
 func set_burst_timer(value):
 	burst_timer = value
