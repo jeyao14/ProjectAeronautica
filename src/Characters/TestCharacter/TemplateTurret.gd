@@ -1,9 +1,13 @@
 extends KinematicBody
 
+onready var SPAWNER = $Spawner
+onready var SHOOTTIMER = $ShootTimer
+
 var enemy_list = []
 var current_enemy
 #var closest_enemy
 var collision_counter = 0
+var ammocount=30
 
 
 var target_global_position: = Vector2.ZERO setget set_target_global_position
@@ -16,6 +20,7 @@ func _physics_process(delta):
 	if enemy_list.size() > 0:
 		calculate_closest_enemy()
 		self.look_at(current_enemy.global_transform.origin,Vector3.UP)
+		fire_bullet()
 	
 
 
@@ -43,3 +48,18 @@ func calculate_closest_enemy():
 func get_target_pos():
 	pass
 	
+func fire_bullet():
+	if(ammocount > 0):
+		SPAWNER.mouse_direction = self.get_global_transform().basis.z
+		var fireSuccess = SPAWNER.fire()
+	print("turretAmmo: ", ammocount, "/", 30)
+
+func reload():
+	ammocount = 30;
+	SPAWNER.ammocount = ammocount;
+	print("turretAmmo: ", ammocount, "/", 30)
+	SPAWNER.mouse_direction = self.get_global_transform().basis.z
+	SPAWNER.shoot = true
+
+func stop_attack():
+	SPAWNER.shoot = false
