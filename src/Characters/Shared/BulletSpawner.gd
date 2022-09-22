@@ -5,7 +5,7 @@ export var bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
 export(int) var burst_count = 0
 export(int) var ammocount =  0
 var burst_timer = .1 setget set_burst_timer
-var cooldown = 1 setget set_cooldown
+export var cooldown = 1 setget set_cooldown
 
 onready var BULLET_GROUP = $BulletGroup
 onready var COOLDOWN = $CooldownTimer
