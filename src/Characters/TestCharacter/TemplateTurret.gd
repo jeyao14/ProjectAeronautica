@@ -50,15 +50,15 @@ func get_target_pos():
 	
 func fire_bullet():
 	if(ammocount > 0):
-		SPAWNER.mouse_direction = self.get_global_transform().basis.z
-		var fireSuccess = SPAWNER.fire()
-	print("turretAmmo: ", ammocount, "/", 30)
+		SPAWNER.shoot = true
+		SPAWNER.mouse_direction = current_enemy.global_transform.origin
+	#print("turretAmmo: ", ammocount, "/", 30)
 
 func reload():
 	ammocount = 30;
 	SPAWNER.ammocount = ammocount;
 	print("turretAmmo: ", ammocount, "/", 30)
-	SPAWNER.mouse_direction = self.get_global_transform().basis.z
+	SPAWNER.mouse_direction = current_enemy.global_transform.origin
 	SPAWNER.shoot = true
 
 func stop_attack():

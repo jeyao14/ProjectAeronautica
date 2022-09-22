@@ -54,6 +54,7 @@ func fire():
 	return false
 
 func spawn_bullet():
+	print("md",mouse_direction)
 	var global_pos = self.global_transform.origin
 	var angle = Vector2(global_pos.x, global_pos.z).angle_to(Vector2(mouse_direction.x, mouse_direction.z))
 	var instance = BULLET.instance()
