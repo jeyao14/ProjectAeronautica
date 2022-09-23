@@ -5,6 +5,7 @@ export var direction = Vector3.FORWARD
 export var speed = 50
 export var damage = 10
 export var max_distance = 0.0
+export var angle = 0.0
 
 onready var start_position = global_transform.origin
 
@@ -16,6 +17,7 @@ signal test_signal
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	movement_vector = direction.rotated(Vector3.UP, self.rotation.y) * speed
+	rotation_degrees.y = angle
 	pass # Replace with function body.
 
 

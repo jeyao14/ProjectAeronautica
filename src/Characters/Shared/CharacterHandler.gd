@@ -93,7 +93,7 @@ func dodge():
 #	while()
 	
 func process_actions():
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		ACTIVE_CHARACTER.use_attack()
 	if Input.is_action_just_released("shoot"):
 		ACTIVE_CHARACTER.stop_attack()

@@ -18,8 +18,6 @@ func _physics_process(delta):
 		self.look_at(current_enemy.global_transform.origin,Vector3.UP)
 	
 
-
-
 func set_target_global_position(value: Vector2) -> void:
 	target_global_position = value
 
