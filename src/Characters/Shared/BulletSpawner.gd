@@ -20,6 +20,10 @@ export (int) var spread_count = 0
 export var spread_angle = 45.0
 export var random = false
 
+# Bullet speed override
+export var bullet_speed_override = 0.0
+export var bullet_speed_override_range = Vector2.ZERO
+
 var BULLET
 var shoot = false
 var is_firing = false
@@ -113,6 +117,11 @@ func spawn_bullet(angle = 0.0):
 	var instance = BULLET.instance()
 	mouse_direction.y = self.global_transform.origin.y
 	
+	if bullet_speed_override > 0.0:
+		instance.speed = bullet_speed_override
+	elif bullet_speed_override_range != Vector2.ZERO:
+		randomize()
+		instance.speed = rand_range(bullet_speed_override_range.x, bullet_speed_override_range.y)
 	
 	var direction_vector = (global_pos - mouse_direction).normalized()
 	# gets a direction angle based off of the direction vector + any additional angle offsets
