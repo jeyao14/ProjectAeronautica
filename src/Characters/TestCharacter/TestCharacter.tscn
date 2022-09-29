@@ -105,10 +105,15 @@ shape = SubResource( 12 )
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
 full_auto = true
 
-[node name="ShootTimer" type="Timer" parent="."]
+[node name="AbilityCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TurretGroup" type="Node" parent="."]
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
+[connection signal="timeout" from="AbilityCooldown" to="." method="_on_AbilityCooldown_timeout"]
 
 [editable path="HitBox"]
 [editable path="Spawner"]

@@ -1,21 +1,23 @@
 extends KinematicBody
 
 onready var SPAWNER = $Spawner
-onready var SHOOTTIMER = $ShootTimer
+onready var LIFESPAN = $LifespanTimer
 
+var alive = true
 var enemy_list = []
 var current_enemy
 var collision_counter = 0
 
 var target_global_position: = Vector2.ZERO setget set_target_global_position
 
+signal turret_death 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_pattern_parameters()
 	
 func _physics_process(delta):
-	if enemy_list.size() > 0:
+	if enemy_list.size() > 0 and alive:
 		calculate_closest_enemy()
 		self.look_at(current_enemy.global_transform.origin,Vector3.UP)
 		fire_bullet()
@@ -38,9 +40,11 @@ func _on_Area_body_exited(body):
 func calculate_closest_enemy():
 	var global_pos = self.global_transform.origin
 	for body in enemy_list:
+		if not alive:
+			break
 		if global_pos.distance_to(current_enemy.global_transform.origin) > global_pos.distance_to(body.global_transform.origin):
 			current_enemy = body
-			
+
 func get_target_pos():
 	pass
 	
@@ -62,3 +66,9 @@ func get_pattern_parameters():
 	SPAWNER.spread_angle = 0;
 	SPAWNER.random = false;
 	SPAWNER.bullet_speed_override = 100;
+
+
+func _on_LifespanTimer_timeout():
+	alive = false
+	emit_signal("turret_death")
+	call_deferred('free')
