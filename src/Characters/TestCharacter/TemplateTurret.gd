@@ -5,9 +5,7 @@ onready var SHOOTTIMER = $ShootTimer
 
 var enemy_list = []
 var current_enemy
-#var closest_enemy
 var collision_counter = 0
-var ammocount=30
 
 
 var target_global_position: = Vector2.ZERO setget set_target_global_position
@@ -47,17 +45,20 @@ func get_target_pos():
 	pass
 	
 func fire_bullet():
-	if(ammocount > 0):
-		SPAWNER.shoot = true
-		SPAWNER.mouse_direction = current_enemy.global_transform.origin
-	#print("turretAmmo: ", ammocount, "/", 30)
-
-func reload():
-	ammocount = 30;
-	SPAWNER.ammocount = ammocount;
-	print("turretAmmo: ", ammocount, "/", 30)
-	SPAWNER.mouse_direction = current_enemy.global_transform.origin
 	SPAWNER.shoot = true
+	SPAWNER.mouse_direction = current_enemy.global_transform.origin
 
 func stop_attack():
 	SPAWNER.shoot = false
+
+func get_pattern_parameters():
+	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn";
+	SPAWNER.cooldown = 0.5;
+	SPAWNER.ammocount = -1;
+	SPAWNER.uses_ammo = false;
+	SPAWNER.full_auto = true;
+	SPAWNER.burst_count = 0;
+	SPAWNER.spread_count = 0;
+	SPAWNER.spread_angle = 0;
+	SPAWNER.random = false;
+	SPAWNER.bullet_speed_override = 100;
