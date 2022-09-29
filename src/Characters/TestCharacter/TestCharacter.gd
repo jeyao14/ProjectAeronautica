@@ -29,8 +29,6 @@ func reload():
 	ammocount = magsize;
 	SPAWNER.ammocount = ammocount;
 	print("Ammo: ", ammocount, "/", magsize)
-	SPAWNER.mouse_direction = mouse_direction
-	SPAWNER.shoot = true
 
 func stop_attack():
 	SPAWNER.shoot = false
