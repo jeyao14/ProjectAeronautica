@@ -46,7 +46,7 @@ func _physics_process(delta):
 			fire()
 	else:
 		if shoot and not is_firing and ammocount == -1:
-			print("no ammo firing")
+#			print("no ammo firing")
 			fire()
 	pass
 

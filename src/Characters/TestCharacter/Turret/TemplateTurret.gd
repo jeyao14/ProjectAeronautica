@@ -7,13 +7,13 @@ var enemy_list = []
 var current_enemy
 var collision_counter = 0
 
-
 var target_global_position: = Vector2.ZERO setget set_target_global_position
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_pattern_parameters()
+	
 func _physics_process(delta):
 	if enemy_list.size() > 0:
 		calculate_closest_enemy()
@@ -52,7 +52,7 @@ func stop_attack():
 	SPAWNER.shoot = false
 
 func get_pattern_parameters():
-	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn";
+	SPAWNER.bullet_path = "res://Characters/TestCharacter/Turret/TurretProjectile.tscn";
 	SPAWNER.cooldown = 0.5;
 	SPAWNER.ammocount = -1;
 	SPAWNER.uses_ammo = false;
