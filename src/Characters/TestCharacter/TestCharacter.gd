@@ -6,29 +6,29 @@ var ammocount = magsize
 
 
 func _ready():
-#	$Projectile.connect("test_signal", self, "test_signal_receive")
-	print("Ammo: ", ammocount, "/", magsize)
 #	don't let this stat go beyond 100
-	SPAWNER.cooldown = 1.2 + -(dex/100.0)
+	getPatternParameters()
 #	print("cooldown = ", SPAWNER.cooldown)
-	SPAWNER.ammocount = ammocount;
+	print("Ammo: ", ammocount, "/", magsize)
 	pass # Replace with function body.
 
 func _physics_process(delta):
 	set_animation()
 	set_facing()
 	GetSpawnerAmmoInfo()
+	if SPAWNER.shoot:
+		SPAWNER.mouse_direction = mouse_direction
+#		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
 	if(ammocount > 0):
-		SPAWNER.mouse_direction = mouse_direction
-		var fireSuccess = SPAWNER.fire()
-	print("Ammo: ", ammocount, "/", magsize)
+		SPAWNER.shoot = true
+	
 
 func reload():
 	ammocount = magsize;
 	SPAWNER.ammocount = ammocount;
-	print("Ammo: ", ammocount, "/", magsize)
+#	print("Ammo: ", ammocount, "/", magsize)
 
 func stop_attack():
 	SPAWNER.shoot = false
@@ -48,6 +48,22 @@ func _on_HitBox_body_entered(body):
 	
 func GetSpawnerAmmoInfo():
 	ammocount = SPAWNER.ammocount
+	
+func getPatternParameters():
+#	SPAWNER.cooldown = 0.9 + -((dex*0.8)/100.0)
+	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
+	print("bullet path: ", SPAWNER.bullet_path)
+	SPAWNER.cooldown = 0.3/dex
+	SPAWNER.ammocount = magsize;
+	ammocount = magsize;
+	SPAWNER.full_auto = false;
+	SPAWNER.burst_count = 0;
+	SPAWNER.spread_count = 0;
+	SPAWNER.spread_angle = 0;
+	SPAWNER.random = false;
+	SPAWNER.bullet_speed_override = 75;
+	
+	
 
 func test_signal_receive():
 	print("SIGNAL")

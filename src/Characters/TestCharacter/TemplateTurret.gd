@@ -23,8 +23,6 @@ func _physics_process(delta):
 		fire_bullet()
 	
 
-
-
 func set_target_global_position(value: Vector2) -> void:
 	target_global_position = value
 

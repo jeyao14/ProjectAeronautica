@@ -5,10 +5,10 @@ export var gravity = -10
 export var speed = 10
 #ALL STATS ARE CAPPED AT 100
 export var hp = 100
-export var att = 10
-export var def = 10
-export var dex = 10
-export var crit = 10
+export var att: float = 1.0
+export var def: float = 1.0
+export var dex: float = 1.0
+export var crit: float = 0.05
 export var magsize = 10
 var velocity = Vector3.ZERO
 var facing = 1
