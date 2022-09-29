@@ -1,8 +1,9 @@
 extends Spatial
 
 
-export var bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
+export var bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn" setget set_bullet
 export(int) var ammocount =  0
+export var uses_ammo = true;
 export var cooldown = .5 setget set_cooldown
 export var full_auto = false
 onready var COOLDOWN = $CooldownTimer
@@ -33,14 +34,20 @@ signal update_ammo;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	BULLET = load(bullet_path)
+	print("spawner bullet path: ", bullet_path)
 	COOLDOWN.wait_time = cooldown
 	print("spawner cooldown: ", cooldown)
 	BURST_TIMER.wait_time = burst_timer
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	if shoot and not is_firing and ammocount > 0:
-		fire()
+	if uses_ammo:
+		if shoot and not is_firing and ammocount > 0:
+			fire()
+	else:
+		if shoot and not is_firing and ammocount == -1:
+			print("no ammo firing")
+			fire()
 	pass
 
 func setShotCooldown():
@@ -70,8 +77,10 @@ func fire():
 		else:
 			if spread:
 				spread_fire()
+				use_ammo();
 			else:
 				spawn_bullet()
+				use_ammo();
 			fire_cooldown()
 
 func burst_fire(spread):
@@ -82,6 +91,7 @@ func burst_fire(spread):
 			spread_fire()
 		else:
 			spawn_bullet()
+			use_ammo();
 		BURST_TIMER.start()
 		yield(BURST_TIMER, "timeout")
 	fire_cooldown()
@@ -129,14 +139,20 @@ func spawn_bullet(angle = 0.0):
 	
 	
 	instance.rotation_degrees.y = direction_angle
+	instance.angle = direction_angle
 	BULLET_GROUP.add_child(instance)
 	instance.translation = global_pos
-	ammocount -= 1
-
+	
 func has_ammo():
-	if(ammocount <= 0):
+	if(ammocount == -1):
+		return true;
+	if(ammocount < 1):
 		return false
 	return true
+
+func use_ammo():
+	if(ammocount > 0):
+		ammocount -= 1
 
 func set_burst_timer(value):
 	burst_timer = value
@@ -146,3 +162,8 @@ func set_cooldown(value):
 	cooldown = value
 	COOLDOWN.wait_time = cooldown
 	print("COOLDOWN CHANGED TO: ", COOLDOWN.wait_time)
+
+func set_bullet(path):
+	bullet_path = path;
+	BULLET = load(bullet_path)
+	print("PATH CHANGED TO: ", bullet_path)

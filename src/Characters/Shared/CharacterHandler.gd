@@ -101,6 +101,8 @@ func process_actions():
 		ACTIVE_CHARACTER.reload()
 	if Input.is_action_just_pressed("use_ability"):
 		ACTIVE_CHARACTER.use_ability()
+	if Input.is_action_just_released("use_ability"):
+		ACTIVE_CHARACTER.stop_ability()
 	if Input.is_action_just_pressed("use_ult"):
 		ACTIVE_CHARACTER.use_ult();
 	

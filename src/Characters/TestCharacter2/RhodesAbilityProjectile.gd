@@ -2,9 +2,9 @@ extends Area
 
 
 export var direction = Vector3.FORWARD
-export var speed = 170
+export var speed = 100
 export var damage = 10
-export var max_distance = 100.0
+export var max_distance = 10.0
 export var angle = 0.0
 
 onready var start_position = global_transform.origin
