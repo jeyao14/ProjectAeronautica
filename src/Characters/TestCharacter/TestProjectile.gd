@@ -1,11 +1,11 @@
 extends Area
 
 
-export var direction = Vector3.FORWARD
-export var speed = 170
-export var damage = 10
-export var max_distance = 100.0
-export var angle = 0.0
+var direction = Vector3.FORWARD
+var speed = 170
+var damage = 10
+var max_distance = 100.0
+var angle = 0.0
 
 onready var start_position = global_transform.origin
 
@@ -28,6 +28,7 @@ func _physics_process(delta):
 	pass
 
 func distance_traveled():
+	print("Distance: ", global_transform.origin.distance_to(start_position))
 	if global_transform.origin.distance_to(start_position) > max_distance:
 		queue_free()
 
