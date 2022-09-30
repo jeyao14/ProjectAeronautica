@@ -140,8 +140,9 @@ func spawn_bullet(angle = 0.0):
 	
 	instance.rotation_degrees.y = direction_angle
 	instance.angle = direction_angle
-	BULLET_GROUP.add_child(instance)
 	instance.translation = global_pos
+	BULLET_GROUP.add_child(instance)
+	
 	
 func has_ammo():
 	if(ammocount == -1):

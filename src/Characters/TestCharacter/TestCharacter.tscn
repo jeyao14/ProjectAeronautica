@@ -105,11 +105,10 @@ shape = SubResource( 12 )
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
 full_auto = true
 
-[node name="AbilityCooldown" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
+[node name="MeshInstance" parent="Spawner" index="0"]
+material/0 = null
 
-[node name="TurretGroup" type="Node" parent="."]
+[node name="ShootTimer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
