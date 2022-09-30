@@ -9,7 +9,7 @@
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[node name="Area" type="KinematicBody"]
+[node name="Enemy" type="KinematicBody"]
 collision_layer = 4
 collision_mask = 10
 script = ExtResource( 1 )
@@ -20,3 +20,8 @@ shape = SubResource( 1 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,4 +1,4 @@
-extends Node
+extends KinematicBody
 
 class_name Enemy
 
