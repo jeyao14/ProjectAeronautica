@@ -14,4 +14,6 @@ func hurt_enemy(damage):
 		kill_enemy()
 
 func kill_enemy():
+	
+	
 	queue_free()

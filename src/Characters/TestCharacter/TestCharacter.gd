@@ -8,11 +8,11 @@ var ammocount = magsize
 func _ready():
 #	don't let this stat go beyond 100
 	getPatternParameters()
-#	print("cooldown = ", SPAWNER.cooldown)
 	print("Ammo: ", ammocount, "/", magsize)
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	
 	set_animation()
 	set_facing()
 	GetSpawnerAmmoInfo()
@@ -50,7 +50,6 @@ func GetSpawnerAmmoInfo():
 	ammocount = SPAWNER.ammocount
 	
 func getPatternParameters():
-#	SPAWNER.cooldown = 0.9 + -((dex*0.8)/100.0)
 	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
 	print("bullet path: ", SPAWNER.bullet_path)
 	SPAWNER.cooldown = 0.3/dex

@@ -33,6 +33,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ImportData="*res://Characters/Shared/ImportData.gd"
+GLOBALS="*res://Common/globals.gd"
 
 [display]
 
