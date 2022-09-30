@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Characters/TestCharacter/TemplateTurret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/TestCharacter/Turret/TemplateTurret.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Shared/CharacterHandler.tscn" type="PackedScene" id=4]
 
@@ -97,6 +97,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.826, -36.648 )
 
 [node name="KinematicBody2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.23049, -8.78869, 0.901168, -7.72448 )
+
+[node name="Area2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.5434 )
+
+[node name="Area3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4669, 0, 1.37327 )
 
 [editable path="KinematicBody"]
 [editable path="KinematicBody/CameraObject"]

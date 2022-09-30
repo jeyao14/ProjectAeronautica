@@ -34,9 +34,9 @@ signal update_ammo;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	BULLET = load(bullet_path)
-	print("spawner bullet path: ", bullet_path)
+#	print("spawner bullet path: ", bullet_path)
 	COOLDOWN.wait_time = cooldown
-	print("spawner cooldown: ", cooldown)
+#	print("spawner cooldown: ", cooldown)
 	BURST_TIMER.wait_time = burst_timer
 	pass # Replace with function body.
 
@@ -46,7 +46,7 @@ func _physics_process(delta):
 			fire()
 	else:
 		if shoot and not is_firing and ammocount == -1:
-			print("no ammo firing")
+#			print("no ammo firing")
 			fire()
 	pass
 
@@ -54,7 +54,7 @@ func setShotCooldown():
 	pass
 
 func fire_cooldown():
-	print("Ammo: ", ammocount)
+#	print("Ammo: ", ammocount)
 	if not full_auto:
 		shoot = false
 	COOLDOWN.start()
@@ -162,9 +162,9 @@ func set_burst_timer(value):
 func set_cooldown(value):
 	cooldown = value
 	COOLDOWN.wait_time = cooldown
-	print("COOLDOWN CHANGED TO: ", COOLDOWN.wait_time)
+#	print("COOLDOWN CHANGED TO: ", COOLDOWN.wait_time)
 
 func set_bullet(path):
 	bullet_path = path;
 	BULLET = load(bullet_path)
-	print("PATH CHANGED TO: ", bullet_path)
+#	print("PATH CHANGED TO: ", bullet_path)

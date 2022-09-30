@@ -79,6 +79,9 @@ func use_ability():
 func use_ult():
 	print("using ult")
 
+func stop_ability():
+	pass
+
 func set_hitbox(active):
 	HITBOX.set_disabled(!active)
 
