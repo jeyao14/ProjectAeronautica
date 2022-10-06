@@ -3,12 +3,7 @@ extends Player
 onready var SPAWNER = $Spawner
 onready var ASPAWNER = $AbilitySpawner
 onready var SHOOTTIMER = $ShootTimer
-
-func _ready():
 #	$Projectile.connect("test_signal", self, "test_signal_receive")
-onready var SPAWNER = $Spawner
-onready var ASPAWNER = $AbilitySpawner
-onready var SHOOTTIMER = $ShootTimer
 
 func _ready():
 #	don't let this stat go beyond 100
