@@ -19,6 +19,13 @@ func _physics_process(delta):
 	self.translation += movement_vector * delta
 	pass
 
+<<<<<<< Updated upstream
+=======
+func distance_traveled():
+#	print("Distance: ", global_transform.origin.distance_to(start_position))
+	if global_transform.origin.distance_to(start_position) > max_distance:
+		queue_free()
+>>>>>>> Stashed changes
 
 func _on_Projectile_area_entered(area):
 	emit_signal("test_signal")

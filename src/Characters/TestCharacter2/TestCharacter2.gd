@@ -1,5 +1,11 @@
 extends Player
 
+<<<<<<< Updated upstream
+=======
+onready var SPAWNER = $Spawner
+onready var ASPAWNER = $AbilitySpawner
+onready var SHOOTTIMER = $ShootTimer
+>>>>>>> Stashed changes
 
 func _ready():
 #	$Projectile.connect("test_signal", self, "test_signal_receive")

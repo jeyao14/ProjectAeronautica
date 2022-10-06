@@ -1,5 +1,12 @@
 extends Player
 
+<<<<<<< Updated upstream
+=======
+onready var SPAWNER = $Spawner
+onready var ABILITYTIMER = $AbilityCooldown
+onready var	TURRETGROUP = $TurretGroup
+onready var TURRETTYPE = preload("res://Characters/TestCharacter/Turret/TemplateTurret.tscn")
+var ability_active = false
 
 func _ready():
 #	$Projectile.connect("test_signal", self, "test_signal_receive")
