@@ -1,0 +1,32 @@
+{
+  "Attack1": {
+    "PerkStatChange": "Att",
+    "PerkValue": 10,
+    "PerkDescription": null
+  },
+  "Attack2": {
+    "PerkStatChange": "Att",
+    "PerkValue": 15,
+    "PerkDescription": null
+  },
+  "Attack3": {
+    "PerkStatChange": "Att",
+    "PerkValue": 20,
+    "PerkDescription": null
+  },
+  "Def1": {
+    "PerkStatChange": "Def",
+    "PerkValue": 10,
+    "PerkDescription": null
+  },
+  "Def2": {
+    "PerkStatChange": "Def",
+    "PerkValue": 15,
+    "PerkDescription": null
+  },
+  "Def3": {
+    "PerkStatChange": "Def",
+    "PerkValue": 20,
+    "PerkDescription": null
+  }
+}

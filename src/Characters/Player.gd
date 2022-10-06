@@ -22,6 +22,8 @@ onready var ANIMATION = $AnimationTree.get("parameters/playback")
 onready var SPRITE = $Sprite3D
 onready var HITBOX = get_node("HitBox/CollisionShape")
 
+var mouse_direction = Vector3.ZERO
+
 signal character_active(speed)
 signal player_health_changed(new_hp)
 
@@ -67,12 +69,22 @@ func is_movement_pressed():
 
 func use_attack():
 	print("using attack");
+	
+func reload():
+	print("reloading");
+
+func stop_attack():
+	print("stop attack")
+
 
 func use_ability():
 	print("using ability")
 
 func use_ult():
 	print("using ult")
+
+func stop_ability():
+	pass
 
 func set_hitbox(active):
 	HITBOX.set_disabled(!active)

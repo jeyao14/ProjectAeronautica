@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://Characters/TestCharacter/Turret/TemplateTurret.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Shared/CharacterHandler.tscn" type="PackedScene" id=4]
 
@@ -20,6 +21,7 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, -1.3434, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
+material/0 = null
 
 [node name="HitBox" type="CollisionShape" parent="Arena/Arena"]
 transform = Transform( 50, 0, 0, 0, 1.26163, 0, 0, 0, 50, 0, -1.80366, 0 )
@@ -33,6 +35,7 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
+material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial"]
 transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
@@ -46,6 +49,7 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
+material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial2"]
 transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
@@ -59,6 +63,7 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
+material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial3"]
 transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
@@ -72,6 +77,8 @@ collision_mask = 2
 transform = Transform( 50, 0, 0, 0, 2.4767, 0, 0, 0, 0.57708, 0, 0, 0 )
 mesh = SubResource( 3 )
 skeleton = NodePath("../../..")
+material/0 = null
+
 
 [node name="CollisionShape" type="CollisionShape" parent="Arena/Spatial4"]
 transform = Transform( 50, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
@@ -81,6 +88,9 @@ shape = SubResource( 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.826, -36.648 )
 
 [node name="KinematicBody" parent="." instance=ExtResource( 4 )]
+
+[node name="KinematicBody2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.23049, -8.78869, 0.901168, -7.72448 )
 
 [node name="Area2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.5434 )

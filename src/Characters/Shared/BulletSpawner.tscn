@@ -2,17 +2,16 @@
 
 [ext_resource path="res://Characters/Shared/BulletSpawner.gd" type="Script" id=1]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="SphereMesh" id=1]
 
 [node name="Spawner" type="Spatial"]
 script = ExtResource( 1 )
-burst_count = 10
-
-[node name="BulletGroup" type="Node" parent="."]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 1 )
-material/0 = null
+
+[node name="BulletGroup" type="Node" parent="."]
 
 [node name="CooldownTimer" type="Timer" parent="."]
 one_shot = true

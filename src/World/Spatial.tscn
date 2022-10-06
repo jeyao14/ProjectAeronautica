@@ -6,6 +6,8 @@
 [ext_resource path="res://Characters/Shared/BulletSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Tiles/cgshare-book-ground-floor-003.jpg" type="Texture" id=5]
 [ext_resource path="res://Assets/Tiles/cgshare-book-ground-floor-002.jpg" type="Texture" id=6]
+[ext_resource path="res://Characters/TestCharacter/Turret/TemplateTurret.tscn" type="PackedScene" id=5]
+
 
 [sub_resource type="CubeMesh" id=3]
 
@@ -139,6 +141,9 @@ light_energy = 5.0
 light_bake_mode = 2
 light_cull_mask = 4294967293
 shadow_enabled = true
+[node name="KinematicBody2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.23049, -8.78869, 0.901168, -7.72448 )
+
 
 [editable path="KinematicBody"]
 [editable path="KinematicBody/CameraObject"]

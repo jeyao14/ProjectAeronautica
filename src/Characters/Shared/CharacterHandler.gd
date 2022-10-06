@@ -94,12 +94,19 @@ func dodge():
 #	while()
 	
 func process_actions():
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		ACTIVE_CHARACTER.use_attack()
+	if Input.is_action_just_released("shoot"):
+		ACTIVE_CHARACTER.stop_attack()
+	if Input.is_action_just_pressed("reload"):
+		ACTIVE_CHARACTER.reload()
 	if Input.is_action_just_pressed("use_ability"):
 		ACTIVE_CHARACTER.use_ability()
+	if Input.is_action_just_released("use_ability"):
+		ACTIVE_CHARACTER.stop_ability()
 	if Input.is_action_just_pressed("use_ult"):
 		ACTIVE_CHARACTER.use_ult();
+	
 
 func swap_handler():
 	var next_character = null
@@ -132,6 +139,9 @@ func get_global_cursor_pos():
 	if(result):
 		CURSOR.visible = true;
 		CURSOR.global_transform.origin = result.position;
+#		print(result.position)
+		ACTIVE_CHARACTER.mouse_direction = result.position
+#		print(ACTIVE_CHARACTER.mouse_direction)
 	# else turn off visibility of cursor
 	else:
 		CURSOR.visible = false;
