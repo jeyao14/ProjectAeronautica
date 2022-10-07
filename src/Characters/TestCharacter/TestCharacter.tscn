@@ -131,9 +131,6 @@ alpha_cut = 2
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
 full_auto = true
 
-[node name="MeshInstance" parent="Spawner" index="0"]
-material/0 = null
-
 [node name="ShootTimer" type="Timer" parent="."]
 
 [node name="TurretGroup" type="Node" parent="."]

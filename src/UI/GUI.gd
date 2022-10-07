@@ -28,40 +28,40 @@ func set_players(char1: Player, char2: Player, char3: Player):
 	set_new_hp()
 	
 #	connecting signal for hp updating
-	character1.connect("player_stat_changed", self, "set_new_hp")
-	character2.connect("player_stat_changed", self, "set_new_hp")
-	character3.connect("player_stat_changed", self, "set_new_hp")
+	CHARACTER_1.connect("player_stat_changed", self, "set_new_hp")
+	CHARACTER_2.connect("player_stat_changed", self, "set_new_hp")
+	CHARACTER_3.connect("player_stat_changed", self, "set_new_hp")
 	
-	character1.connect("player_stat_changed", self, "set_new_hp")
-	character2.connect("player_stat_changed", self, "set_new_hp")
-	character3.connect("player_stat_changed", self, "set_new_hp")
+	CHARACTER_1.connect("player_stat_changed", self, "set_new_hp")
+	CHARACTER_2.connect("player_stat_changed", self, "set_new_hp")
+	CHARACTER_3.connect("player_stat_changed", self, "set_new_hp")
 
 func set_new_hp():
-	A_HEALTHBAR.value = activeCharacter.hp
-	B1_HEALTHBAR.value = benchCharacter1.hp
-	B2_HEALTHBAR.value = benchCharacter2.hp
+	A_HEALTHBAR.value = ACTIVE_CHARACTER.hp
+	B1_HEALTHBAR.value = BENCH_CHARACTER_1.hp
+	B2_HEALTHBAR.value = BENCH_CHARACTER_2.hp
 	
-	A_CURRENTAMMO.text = activeCharacter.ammocount as String
-	B1_CURRENTAMMO.text = benchCharacter1.ammocount as String
-	B2_CURRENTAMMO.text = benchCharacter2.ammocount as String 
+	A_CURRENTAMMO.text = ACTIVE_CHARACTER.ammocount as String
+	B1_CURRENTAMMO.text = BENCH_CHARACTER_1.ammocount as String
+	B2_CURRENTAMMO.text = BENCH_CHARACTER_2.ammocount as String 
 	
-	A_MAXAMMO.text = activeCharacter.magsize as String
-	B1_MAXAMMO.text = benchCharacter1.magsize as String
-	B2_MAXAMMO.text = benchCharacter2.magsize as String 
+	A_MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
+	B1_MAXAMMO.text = BENCH_CHARACTER_1.magsize as String
+	B2_MAXAMMO.text = BENCH_CHARACTER_2.magsize as String 
 
 func setActive():
-	if(character1.active == true):
-		activeCharacter = character1;
-		benchCharacter1 = character2;
-		benchCharacter2 = character3;
-	if(character2.active == true):
-		activeCharacter = character2;
-		benchCharacter1 = character1;
-		benchCharacter2 = character3;
-	if(character3.active == true):
-		activeCharacter = character3;
-		benchCharacter1 = character1;
-		benchCharacter2 = character2;
+	if(CHARACTER_1.active == true):
+		ACTIVE_CHARACTER = CHARACTER_1;
+		BENCH_CHARACTER_1 = CHARACTER_2;
+		BENCH_CHARACTER_2 = CHARACTER_3;
+	if(CHARACTER_2.active == true):
+		ACTIVE_CHARACTER = CHARACTER_2;
+		BENCH_CHARACTER_1 = CHARACTER_1;
+		BENCH_CHARACTER_2 = CHARACTER_3;
+	if(CHARACTER_3.active == true):
+		ACTIVE_CHARACTER = CHARACTER_3;
+		BENCH_CHARACTER_1 = CHARACTER_1;
+		BENCH_CHARACTER_2 = CHARACTER_2;
 
 func set_current_ammo(new_ammo: int):
 	pass
