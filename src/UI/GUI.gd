@@ -13,30 +13,40 @@ onready var B2_CURRENTAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows
 onready var B2_MAXAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2/MaxAmmo
 
 var activeCharacter: Player
-var inactiveChar1: Player
-var inactiveChar2: Player
+var benchCharacter1: Player
+var benchCharacter2: Player
+var character1: Player
+var character2: Player
+var character3: Player
 
-func set_players(active: Player, bench1: Player, bench2: Player):
-	self.activeCharacter = active
-	self.inactiveChar1 = bench1
-	self.inactiveChar2 = bench2
+func set_players(char1: Player, char2: Player, char3: Player):
+	self.character1 = char1
+	self.character2 = char2
+	self.character3 = char3
 	
-	set_new_hp(activeCharacter.hp)
-	set_current_ammo(activeCharacter.ammocount)
-	set_max_ammo(activeCharacter.magsize)
+	if(character1.active == true):
+		activeCharacter = character1;
+		benchCharacter1 = character2;
+		benchCharacter2 = character3;
+	if(character2.active == true):
+		activeCharacter = character2;
+		benchCharacter1 = character1;
+		benchCharacter2 = character3;
+	if(character3.active == true):
+		activeCharacter = character3;
+		benchCharacter1 = character1;
+		benchCharacter2 = character2;
+		
+	set_new_hp()
 	
-	set_new_hp(inactiveChar1.hp)
-	set_current_ammo(inactiveChar1.ammocount)
-	set_max_ammo(inactiveChar1.magsize)
-	
-	set_new_hp(inactiveChar2.hp)
-	set_current_ammo(inactiveChar2.ammocount)
-	set_max_ammo(inactiveChar2.magsize)
-	
-	activeCharacter.connect("player_health_changed", self, "set_new_hp")
+	character1.connect("player_health_changed", self, "set_new_hp")
+	character2.connect("player_health_changed", self, "set_new_hp")
+	character3.connect("player_health_changed", self, "set_new_hp")
 
-func set_new_hp(new_hp: int):
-	A_HEALTHBAR.value = new_hp
+func set_new_hp():
+	A_HEALTHBAR.value = activeCharacter.hp
+	B1_HEALTHBAR.value = benchCharacter1.hp
+	B2_HEALTHBAR.value = benchCharacter2.hp
 
 func set_current_ammo(new_ammo: int):
 	pass

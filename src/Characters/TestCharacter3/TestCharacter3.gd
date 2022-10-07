@@ -39,7 +39,7 @@ func use_ability():
 	print("using test character 1 ability")
 
 func _on_HitBox_body_entered(body):
-	print("BODY ENTERED")
+	print("BODY ENTERED 3")
 	hurt_player()
 	pass # Replace with function body.
 	

@@ -55,7 +55,7 @@ func ability_cooldown():
 	print("ability_cooldown")
 
 func _on_HitBox_body_entered(body):
-	print("BODY ENTERED")
+	print("BODY ENTERED 1")
 	hurt_player()
 	pass # Replace with function body.
 	
