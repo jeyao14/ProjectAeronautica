@@ -46,8 +46,6 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="TurretGroup" type="Node" parent="."]
-
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
 [connection signal="timeout" from="LifespanTimer" to="." method="_on_LifespanTimer_timeout"]
