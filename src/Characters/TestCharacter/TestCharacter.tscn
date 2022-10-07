@@ -110,6 +110,8 @@ material/0 = null
 
 [node name="ShootTimer" type="Timer" parent="."]
 
+[node name="TurretGroup" type="Node" parent="."]
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 
