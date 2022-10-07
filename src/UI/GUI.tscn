@@ -1,0 +1,231 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/GUI.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.160784, 0.619608, 0.254902, 1 )
+skew = Vector2( 0.2, 0 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.101961, 0.101961, 0.0980392, 1 )
+skew = Vector2( 0.2, 0 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Assets/arial.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 72
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 3 )
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 20.0
+margin_right = -50.0
+margin_bottom = -50.0
+
+[node name="Rows" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1820.0
+margin_bottom = 1010.0
+
+[node name="Top" type="HBoxContainer" parent="MarginContainer/Rows"]
+margin_right = 1820.0
+margin_bottom = 334.0
+size_flags_vertical = 3
+
+[node name="Mid" type="HBoxContainer" parent="MarginContainer/Rows"]
+margin_top = 338.0
+margin_right = 1820.0
+margin_bottom = 672.0
+size_flags_vertical = 3
+
+[node name="Bot" type="HBoxContainer" parent="MarginContainer/Rows"]
+margin_top = 676.0
+margin_right = 1820.0
+margin_bottom = 1010.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Rows/Bot"]
+margin_right = 1820.0
+margin_bottom = 334.0
+size_flags_horizontal = 3
+
+[node name="PartyRows" type="VBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer"]
+margin_right = 1820.0
+margin_bottom = 334.0
+
+[node name="Bench1" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows"]
+margin_right = 1820.0
+margin_bottom = 82.0
+size_flags_vertical = 3
+
+[node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1"]
+margin_right = 600.0
+margin_bottom = 82.0
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1/CenterContainer3"]
+margin_top = 11.0
+margin_right = 600.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 600, 60 )
+mouse_filter = 2
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1"]
+margin_left = 604.0
+margin_right = 1820.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="CurrentAmmo" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1/HBoxContainer3"]
+margin_left = 988.0
+margin_right = 1068.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 4 )
+text = "30"
+
+[node name="Seperate" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1/HBoxContainer3"]
+margin_left = 1072.0
+margin_right = 1132.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 4 )
+text = " / "
+
+[node name="MaxAmmo" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1/HBoxContainer3"]
+margin_left = 1136.0
+margin_right = 1216.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 4 )
+text = "30"
+
+[node name="Bench2" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows"]
+margin_top = 86.0
+margin_right = 1820.0
+margin_bottom = 168.0
+size_flags_vertical = 3
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2"]
+margin_right = 600.0
+margin_bottom = 82.0
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/CenterContainer2"]
+margin_top = 11.0
+margin_right = 600.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 600, 60 )
+mouse_filter = 2
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2"]
+margin_left = 604.0
+margin_right = 1820.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="CurrentAmmo" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2"]
+margin_left = 988.0
+margin_right = 1068.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 4 )
+text = "30"
+
+[node name="Seperate" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2"]
+margin_left = 1072.0
+margin_right = 1132.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 4 )
+text = " / "
+
+[node name="MaxAmmo" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2"]
+margin_left = 1136.0
+margin_right = 1216.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 4 )
+text = "30"
+
+[node name="Active" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows"]
+margin_top = 172.0
+margin_right = 1820.0
+margin_bottom = 334.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active"]
+margin_right = 600.0
+margin_bottom = 162.0
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active/CenterContainer"]
+margin_top = 51.0
+margin_right = 600.0
+margin_bottom = 111.0
+rect_min_size = Vector2( 600, 60 )
+mouse_filter = 2
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active"]
+margin_left = 604.0
+margin_right = 1820.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="CurrentAmmo" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active/HBoxContainer"]
+margin_left = 988.0
+margin_top = 40.0
+margin_right = 1068.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 4 )
+text = "30"
+
+[node name="Seperate" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active/HBoxContainer"]
+margin_left = 1072.0
+margin_top = 40.0
+margin_right = 1132.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 4 )
+text = " / "
+
+[node name="MaxAmmo" type="Label" parent="MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active/HBoxContainer"]
+margin_left = 1136.0
+margin_top = 40.0
+margin_right = 1216.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 4 )
+text = "30"

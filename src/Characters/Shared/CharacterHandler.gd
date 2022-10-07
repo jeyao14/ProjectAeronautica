@@ -19,10 +19,10 @@ onready var CAMERABOOM = $CameraObject/CameraBoom
 onready var CAMERA = $CameraObject/CameraBoom/Camera
 onready var CAMERARAY = $CameraObject/CameraBoom/Camera/RayCast
 onready var CURSOR = $Cursor;
+onready var GUI = $GUI;
 var dash_timer = false;
 var can_dash = true
 var dash_cooldown = .5
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +38,7 @@ func _ready():
 	add_child(CHARACTER_2)
 	add_child(CHARACTER_3)
 	CHARACTER_1.active = true
+	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)
 	ACTIVE_CHARACTER = CHARACTER_1
 	swap_character_stats()
 
@@ -113,14 +114,21 @@ func swap_handler():
 	var next_character = null
 	if Input.is_action_just_pressed("swap_character_1"):
 		next_character = CHARACTER_1
+		CHARACTER_2.active = false
+		CHARACTER_3.active = false
 	elif Input.is_action_just_pressed("swap_character_2"):
 		next_character = CHARACTER_2
+		CHARACTER_1.active = false
+		CHARACTER_3.active = false
 	elif Input.is_action_just_pressed("swap_character_3"):
 		next_character = CHARACTER_3
+		CHARACTER_1.active = false
+		CHARACTER_2.active = false
 	if (next_character):
 		ACTIVE_CHARACTER.active = false
 		next_character.active = true
 		ACTIVE_CHARACTER = next_character
+		GUI.setActive()
 		swap_character_stats()
 
 func get_global_cursor_pos():
@@ -151,3 +159,4 @@ func get_global_cursor_pos():
 #signals
 func swap_character_stats():
 	self.speed = ACTIVE_CHARACTER.speed
+

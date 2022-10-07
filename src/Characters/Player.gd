@@ -3,6 +3,7 @@ class_name Player
 
 export var gravity = -10
 export var speed = 10
+
 #ALL STATS ARE CAPPED AT 100
 export var hp = 100
 export var att: float = 1.0
@@ -10,6 +11,8 @@ export var def: float = 1.0
 export var dex: float = 1.0
 export var crit: float = 0.05
 export var magsize = 10
+var ammocount = magsize;
+
 var velocity = Vector3.ZERO
 var facing = 1
 onready var active = false  setget active_set
@@ -22,6 +25,7 @@ onready var HITBOX = get_node("HitBox/CollisionShape")
 var mouse_direction = Vector3.ZERO
 
 signal character_active(speed)
+signal player_stat_changed()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -94,4 +98,6 @@ func active_set(new_value):
 
 
 func hurt_player():
+	hp -= 10;
+	emit_signal("player_stat_changed")
 	print("OUCH")

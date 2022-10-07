@@ -4,7 +4,7 @@ onready var SPAWNER = $Spawner
 onready var ABILITYTIMER = $AbilityCooldown
 onready var	TURRETGROUP = $TurretGroup
 onready var TURRETTYPE = preload("res://Characters/TestCharacter/Turret/TemplateTurret.tscn")
-var ammocount = magsize
+
 var ability_active = false
 
 func _ready():
@@ -37,7 +37,6 @@ func stop_attack():
 func _on_HitBox_area_entered(area):
 	print("AREA ENTERED 1")
 	hurt_player()
-	pass # Replace with function body.
 
 func use_ability():
 	print("using test character 1 ability")
@@ -61,6 +60,9 @@ func _on_HitBox_body_entered(body):
 	
 func GetSpawnerAmmoInfo():
 	ammocount = SPAWNER.ammocount
+	emit_signal("player_stat_changed")
+	
+	
 	
 func getPatternParameters():
 	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"

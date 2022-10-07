@@ -31,6 +31,7 @@ func distance_traveled():
 	if global_transform.origin.distance_to(start_position) > max_distance:
 		queue_free()
 
+
 func _on_Projectile_area_entered(area):
 	emit_signal("test_signal")
 	queue_free()

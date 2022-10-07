@@ -2,7 +2,6 @@ extends Player
 
 onready var SPAWNER = $Spawner
 onready var SHOOTTIMER = $ShootTimer
-var ammocount = magsize
 
 func _ready():
 #	don't let this stat go beyond 100

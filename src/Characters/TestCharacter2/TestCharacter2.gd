@@ -3,14 +3,13 @@ extends Player
 onready var SPAWNER = $Spawner
 onready var ASPAWNER = $AbilitySpawner
 onready var SHOOTTIMER = $ShootTimer
-var ammocount = magsize
+#	$Projectile.connect("test_signal", self, "test_signal_receive")
 
 func _ready():
 #	don't let this stat go beyond 100
 	getPatternParameters()
 	getAbilityParameters()
 	print("Char2 Ammo: ", ammocount, "/", magsize)
-	pass # Replace with function body.
 
 func _physics_process(delta):
 	set_animation()

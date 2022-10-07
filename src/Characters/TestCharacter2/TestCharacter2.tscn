@@ -80,6 +80,8 @@ shape = SubResource( 11 )
 disabled = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0 )
+cast_shadow = 0
 modulate = Color( 1, 0.0666667, 1, 1 )
 billboard = 1
 texture = ExtResource( 1 )
@@ -104,6 +106,12 @@ collision_mask = 4
 [node name="CollisionShape" parent="HitBox" index="0"]
 transform = Transform( 0.643798, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 12 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform( 1.6, 0, 0, 0, -6.99382e-08, -1.6, 0, 1.6, -6.99382e-08, 0, -1.18144, 0 )
+modulate = Color( 0, 0, 0, 1 )
+shaded = true
+alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
 
