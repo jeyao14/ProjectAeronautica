@@ -112,10 +112,16 @@ func swap_handler():
 	var next_character = null
 	if Input.is_action_just_pressed("swap_character_1"):
 		next_character = CHARACTER_1
+		CHARACTER_2.active = false
+		CHARACTER_3.active = false
 	elif Input.is_action_just_pressed("swap_character_2"):
 		next_character = CHARACTER_2
+		CHARACTER_1.active = false
+		CHARACTER_3.active = false
 	elif Input.is_action_just_pressed("swap_character_3"):
 		next_character = CHARACTER_3
+		CHARACTER_1.active = false
+		CHARACTER_2.active = false
 	if (next_character):
 		ACTIVE_CHARACTER.active = false
 		next_character.active = true

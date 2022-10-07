@@ -12,18 +12,17 @@ onready var B2_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/B
 onready var B2_CURRENTAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2/CurrentAmmo
 onready var B2_MAXAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2/MaxAmmo
 
-var activeCharacter: Player
-var benchCharacter1: Player
-var benchCharacter2: Player
-var character1: Player
-var character2: Player
-var character3: Player
+var ACTIVE_CHARACTER: Player
+var BENCH_CHARACTER_1: Player
+var BENCH_CHARACTER_2: Player
+var CHARACTER_1: Player
+var CHARACTER_2: Player
+var CHARACTER_3: Player
 
 func set_players(char1: Player, char2: Player, char3: Player):
-	self.character1 = char1
-	self.character2 = char2
-	self.character3 = char3
-	
+	self.CHARACTER_1 = char1
+	self.CHARACTER_2 = char2
+	self.CHARACTER_3 = char3
 	setActive()
 		
 	set_new_hp()
