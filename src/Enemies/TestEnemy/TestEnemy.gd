@@ -3,10 +3,12 @@ extends Enemy
 var path = []
 var current_path_index = -1
 var threshhold = 1
-
+var alive = true
 
 onready var NAV = $"../../Navigation" as Navigation
-onready var TIMER = $Timer
+onready var TIMER = $PathTimer
+onready var ATTACK_TIMER = $AttackTimer
+onready var SPAWNER = $Spawner
 onready var SPRITE = $Sprite3D
 onready var ANIM_PLAYER = $AnimationTree.get("parameters/playback")
 onready var ANIM_TREE = $AnimationTree
@@ -16,7 +18,7 @@ func _ready():
 	ANIM_TREE.active = true
 
 func _physics_process(delta):
-	if GLOBALS.CHARACTER_HANDLER == null:
+	if GLOBALS.CHARACTER_HANDLER == null or not alive:
 		return
 	global_pos = global_transform.origin
 	if path.size() > 0:
@@ -80,10 +82,23 @@ func get_player_path():
 	return
 
 func kill_enemy():
+	ATTACK_TIMER.stop()
 	set_physics_process(false)
 	ANIM_PLAYER.travel("Death")
 	pass
 
+func attack():
+	if GLOBALS.CHARACTER_HANDLER == null:
+		return
+	SPAWNER.mouse_direction = GLOBALS.CHARACTER_HANDLER.global_transform.origin
+	SPAWNER.shoot = true
+	ATTACK_TIMER.start()
+
 func _on_Timer_timeout():
 	get_player_path()
+	pass # Replace with function body.
+
+
+func _on_AttackTimer_timeout():
+	ANIM_PLAYER.travel("Attack")
 	pass # Replace with function body.

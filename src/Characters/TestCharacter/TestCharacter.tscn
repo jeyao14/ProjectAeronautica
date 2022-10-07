@@ -106,7 +106,7 @@ shape = SubResource( 12 )
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
 ammocount = -1
 uses_ammo = false
-full_auto = true
+bullet_speed_override = 75.0
 
 [node name="ShootTimer" type="Timer" parent="."]
 

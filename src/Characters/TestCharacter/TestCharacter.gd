@@ -68,12 +68,12 @@ func getPatternParameters():
 	SPAWNER.cooldown = 0.3/dex
 	SPAWNER.ammocount = magsize;
 	ammocount = magsize;
-	SPAWNER.full_auto = false;
-	SPAWNER.burst_count = 0;
-	SPAWNER.spread_count = 0;
-	SPAWNER.spread_angle = 0;
-	SPAWNER.random = false;
-	SPAWNER.bullet_speed_override = 75;
+#	SPAWNER.full_auto = false;
+#	SPAWNER.burst_count = 0;
+#	SPAWNER.spread_count = 0;
+#	SPAWNER.spread_angle = 0;
+#	SPAWNER.random = false;
+#	SPAWNER.bullet_speed_override = 75;
 
 func test_signal_receive():
 	print("SIGNAL")
