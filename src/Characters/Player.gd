@@ -90,7 +90,7 @@ func active_set(new_value):
 	self.visible = new_value
 	#HITBOX.set_deferred("disabled", !new_value)
 	if(HITBOX): 
-		HITBOX.set_disabled(!active)
+		HITBOX.disabled = !active
 
 
 func hurt_player():

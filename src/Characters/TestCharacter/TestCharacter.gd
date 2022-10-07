@@ -23,8 +23,7 @@ func _physics_process(delta):
 #		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
-	if(ammocount > 0):
-		SPAWNER.shoot = true
+	SPAWNER.shoot = true
 	
 
 func reload():
@@ -36,7 +35,7 @@ func stop_attack():
 	SPAWNER.shoot = false
 
 func _on_HitBox_area_entered(area):
-	print("AREA ENTERED")
+	print("AREA ENTERED 1")
 	hurt_player()
 	pass # Replace with function body.
 
@@ -56,7 +55,7 @@ func ability_cooldown():
 	print("ability_cooldown")
 
 func _on_HitBox_body_entered(body):
-	print("BODY ENTERED")
+	print("BODY ENTERED 1")
 	hurt_player()
 	pass # Replace with function body.
 	

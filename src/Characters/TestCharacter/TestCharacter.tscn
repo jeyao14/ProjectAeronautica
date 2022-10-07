@@ -71,7 +71,8 @@ extents = Vector3( 1, 1.08064, 1 )
 collision_layer = 2
 collision/safe_margin = 1.0
 script = ExtResource( 2 )
-dex = 2.0
+dex = 100.0
+magsize = 5
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.047211, 0 )
@@ -103,10 +104,9 @@ transform = Transform( 0.643798, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
+ammocount = -1
+uses_ammo = false
 full_auto = true
-
-[node name="MeshInstance" parent="Spawner" index="0"]
-material/0 = null
 
 [node name="ShootTimer" type="Timer" parent="."]
 
