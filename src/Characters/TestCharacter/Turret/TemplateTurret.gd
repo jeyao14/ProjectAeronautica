@@ -1,80 +1,85 @@
-extends KinematicBody
+extends Player
 
 onready var SPAWNER = $Spawner
-onready var LIFESPAN = $LifespanTimer
+onready var ABILITYTIMER = $AbilityCooldown
+onready var	TURRETGROUP = $TurretGroup
+onready var TURRETTYPE = preload("res://Characters/TestCharacter/Turret/TemplateTurret.tscn")
+var ability_active = false
 
-var alive = true
-var enemy_list = []
-var current_enemy
-var collision_counter = 0
-
-var target_global_position: = Vector3.ZERO
-
-signal turret_death 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	get_pattern_parameters()
+#	don't let this stat go beyond 100
+	getPatternParameters()
+#	print("cooldown = ", SPAWNER.cooldown)
+	print("Ammo: ", ammocount, "/", magsize)
+	pass # Replace with function body.
 
 func _physics_process(delta):
-	if enemy_list.size() > 0 and alive:
-		calculate_closest_enemy()
-		self.look_at(target_global_position,Vector3.UP)
-		fire_bullet()
-	else:
-		stop_attack()
-		
+	set_animation()
+	set_facing()
+	GetSpawnerAmmoInfo()
+	if SPAWNER.shoot:
+		SPAWNER.mouse_direction = mouse_direction
+#		print("Ammo: ", ammocount, "/", magsize)
 
-func _on_Area_body_entered(body):
-	enemy_list.append(body)
-	print(body)
-	if target_global_position == Vector3.ZERO:
-		target_global_position = body.global_transform.origin
-
-func _on_Area_body_exited(body):
-	enemy_list.erase(body)
-	target_global_position = Vector3.ZERO
-
-
-#calculates closest enemy and asigns it as current enemy
-func calculate_closest_enemy():
-	# get position of turret
-	var global_pos = self.global_transform.origin
-	
-	# iterate through enemy list and find the closest position relative to turret
-	for enemy in enemy_list:
-		var enemy_pos = enemy.global_transform.origin
-		
-		# if this enemy's position is closer than the current target position (or target pos = 0), set new target position = enemy pos
-		
-		if global_pos.distance_to(enemy_pos) < global_pos.distance_to(target_global_position) or target_global_position == Vector3.ZERO:
-			target_global_position = enemy_pos
+func use_attack():
+	if(ammocount > 0):
+		SPAWNER.shoot = true
 	
 
-func get_target_pos():
-	pass
-	
-func fire_bullet():
-	SPAWNER.shoot = true
-	SPAWNER.mouse_direction = target_global_position
+func reload():
+	ammocount = magsize;
+	SPAWNER.ammocount = ammocount;
+#	print("Ammo: ", ammocount, "/", magsize)
 
 func stop_attack():
 	SPAWNER.shoot = false
 
-func get_pattern_parameters():
-	SPAWNER.bullet_path = "res://Characters/TestCharacter/Turret/TurretProjectile.tscn";
-	SPAWNER.cooldown = 0.5;
-	SPAWNER.ammocount = -1;
-	SPAWNER.uses_ammo = false;
-	SPAWNER.full_auto = true;
+func _on_HitBox_area_entered(area):
+	print("AREA ENTERED")
+	hurt_player()
+	pass # Replace with function body.
+
+func use_ability():
+	print("using test character 1 ability")
+	if(TURRETGROUP.get_child_count() == 0 and not ability_active):
+		ability_active = true
+		var instance = TURRETTYPE.instance()
+		var global_pos = self.global_transform.origin
+		var spawn_origin = Vector3(mouse_direction.x, global_pos.y, mouse_direction.z)
+		instance.translation = spawn_origin;
+		instance.connect("turret_death",self,"ability_cooldown")
+		TURRETGROUP.add_child(instance);
+
+func ability_cooldown():
+	ABILITYTIMER.start()
+	print("ability_cooldown")
+
+func _on_HitBox_body_entered(body):
+	print("BODY ENTERED")
+	hurt_player()
+	pass # Replace with function body.
+	
+func GetSpawnerAmmoInfo():
+	ammocount = SPAWNER.ammocount
+	
+func getPatternParameters():
+#	SPAWNER.cooldown = 0.9 + -((dex*0.8)/100.0)
+	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
+	print("bullet path: ", SPAWNER.bullet_path)
+	SPAWNER.cooldown = 0.3/dex
+	SPAWNER.ammocount = magsize;
+	ammocount = magsize;
+	SPAWNER.full_auto = false;
 	SPAWNER.burst_count = 0;
 	SPAWNER.spread_count = 0;
 	SPAWNER.spread_angle = 0;
 	SPAWNER.random = false;
-	SPAWNER.bullet_speed_override = 100;
+	SPAWNER.bullet_speed_override = 75;
+
+func test_signal_receive():
+	print("SIGNAL")
 
 
-func _on_LifespanTimer_timeout():
-	alive = false
-	emit_signal("turret_death")
-	call_deferred('free')
+func _on_AbilityCooldown_timeout():
+	ability_active = false
+	pass # Replace with function body.
