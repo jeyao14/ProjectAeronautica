@@ -2,8 +2,14 @@ extends KinematicBody
 
 class_name Enemy
 
+export var speed = 7
+export var gravity = -10
+export var velocity = Vector3.ZERO
+export var facing = -1
 export var max_health = 10
 var health
+
+onready var global_pos = self.global_transform.origin
 
 func _ready():
 	health = max_health
