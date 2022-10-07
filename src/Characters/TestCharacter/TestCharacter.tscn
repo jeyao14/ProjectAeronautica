@@ -97,7 +97,7 @@ shape = SubResource( 11 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.109774, 0.158833, 0.100708 )
 material_override = SubResource( 13 )
 generate_lightmap = false
-billboard = 2
+billboard = 1
 shaded = true
 texture = ExtResource( 1 )
 hframes = 10
@@ -130,6 +130,9 @@ alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
 full_auto = true
+
+[node name="MeshInstance" parent="Spawner" index="0"]
+material/0 = null
 
 [node name="ShootTimer" type="Timer" parent="."]
 

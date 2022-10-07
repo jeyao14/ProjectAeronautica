@@ -12,41 +12,41 @@ onready var B2_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/B
 onready var B2_CURRENTAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2/CurrentAmmo
 onready var B2_MAXAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2/MaxAmmo
 
-var activeCharacter: Player
-var benchCharacter1: Player
-var benchCharacter2: Player
-var character1: Player
-var character2: Player
-var character3: Player
+var ACTIVE_CHARACTER: Player
+var BENCH_CHARACTER_1: Player
+var BENCH_CHARACTER_2: Player
+var CHARACTER_1: Player
+var CHARACTER_2: Player
+var CHARACTER_3: Player
 
 func set_players(char1: Player, char2: Player, char3: Player):
-	self.character1 = char1
-	self.character2 = char2
-	self.character3 = char3
+	self.CHARACTER_1 = char1
+	self.CHARACTER_2 = char2
+	self.CHARACTER_3 = char3
 	
-	if(character1.active == true):
-		activeCharacter = character1;
-		benchCharacter1 = character2;
-		benchCharacter2 = character3;
-	if(character2.active == true):
-		activeCharacter = character2;
-		benchCharacter1 = character1;
-		benchCharacter2 = character3;
-	if(character3.active == true):
-		activeCharacter = character3;
-		benchCharacter1 = character1;
-		benchCharacter2 = character2;
+	if(CHARACTER_1.active == true):
+		ACTIVE_CHARACTER = CHARACTER_1;
+		BENCH_CHARACTER_1 = CHARACTER_2;
+		BENCH_CHARACTER_2 = CHARACTER_3;
+	if(CHARACTER_2.active == true):
+		ACTIVE_CHARACTER = CHARACTER_2;
+		BENCH_CHARACTER_1 = CHARACTER_1;
+		BENCH_CHARACTER_2 = CHARACTER_3;
+	if(CHARACTER_3.active == true):
+		ACTIVE_CHARACTER = CHARACTER_3;
+		BENCH_CHARACTER_1 = CHARACTER_1;
+		BENCH_CHARACTER_2 = CHARACTER_2;
 		
 	set_new_hp()
 	
-	character1.connect("player_health_changed", self, "set_new_hp")
-	character2.connect("player_health_changed", self, "set_new_hp")
-	character3.connect("player_health_changed", self, "set_new_hp")
+	CHARACTER_1.connect("player_health_changed", self, "set_new_hp")
+	CHARACTER_2.connect("player_health_changed", self, "set_new_hp")
+	CHARACTER_3.connect("player_health_changed", self, "set_new_hp")
 
 func set_new_hp():
-	A_HEALTHBAR.value = activeCharacter.hp
-	B1_HEALTHBAR.value = benchCharacter1.hp
-	B2_HEALTHBAR.value = benchCharacter2.hp
+	A_HEALTHBAR.value = ACTIVE_CHARACTER.hp
+	B1_HEALTHBAR.value = BENCH_CHARACTER_1.hp
+	B2_HEALTHBAR.value = BENCH_CHARACTER_2.hp
 
 func set_current_ammo(new_ammo: int):
 	pass

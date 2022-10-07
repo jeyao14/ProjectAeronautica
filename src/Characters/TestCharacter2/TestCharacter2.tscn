@@ -115,9 +115,16 @@ alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
 
+[node name="MeshInstance" parent="Spawner" index="0"]
+material/0 = null
+
 [node name="AbilitySpawner" parent="." instance=ExtResource( 5 )]
 
+[node name="MeshInstance" parent="AbilitySpawner" index="0"]
+material/0 = null
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 
 [editable path="HitBox"]
 [editable path="Spawner"]

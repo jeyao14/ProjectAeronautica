@@ -36,7 +36,7 @@ func stop_attack():
 	SPAWNER.shoot = false
 
 func _on_HitBox_area_entered(area):
-	print("AREA ENTERED")
+	print("AREA ENTERED 1")
 	hurt_player()
 
 func use_ability():
