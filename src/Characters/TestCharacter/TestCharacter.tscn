@@ -112,6 +112,9 @@ material/0 = null
 
 [node name="TurretGroup" type="Node" parent="."]
 
+[node name="AbilityCooldown" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 
