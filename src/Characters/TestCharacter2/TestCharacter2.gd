@@ -24,8 +24,8 @@ func _physics_process(delta):
 #		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
-	if(ammocount > 0):
-		SPAWNER.shoot = true
+	SPAWNER.shoot = true
+		
 
 func reload():
 	ammocount = magsize;
