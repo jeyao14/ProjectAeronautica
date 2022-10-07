@@ -24,6 +24,33 @@ func set_players(char1: Player, char2: Player, char3: Player):
 	self.character2 = char2
 	self.character3 = char3
 	
+	setActive()
+		
+	set_new_hp()
+	
+#	connecting signal for hp updating
+	character1.connect("player_stat_changed", self, "set_new_hp")
+	character2.connect("player_stat_changed", self, "set_new_hp")
+	character3.connect("player_stat_changed", self, "set_new_hp")
+	
+	character1.connect("player_stat_changed", self, "set_new_hp")
+	character2.connect("player_stat_changed", self, "set_new_hp")
+	character3.connect("player_stat_changed", self, "set_new_hp")
+
+func set_new_hp():
+	A_HEALTHBAR.value = activeCharacter.hp
+	B1_HEALTHBAR.value = benchCharacter1.hp
+	B2_HEALTHBAR.value = benchCharacter2.hp
+	
+	A_CURRENTAMMO.text = activeCharacter.ammocount as String
+	B1_CURRENTAMMO.text = benchCharacter1.ammocount as String
+	B2_CURRENTAMMO.text = benchCharacter2.ammocount as String 
+	
+	A_MAXAMMO.text = activeCharacter.magsize as String
+	B1_MAXAMMO.text = benchCharacter1.magsize as String
+	B2_MAXAMMO.text = benchCharacter2.magsize as String 
+
+func setActive():
 	if(character1.active == true):
 		activeCharacter = character1;
 		benchCharacter1 = character2;
@@ -36,21 +63,9 @@ func set_players(char1: Player, char2: Player, char3: Player):
 		activeCharacter = character3;
 		benchCharacter1 = character1;
 		benchCharacter2 = character2;
-		
-	set_new_hp()
-	
-	character1.connect("player_health_changed", self, "set_new_hp")
-	character2.connect("player_health_changed", self, "set_new_hp")
-	character3.connect("player_health_changed", self, "set_new_hp")
-
-func set_new_hp():
-	A_HEALTHBAR.value = activeCharacter.hp
-	B1_HEALTHBAR.value = benchCharacter1.hp
-	B2_HEALTHBAR.value = benchCharacter2.hp
 
 func set_current_ammo(new_ammo: int):
 	pass
 
-func set_max_ammo(max_ammo: int):
-	pass
+	
 

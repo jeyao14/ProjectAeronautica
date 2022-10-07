@@ -61,6 +61,9 @@ func _on_HitBox_body_entered(body):
 	
 func GetSpawnerAmmoInfo():
 	ammocount = SPAWNER.ammocount
+	emit_signal("player_stat_changed")
+	
+	
 	
 func getPatternParameters():
 #	SPAWNER.cooldown = 0.9 + -((dex*0.8)/100.0)

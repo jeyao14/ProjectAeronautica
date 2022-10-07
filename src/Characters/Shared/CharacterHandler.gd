@@ -120,6 +120,7 @@ func swap_handler():
 		ACTIVE_CHARACTER.active = false
 		next_character.active = true
 		ACTIVE_CHARACTER = next_character
+		GUI.setActive()
 		swap_character_stats()
 
 func get_global_cursor_pos():

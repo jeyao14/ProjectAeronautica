@@ -25,7 +25,7 @@ onready var HITBOX = get_node("HitBox/CollisionShape")
 var mouse_direction = Vector3.ZERO
 
 signal character_active(speed)
-signal player_health_changed(new_hp)
+signal player_stat_changed()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -100,5 +100,5 @@ func active_set(new_value):
 
 func hurt_player():
 	hp -= 10;
-	emit_signal("player_health_changed")
+	emit_signal("player_stat_changed")
 	print("OUCH")
