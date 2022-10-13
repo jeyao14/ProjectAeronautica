@@ -14,7 +14,10 @@ onready var global_pos = self.global_transform.origin
 
 func _ready():
 	health = max_health
-
+	#velocity = Vector3(1, velocity.y, 1)
+#func _physics_process(delta):
+	#self.global_position += velocity
+	
 func hurt_enemy(damage):
 	health -= damage
 	if health <= 0:
