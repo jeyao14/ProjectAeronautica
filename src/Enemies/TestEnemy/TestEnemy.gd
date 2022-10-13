@@ -70,6 +70,7 @@ func move_enemy():
 	velocity.y = gravity
 	if(self.is_on_floor()):
 		velocity.y = 0
+	print(velocity)
 	move_and_slide(velocity, Vector3.UP)
 
 func get_player_path():

@@ -95,12 +95,6 @@ shape = SubResource( 4 )
 [node name="Area" parent="EnemyGroup" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 3.10787, -36.648 )
 
-[node name="Enemy" parent="EnemyGroup" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6093, 3.0418, -6.22743 )
-
-[node name="Enemy2" parent="EnemyGroup" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21011, 5.19324, -20.1398 )
-
 [node name="KinematicBody" parent="." instance=ExtResource( 2 )]
 
 [node name="KinematicBody2" parent="." instance=ExtResource( 3 )]

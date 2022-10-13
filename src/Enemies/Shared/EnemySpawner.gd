@@ -3,6 +3,8 @@ extends Spatial
 
 export var enemy_path = "res://Enemies/TestEnemy/TestEnemy.tscn"
 
+onready var ENEMY_GROUP = $EnemyGroup
+
 var ENEMY = null
 
 # Called when the node enters the scene tree for the first time.
