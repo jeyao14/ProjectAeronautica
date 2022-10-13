@@ -146,6 +146,7 @@ reload={
 3d_physics/layer_5="FriendlyDetection"
 3d_physics/layer_6="EnemyDetection"
 3d_physics/layer_7="Items"
+3d_physics/layer_8="EnemyAttack"
 
 [physics]
 

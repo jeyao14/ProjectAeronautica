@@ -4,8 +4,8 @@ var path = []
 var current_path_index = -1
 var threshhold = 1
 
-
-onready var NAV = $"../../Navigation" as Navigation
+var nav_path = "../../Navigation"
+var NAV = null
 onready var TIMER = $PathTimer
 onready var ATTACK_TIMER = $AttackTimer
 onready var SPAWNER = $Spawner
@@ -14,6 +14,7 @@ onready var ANIM_PLAYER = $AnimationTree.get("parameters/playback")
 onready var ANIM_TREE = $AnimationTree
 
 func _ready():
+	NAV = get_node(nav_path)
 	velocity.y = gravity
 	ANIM_TREE.active = true
 
