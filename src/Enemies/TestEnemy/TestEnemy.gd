@@ -3,7 +3,7 @@ extends Enemy
 var path = []
 var current_path_index = -1
 var threshhold = 1
-var alive = true
+
 
 onready var NAV = $"../../Navigation" as Navigation
 onready var TIMER = $PathTimer

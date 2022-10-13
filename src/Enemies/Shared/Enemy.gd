@@ -8,6 +8,7 @@ export var velocity = Vector3.ZERO
 export var facing = -1
 export var max_health = 10
 var health
+var alive = true
 
 onready var global_pos = self.global_transform.origin
 

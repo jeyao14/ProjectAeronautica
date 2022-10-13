@@ -198,8 +198,9 @@ parameters/playback = SubResource( 7 )
 [node name="Spawner" parent="." instance=ExtResource( 3 )]
 bullet_path = "res://Enemies/TestEnemy/TestEnemyProjectile.tscn"
 ammocount = -1
-spread_count = 5
-spread_angle = 180.0
+spread_count = 9
+spread_angle = 90.0
+random = true
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.5
