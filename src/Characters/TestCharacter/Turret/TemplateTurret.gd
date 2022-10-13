@@ -9,6 +9,7 @@ var current_enemy
 var collision_counter = 0
 
 var target_global_position: = Vector3.ZERO
+var target_global_velocity: = Vector3.ZERO
 
 signal turret_death 
 
@@ -49,6 +50,7 @@ func calculate_closest_enemy():
 		
 		if global_pos.distance_to(enemy_pos) < global_pos.distance_to(target_global_position) or target_global_position == Vector3.ZERO:
 			target_global_position = enemy_pos
+			target_global_velocity = enemy.velocity 
 	
 
 func get_target_pos():
@@ -56,7 +58,7 @@ func get_target_pos():
 	
 func fire_bullet():
 	SPAWNER.shoot = true
-	SPAWNER.mouse_direction = target_global_position
+	SPAWNER.mouse_direction = target_global_position + target_global_velocity
 
 func stop_attack():
 	SPAWNER.shoot = false
