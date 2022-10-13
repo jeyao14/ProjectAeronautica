@@ -26,6 +26,8 @@ var dash_cooldown = .5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GLOBALS.CHARACTER_HANDLER = self
+	
 	var c_1 = load(character_path_1)
 	var c_2 = load(character_path_2)
 	var c_3 = load(character_path_3)

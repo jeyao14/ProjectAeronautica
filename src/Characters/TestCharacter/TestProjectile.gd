@@ -28,7 +28,6 @@ func _physics_process(delta):
 	pass
 
 func distance_traveled():
-#	print("Distance: ", global_transform.origin.distance_to(start_position))
 	if global_transform.origin.distance_to(start_position) > max_distance:
 		queue_free()
 

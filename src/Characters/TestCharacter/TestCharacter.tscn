@@ -88,7 +88,8 @@ collision_layer = 2
 collision_mask = 5
 collision/safe_margin = 1.0
 script = ExtResource( 2 )
-dex = 2.0
+dex = 100.0
+magsize = -1
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.047211, 0 )
@@ -130,7 +131,9 @@ shaded = true
 alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
-full_auto = true
+ammocount = -1
+uses_ammo = false
+bullet_speed_override = 75.0
 
 [node name="ShootTimer" type="Timer" parent="."]
 

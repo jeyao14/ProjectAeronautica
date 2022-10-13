@@ -10,11 +10,11 @@ var ability_active = false
 func _ready():
 #	don't let this stat go beyond 100
 	getPatternParameters()
-#	print("cooldown = ", SPAWNER.cooldown)
 	print("Ammo: ", ammocount, "/", magsize)
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	
 	set_animation()
 	set_facing()
 	GetSpawnerAmmoInfo()
@@ -23,8 +23,7 @@ func _physics_process(delta):
 #		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
-	if(ammocount > 0):
-		SPAWNER.shoot = true
+	SPAWNER.shoot = true
 	
 
 func reload():
@@ -66,18 +65,17 @@ func GetSpawnerAmmoInfo():
 	
 	
 func getPatternParameters():
-#	SPAWNER.cooldown = 0.9 + -((dex*0.8)/100.0)
 	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
 	print("bullet path: ", SPAWNER.bullet_path)
 	SPAWNER.cooldown = 0.3/dex
 	SPAWNER.ammocount = magsize;
 	ammocount = magsize;
-	SPAWNER.full_auto = false;
-	SPAWNER.burst_count = 0;
-	SPAWNER.spread_count = 0;
-	SPAWNER.spread_angle = 0;
-	SPAWNER.random = false;
-	SPAWNER.bullet_speed_override = 75;
+#	SPAWNER.full_auto = false;
+#	SPAWNER.burst_count = 0;
+#	SPAWNER.spread_count = 0;
+#	SPAWNER.spread_angle = 0;
+#	SPAWNER.random = false;
+#	SPAWNER.bullet_speed_override = 75;
 
 func test_signal_receive():
 	print("SIGNAL")
