@@ -72,6 +72,8 @@ collision_layer = 2
 collision/safe_margin = 1.0
 script = ExtResource( 2 )
 speed = 22
+hp = 200
+dex = 0.9
 magsize = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

@@ -1,70 +1,143 @@
 extends CanvasLayer
 
-onready var A_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active/CenterContainer/HealthBar
-onready var A_CURRENTAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active/HBoxContainer/CurrentAmmo
-onready var A_MAXAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Active/HBoxContainer/MaxAmmo
+onready var P1_CHARACTERICON = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Icon/CharacterIcon
+onready var P1_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Health/VBoxContainer/HealthBar
+onready var P1_CURRENTHEALTH = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Health/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/HealthNum/CurrentHealth
+onready var P1_MAXHEALTH = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Health/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/HealthNum/MaxHealth
 
-onready var B1_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1/CenterContainer3/HealthBar
-onready var B1_CURRENTAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1/HBoxContainer3/CurrentAmmo
-onready var B1_MAXAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench1/HBoxContainer3/MaxAmmo
+onready var P2_CHARACTERICON = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Party2/HealthPanel/Icon/CharacterIcon
+onready var P2_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Party2/HealthPanel/Health/VBoxContainer/HealthBar
+onready var P2_CURRENTHEALTH = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Party2/HealthPanel/Health/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/HealthNum/CurrentHealth
+onready var P2_MAXHEALTH = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Party2/HealthPanel/Health/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/HealthNum/MaxHealth
 
-onready var B2_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/CenterContainer2/HealthBar
-onready var B2_CURRENTAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2/CurrentAmmo
-onready var B2_MAXAMMO = $MarginContainer/Rows/Bot/MarginContainer/PartyRows/Bench2/HBoxContainer2/MaxAmmo
+onready var P3_CHARACTERICON = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Party3/HealthPanel/Icon/CharacterIcon
+onready var P3_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Party3/HealthPanel/Health/VBoxContainer/HealthBar
+onready var P3_CURRENTHEALTH = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Party3/HealthPanel/Health/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/HealthNum/CurrentHealth
+onready var P3_MAXHEALTH = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Party3/HealthPanel/Health/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/HealthNum/MaxHealth
+
+onready var P1_HEALTHTWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Health/VBoxContainer/HealthTween
+onready var P2_HEALTHTWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Party2/HealthPanel/Health/VBoxContainer/HealthTween
+onready var P3_HEALTHTWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Party3/HealthPanel/Health/VBoxContainer/HealthTween
+
+onready var WEAPONICON = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/WeaponFrame/WeaponFrameHead/WIconCont/WeaponIcon
+onready var CURRENTAMMO = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/AmmoCountCont/AmmoCount/HBoxContainer/HBoxContainer/CurrentAmmo
+onready var MAXAMMO = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/AmmoCountCont/AmmoCount/HBoxContainer/HBoxContainer/MaxAmmo
+
+onready var RELOADBAR = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/WeaponFrame/ReloadPanel/ReloadBar
+onready var RELOADTWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/WeaponFrame/ReloadPanel/ReloadTween
 
 var ACTIVE_CHARACTER: Player
-var BENCH_CHARACTER_1: Player
-var BENCH_CHARACTER_2: Player
 var CHARACTER_1: Player
 var CHARACTER_2: Player
 var CHARACTER_3: Player
+
+var original_color = Color("#ac2020")
+var new_color = Color("#ffc4c4")
 
 func set_players(char1: Player, char2: Player, char3: Player):
 	self.CHARACTER_1 = char1
 	self.CHARACTER_2 = char2
 	self.CHARACTER_3 = char3
+	#when loading game for first time, set default character order
 	setActive()
-		
-	set_new_hp()
+	initialize_values()
 	
 #	connecting signal for hp updating
-	CHARACTER_1.connect("player_stat_changed", self, "set_new_hp")
-	CHARACTER_2.connect("player_stat_changed", self, "set_new_hp")
-	CHARACTER_3.connect("player_stat_changed", self, "set_new_hp")
+	CHARACTER_1.connect("player_stat_changed", self, "set_new_values")
+	CHARACTER_2.connect("player_stat_changed", self, "set_new_values")
+	CHARACTER_3.connect("player_stat_changed", self, "set_new_values")
 	
-	CHARACTER_1.connect("player_stat_changed", self, "set_new_hp")
-	CHARACTER_2.connect("player_stat_changed", self, "set_new_hp")
-	CHARACTER_3.connect("player_stat_changed", self, "set_new_hp")
+	CHARACTER_1.connect("ammo_changed", self, "change_ammo")
+	CHARACTER_2.connect("ammo_changed", self, "change_ammo")
+	CHARACTER_3.connect("ammo_changed", self, "change_ammo")
+	
+	CHARACTER_1.connect("player_damaged", self, "change_P1_hp")
+	CHARACTER_2.connect("player_damaged", self, "change_P2_hp")
+	CHARACTER_3.connect("player_damaged", self, "change_P3_hp")
+	
+	CHARACTER_1.connect("start_reload", self, "start_reload_anim")
+	CHARACTER_2.connect("start_reload", self, "start_reload_anim")
+	CHARACTER_3.connect("start_reload", self, "start_reload_anim")
 
-func set_new_hp():
-	A_HEALTHBAR.value = ACTIVE_CHARACTER.hp
-	B1_HEALTHBAR.value = BENCH_CHARACTER_1.hp
-	B2_HEALTHBAR.value = BENCH_CHARACTER_2.hp
+func initialize_values():
+	P1_HEALTHBAR.max_value = CHARACTER_1.hp
+	P2_HEALTHBAR.max_value = CHARACTER_2.hp
+	P3_HEALTHBAR.max_value = CHARACTER_3.hp
 	
-	A_CURRENTAMMO.text = ACTIVE_CHARACTER.ammocount as String
-	B1_CURRENTAMMO.text = BENCH_CHARACTER_1.ammocount as String
-	B2_CURRENTAMMO.text = BENCH_CHARACTER_2.ammocount as String 
+	P1_HEALTHBAR.value = CHARACTER_1.current_hp
+	P2_HEALTHBAR.value = CHARACTER_2.current_hp
+	P3_HEALTHBAR.value = CHARACTER_3.current_hp
 	
-	A_MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
-	B1_MAXAMMO.text = BENCH_CHARACTER_1.magsize as String
-	B2_MAXAMMO.text = BENCH_CHARACTER_2.magsize as String 
+	P1_CURRENTHEALTH.text = CHARACTER_1.current_hp as String
+	P2_CURRENTHEALTH.text = CHARACTER_2.current_hp as String
+	P3_CURRENTHEALTH.text = CHARACTER_3.current_hp as String
+	
+	P1_MAXHEALTH.text = CHARACTER_1.hp as String
+	P2_MAXHEALTH.text = CHARACTER_2.hp as String
+	P3_MAXHEALTH.text = CHARACTER_3.hp as String
+	
+	P1_CHARACTERICON.set_texture(CHARACTER_1.CHARACTERICON)
+	P2_CHARACTERICON.set_texture(CHARACTER_2.CHARACTERICON)
+	P3_CHARACTERICON.set_texture(CHARACTER_3.CHARACTERICON)
+	
+	WEAPONICON.set_texture(ACTIVE_CHARACTER.WEAPONICON)
+	
+	CURRENTAMMO.text = ACTIVE_CHARACTER.ammocount as String
+	MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
 
+	RELOADBAR.value = 100
+	
+
+func set_new_values():
+	WEAPONICON.set_texture(ACTIVE_CHARACTER.WEAPONICON)
+	
+	RELOADTWEEN.stop_all()
+	RELOADBAR.value = 100
+	
 func setActive():
-	if(CHARACTER_1.active == true):
-		ACTIVE_CHARACTER = CHARACTER_1;
-		BENCH_CHARACTER_1 = CHARACTER_2;
-		BENCH_CHARACTER_2 = CHARACTER_3;
-	if(CHARACTER_2.active == true):
-		ACTIVE_CHARACTER = CHARACTER_2;
-		BENCH_CHARACTER_1 = CHARACTER_1;
-		BENCH_CHARACTER_2 = CHARACTER_3;
-	if(CHARACTER_3.active == true):
-		ACTIVE_CHARACTER = CHARACTER_3;
-		BENCH_CHARACTER_1 = CHARACTER_1;
-		BENCH_CHARACTER_2 = CHARACTER_2;
+#	var temp = PARTY_1
+	if(CHARACTER_1.active): #if new active character is located in bench1, swap active and bench1
+		ACTIVE_CHARACTER = CHARACTER_1
+	elif(CHARACTER_2.active): #if new active character is located in bench2, swap active and bench2
+		ACTIVE_CHARACTER = CHARACTER_2
+	elif(CHARACTER_3.active): #if new active character is located in bench2, swap active and bench2
+		ACTIVE_CHARACTER = CHARACTER_3
+		
+	set_new_values() #update GUI
 
-func set_current_ammo(new_ammo: int):
-	pass
+func start_reload_anim():
+	print("start_reload_anim")
+	RELOADBAR.value = 0
+	RELOADTWEEN.interpolate_property(RELOADBAR, "value", RELOADBAR.value, 100, ACTIVE_CHARACTER.reload_time, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	RELOADTWEEN.start()
 
+func change_ammo():
+	CURRENTAMMO.text = ACTIVE_CHARACTER.ammocount as String
+	MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
+
+func change_P1_hp():
+	var P1_bar_style = P1_HEALTHBAR.get("custom_styles/fg")
 	
+	P1_HEALTHTWEEN.interpolate_property(P1_HEALTHBAR, "value", P1_HEALTHBAR.value, CHARACTER_1.current_hp, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	P1_CURRENTHEALTH.text = CHARACTER_1.current_hp as String
+	P1_HEALTHTWEEN.interpolate_property(P1_bar_style, "bg_color", original_color, new_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	P1_HEALTHTWEEN.interpolate_property(P1_bar_style, "bg_color", new_color, original_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	P1_HEALTHTWEEN.start()
 
+func change_P2_hp():
+	var P2_bar_style = P2_HEALTHBAR.get("custom_styles/fg")
+	
+	P2_HEALTHTWEEN.interpolate_property(P2_HEALTHBAR, "value", P2_HEALTHBAR.value, CHARACTER_2.current_hp, 0.2, Tween.TRANS_LINEAR)
+	P2_CURRENTHEALTH.text = CHARACTER_2.current_hp as String
+	P2_HEALTHTWEEN.interpolate_property(P2_bar_style, "bg_color", original_color, new_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	P2_HEALTHTWEEN.interpolate_property(P2_bar_style, "bg_color", new_color, original_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	P2_HEALTHTWEEN.start()
+
+func change_P3_hp():
+	var P3_bar_style = P3_HEALTHBAR.get("custom_styles/fg")
+	
+	P3_HEALTHTWEEN.interpolate_property(P3_HEALTHBAR, "value", P3_HEALTHBAR.value, CHARACTER_3.current_hp, 0.2, Tween.TRANS_LINEAR)
+	P3_CURRENTHEALTH.text = CHARACTER_3.current_hp as String
+	P3_HEALTHTWEEN.interpolate_property(P3_bar_style, "bg_color", original_color, new_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	P3_HEALTHTWEEN.interpolate_property(P3_bar_style, "bg_color", new_color, original_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	P3_HEALTHTWEEN.start()

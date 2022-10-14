@@ -5,13 +5,20 @@ onready var ABILITYTIMER = $AbilityCooldown
 onready var	TURRETGROUP = $TurretGroup
 onready var TURRETTYPE = preload("res://Characters/TestCharacter/Turret/TemplateTurret.tscn")
 
+onready var CHARACTERICON = preload("res://Assets/Characters/Maria_icon.png")
+onready var WEAPONICON = preload("res://Assets/UI/Icons/WeaponIcons/rifle.png")
+onready var charactername = "Maria"
+
+var is_reloading = false;
+var reload_time
+
 var ability_active = false
 
 func _ready():
 #	don't let this stat go beyond 100
 	getPatternParameters()
-#	print("cooldown = ", SPAWNER.cooldown)
-	print("Ammo: ", ammocount, "/", magsize)
+	reload_time = 0.6/dex
+	current_hp = hp;
 	pass # Replace with function body.
 
 func _physics_process(delta):
@@ -23,13 +30,21 @@ func _physics_process(delta):
 #		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
-	if(ammocount > 0):
+	if(ammocount > 0 && !is_reloading):
 		SPAWNER.shoot = true
 	
 
 func reload():
+	if(is_reloading || ammocount == magsize):
+		return
+	is_reloading = true;
+	SPAWNER.shoot = false;
+	emit_signal("start_reload")
+	print("Maria reload time: ", reload_time)
+	yield(get_tree().create_timer(reload_time,false),"timeout");
 	ammocount = magsize;
 	SPAWNER.ammocount = ammocount;
+	is_reloading = false;
 #	print("Ammo: ", ammocount, "/", magsize)
 
 func stop_attack():
@@ -61,9 +76,7 @@ func _on_HitBox_body_entered(body):
 	
 func GetSpawnerAmmoInfo():
 	ammocount = SPAWNER.ammocount
-	emit_signal("player_stat_changed")
-	
-	
+	emit_signal("ammo_changed")
 	
 func getPatternParameters():
 #	SPAWNER.cooldown = 0.9 + -((dex*0.8)/100.0)

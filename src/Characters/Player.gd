@@ -12,6 +12,7 @@ export var dex: float = 1.0
 export var crit: float = 0.05
 export var magsize = 10
 var ammocount = magsize;
+var current_hp = hp;
 
 var velocity = Vector3.ZERO
 var facing = 1
@@ -26,6 +27,9 @@ var mouse_direction = Vector3.ZERO
 
 signal character_active(speed)
 signal player_stat_changed()
+signal player_damaged()
+signal ammo_changed()
+signal start_reload()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -99,6 +103,6 @@ func active_set(new_value):
 
 
 func hurt_player():
-	hp -= 10;
-	emit_signal("player_stat_changed")
+	current_hp -= 10;
+	emit_signal("player_damaged")
 	print("OUCH")

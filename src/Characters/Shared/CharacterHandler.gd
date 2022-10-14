@@ -35,9 +35,12 @@ func _ready():
 	add_child(CHARACTER_1)
 	add_child(CHARACTER_2)
 	add_child(CHARACTER_3)
+	
+	#change the next two lines to change the starting active character
 	CHARACTER_1.active = true
-	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)
 	ACTIVE_CHARACTER = CHARACTER_1
+	
+	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)
 	swap_character_stats()
 
 

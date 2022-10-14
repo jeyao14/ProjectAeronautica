@@ -3,10 +3,17 @@ extends Player
 onready var SPAWNER = $Spawner
 onready var SHOOTTIMER = $ShootTimer
 
+onready var CHARACTERICON = preload("res://Assets/Characters/Olive_icon.png")
+onready var WEAPONICON = preload("res://Assets/UI/Icons/WeaponIcons/smg.png")
+onready var charactername = "Olive"
+
+var is_reloading = false;
+var reload_time
+
 func _ready():
-#	don't let this stat go beyond 100
 	getPatternParameters()
-	print("Char3 Ammo: ", ammocount, "/", magsize)
+	reload_time = 0.6/dex
+	current_hp = hp;
 	pass # Replace with function body.
 
 func _physics_process(delta):
@@ -16,16 +23,24 @@ func _physics_process(delta):
 	if SPAWNER.shoot:
 		SPAWNER.mouse_direction = mouse_direction
 #		print("Ammo: ", ammocount, "/", magsize)
-
+	
 func use_attack():
-	if(ammocount > 0):
+	if(ammocount > 0 && !is_reloading):
 		SPAWNER.shoot = true
 	
 
 func reload():
+	if(is_reloading || ammocount == magsize):
+		return
+	is_reloading = true;
+	SPAWNER.shoot = false;
+	emit_signal("start_reload")
+	print("Maria reload time: ", reload_time)
+	yield(get_tree().create_timer(reload_time,false),"timeout");
 	ammocount = magsize;
 	SPAWNER.ammocount = ammocount;
-#	print("Ammo: ", ammocount, "/", magsize)
+	is_reloading = false;
+#	print("Ammo: ", ammocount, "/
 
 func stop_attack():
 	SPAWNER.shoot = false

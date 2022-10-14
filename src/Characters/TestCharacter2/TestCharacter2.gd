@@ -5,11 +5,19 @@ onready var ASPAWNER = $AbilitySpawner
 onready var SHOOTTIMER = $ShootTimer
 #	$Projectile.connect("test_signal", self, "test_signal_receive")
 
+onready var CHARACTERICON = preload("res://Assets/Characters/Rhodes_icon.png")
+onready var WEAPONICON = preload("res://Assets/UI/Icons/WeaponIcons/shotgun.png")
+onready var charactername = "Rhodes"
+
+var is_reloading = false;
+var reload_time
+
 func _ready():
 #	don't let this stat go beyond 100
 	getPatternParameters()
 	getAbilityParameters()
-	print("Char2 Ammo: ", ammocount, "/", magsize)
+	reload_time = 0.6/dex
+	current_hp = hp;
 
 func _physics_process(delta):
 	set_animation()
@@ -23,12 +31,20 @@ func _physics_process(delta):
 #		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
-	if(ammocount > 0):
+	if(ammocount > 0 && !is_reloading):
 		SPAWNER.shoot = true
 
 func reload():
+	if(is_reloading || ammocount == magsize):
+		return
+	is_reloading = true;
+	SPAWNER.shoot = false;
+	emit_signal("start_reload")
+	yield(get_tree().create_timer(reload_time,false),"timeout");
 	ammocount = magsize;
 	SPAWNER.ammocount = ammocount;
+	is_reloading = false;
+#	print("Ammo: ", ammocount, "/
 #	print("Ammo: ", ammocount, "/", magsize)
 
 func stop_attack():
