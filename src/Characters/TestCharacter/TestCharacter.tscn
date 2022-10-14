@@ -87,6 +87,7 @@ extents = Vector3( 1, 1.08064, 1 )
 
 [node name="Calliope" type="KinematicBody"]
 collision_layer = 2
+collision_mask = 5
 collision/safe_margin = 1.0
 script = ExtResource( 2 )
 dex = 1.4
@@ -132,7 +133,9 @@ shaded = true
 alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
-full_auto = true
+ammocount = -1
+uses_ammo = false
+bullet_speed_override = 75.0
 
 [node name="ShootTimer" type="Timer" parent="."]
 

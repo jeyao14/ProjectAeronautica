@@ -41,20 +41,15 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	if uses_ammo:
-		if shoot and not is_firing and ammocount > 0:
-			fire()
-	else:
-		if shoot and not is_firing and ammocount == -1:
-#			print("no ammo firing")
-			fire()
+	if shoot and not is_firing and (ammocount > 0 or ammocount == -1):
+		fire()
 	pass
 
 func setShotCooldown():
 	pass
 
 func fire_cooldown():
-#	print("Ammo: ", ammocount)
+	print("Ammo: ", ammocount)
 	if not full_auto:
 		shoot = false
 	COOLDOWN.start()

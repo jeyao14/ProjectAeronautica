@@ -28,18 +28,18 @@ func _physics_process(delta):
 	pass
 
 func distance_traveled():
-#	print("Distance: ", global_transform.origin.distance_to(start_position))
 	if global_transform.origin.distance_to(start_position) > max_distance:
 		queue_free()
 
 
 func _on_Projectile_area_entered(area):
-	emit_signal("test_signal")
-	queue_free()
+	if area is Enemy or area is World:
+		emit_signal("test_signal")
+		queue_free()
 
 
 func _on_Projectile_body_entered(body):
-	if body is Enemy:
+	if body is Enemy or body is World:
 		body.hurt_enemy(damage)
 		pass
 	queue_free()
