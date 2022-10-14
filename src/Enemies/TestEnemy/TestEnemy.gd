@@ -4,7 +4,7 @@ var path = []
 var current_path_index = -1
 var threshhold = 1
 
-var nav_path = "../../Navigation"
+var nav_path = ""
 var NAV = null
 onready var TIMER = $PathTimer
 onready var ATTACK_TIMER = $AttackTimer
@@ -14,12 +14,13 @@ onready var ANIM_PLAYER = $AnimationTree.get("parameters/playback")
 onready var ANIM_TREE = $AnimationTree
 
 func _ready():
-	NAV = get_node(nav_path)
+	if nav_path != "":
+		NAV = get_node(nav_path)
 	velocity.y = gravity
 	ANIM_TREE.active = true
 
 func _physics_process(delta):
-	if GLOBALS.CHARACTER_HANDLER == null or not alive:
+	if GLOBALS.CHARACTER_HANDLER == null or not alive or NAV == null:
 		return
 	global_pos = global_transform.origin
 	if path.size() > 0:
@@ -71,7 +72,6 @@ func move_enemy():
 	velocity.y = gravity
 	if(self.is_on_floor()):
 		velocity.y = 0
-	print(velocity)
 	move_and_slide(velocity, Vector3.UP)
 
 func get_player_path():

@@ -16,8 +16,6 @@ albedo_color = Color( 0.745098, 0.192157, 1, 1 )
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 1 )
-speed = 80.0
-speed_increment = -3.0
 max_distance = 500.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
