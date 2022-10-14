@@ -4,8 +4,7 @@ var path = []
 var current_path_index = -1
 var threshhold = 1
 
-var nav_path = ""
-var NAV = null
+
 onready var TIMER = $PathTimer
 onready var ATTACK_TIMER = $AttackTimer
 onready var SPAWNER = $Spawner

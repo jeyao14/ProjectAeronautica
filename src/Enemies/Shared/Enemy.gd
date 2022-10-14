@@ -10,6 +10,9 @@ export var max_health = 10
 var health
 var alive = true
 
+var nav_path = ""
+var NAV = null
+
 onready var global_pos = self.global_transform.origin
 
 func _ready():
