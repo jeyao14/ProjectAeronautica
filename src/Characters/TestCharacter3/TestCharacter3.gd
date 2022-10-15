@@ -31,7 +31,7 @@ func stop_attack():
 
 func _on_HitBox_area_entered(area):
 	print("AREA ENTERED 3")
-	hurt_player()
+#	hurt_player()
 	pass # Replace with function body.
 
 func use_ability():
@@ -39,7 +39,7 @@ func use_ability():
 
 func _on_HitBox_body_entered(body):
 	print("BODY ENTERED 3")
-	hurt_player()
+#	hurt_player()
 	pass # Replace with function body.
 	
 func GetSpawnerAmmoInfo():

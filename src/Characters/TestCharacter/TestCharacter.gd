@@ -34,9 +34,7 @@ func reload():
 func stop_attack():
 	SPAWNER.shoot = false
 
-func _on_HitBox_area_entered(area):
-	print("AREA ENTERED 1")
-	hurt_player()
+#func _on_HitBox_area_entered(area):
 
 func use_ability():
 	print("using test character 1 ability")
@@ -55,7 +53,7 @@ func ability_cooldown():
 
 func _on_HitBox_body_entered(body):
 	print("BODY ENTERED 1")
-	hurt_player()
+#	hurt_player()
 	pass # Replace with function body.
 	
 func GetSpawnerAmmoInfo():

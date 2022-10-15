@@ -97,7 +97,7 @@ func active_set(new_value):
 		HITBOX.disabled = !active
 
 
-func hurt_player():
-	hp -= 10;
+func hurt_player(damage):
+	hp -= damage;
 	emit_signal("player_stat_changed")
-	print("OUCH")
+	print("Damage : ", damage)
