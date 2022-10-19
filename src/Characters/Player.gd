@@ -100,8 +100,7 @@ func active_set(new_value):
 	if(HITBOX): 
 		HITBOX.disabled = !active
 
-
 func hurt_player():
-	current_hp -= 10;
+	current_hp -= damage;
 	emit_signal("player_damaged")
 	print("OUCH")
