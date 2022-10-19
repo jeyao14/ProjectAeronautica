@@ -49,7 +49,7 @@ func setShotCooldown():
 	pass
 
 func fire_cooldown():
-	print("Ammo: ", ammocount)
+#	print("Ammo: ", ammocount)
 	if not full_auto:
 		shoot = false
 	COOLDOWN.start()

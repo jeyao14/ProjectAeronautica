@@ -8,9 +8,9 @@ var velocity = Vector3.ZERO
 var ray_origin = Vector3();
 var ray_target = Vector3();
 
-export var character_path_1 = "res://Characters/TestCharacter/TestCharacter.tscn"
-export var character_path_2 = "res://Characters/TestCharacter2/TestCharacter2.tscn"
-export var character_path_3 = "res://Characters/TestCharacter3/TestCharacter3.tscn"
+export var character_path_2 = "res://Characters/TestCharacter/TestCharacter.tscn"
+export var character_path_3 = "res://Characters/TestCharacter2/TestCharacter2.tscn"
+export var character_path_1 = "res://Characters/TestCharacter3/TestCharacter3.tscn"
 var CHARACTER_1
 var CHARACTER_2
 var CHARACTER_3
@@ -41,6 +41,10 @@ func _ready():
 	#change the next two lines to change the starting active character
 	CHARACTER_1.active = true
 	ACTIVE_CHARACTER = CHARACTER_1
+	
+#	ACTIVE_CHARACTER.set_hitbox(false)
+#	CHARACTER_2.set_hitbox(false)
+#	CHARACTER_3.set_hitbox(false)
 	
 	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)
 	swap_character_stats()
@@ -117,19 +121,29 @@ func swap_handler():
 	var next_character = null
 	if Input.is_action_just_pressed("swap_character_1"):
 		next_character = CHARACTER_1
+#		CHARACTER_1.set_hitbox(true)
 		CHARACTER_2.active = false
+#		CHARACTER_2.set_hitbox(false)
 		CHARACTER_3.active = false
+#		CHARACTER_3.set_hitbox(false)
 	elif Input.is_action_just_pressed("swap_character_2"):
 		next_character = CHARACTER_2
+#		CHARACTER_2.set_hitbox(true)
 		CHARACTER_1.active = false
+#		CHARACTER_1.set_hitbox(false)
 		CHARACTER_3.active = false
+#		CHARACTER_3.set_hitbox(false)
 	elif Input.is_action_just_pressed("swap_character_3"):
 		next_character = CHARACTER_3
+#		CHARACTER_3.set_hitbox(true)
 		CHARACTER_1.active = false
+#		CHARACTER_1.set_hitbox(false)
 		CHARACTER_2.active = false
+#		CHARACTER_2.set_hitbox(false)
 	if (next_character):
 		ACTIVE_CHARACTER.active = false
 		next_character.active = true
+#		ACTIVE_CHARACTER.set_hitbox(true)
 		ACTIVE_CHARACTER = next_character
 		GUI.setActive()
 		swap_character_stats()

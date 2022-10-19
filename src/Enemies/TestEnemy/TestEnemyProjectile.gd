@@ -41,11 +41,13 @@ func distance_traveled():
 func _on_Projectile_area_entered(area):
 	emit_signal("test_signal")
 	if area is Player or area is World:
+		print("area: ", area)
 		area.hurt_player(damage)
 		queue_free()
 
 
 func _on_Projectile_body_entered(body):
 	if body is Player or body is World:
+		print("body: ", body)
 		body.hurt_player(damage)
 		queue_free()

@@ -116,6 +116,7 @@ func change_ammo():
 	MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
 
 func change_P1_hp():
+	print("change_P1_hp")
 	var P1_bar_style = P1_HEALTHBAR.get("custom_styles/fg")
 	
 	P1_HEALTHTWEEN.interpolate_property(P1_HEALTHBAR, "value", P1_HEALTHBAR.value, CHARACTER_1.current_hp, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -125,6 +126,7 @@ func change_P1_hp():
 	P1_HEALTHTWEEN.start()
 
 func change_P2_hp():
+	print("change_P2_hp")
 	var P2_bar_style = P2_HEALTHBAR.get("custom_styles/fg")
 	
 	P2_HEALTHTWEEN.interpolate_property(P2_HEALTHBAR, "value", P2_HEALTHBAR.value, CHARACTER_2.current_hp, 0.2, Tween.TRANS_LINEAR)
@@ -134,6 +136,7 @@ func change_P2_hp():
 	P2_HEALTHTWEEN.start()
 
 func change_P3_hp():
+	print("change_P3_hp")
 	var P3_bar_style = P3_HEALTHBAR.get("custom_styles/fg")
 	
 	P3_HEALTHTWEEN.interpolate_property(P3_HEALTHBAR, "value", P3_HEALTHBAR.value, CHARACTER_3.current_hp, 0.2, Tween.TRANS_LINEAR)

@@ -79,14 +79,17 @@ shape = SubResource( 4 )
 
 [node name="Area" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.826, -36.648 )
+max_health = null
 
 [node name="KinematicBody" parent="." instance=ExtResource( 4 )]
 
 [node name="Area2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.5434 )
+max_health = null
 
 [node name="Area3" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4669, 0, 1.37327 )
+max_health = null
 
 [editable path="KinematicBody"]
 [editable path="KinematicBody/CameraObject"]

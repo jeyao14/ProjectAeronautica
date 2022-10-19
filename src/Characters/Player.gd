@@ -92,6 +92,7 @@ func stop_ability():
 
 func set_hitbox(active):
 	HITBOX.set_disabled(!active)
+	print(HITBOX.disabled)
 
 func active_set(new_value):
 	active = new_value
@@ -100,7 +101,8 @@ func active_set(new_value):
 	if(HITBOX): 
 		HITBOX.disabled = !active
 
-func hurt_player():
-	current_hp -= damage;
-	emit_signal("player_damaged")
-	print("OUCH")
+func hurt_player(damage):
+	if(active == true):
+		current_hp -= damage;
+		emit_signal("player_damaged")
+		print(self)
