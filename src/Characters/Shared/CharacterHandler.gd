@@ -8,9 +8,9 @@ var velocity = Vector3.ZERO
 var ray_origin = Vector3();
 var ray_target = Vector3();
 
-export var character_path_2 = "res://Characters/TestCharacter/TestCharacter.tscn"
-export var character_path_3 = "res://Characters/TestCharacter2/TestCharacter2.tscn"
-export var character_path_1 = "res://Characters/TestCharacter3/TestCharacter3.tscn"
+export var character_path_1 = "res://Characters/TestCharacter/TestCharacter.tscn"
+export var character_path_2 = "res://Characters/TestCharacter2/TestCharacter2.tscn"
+export var character_path_3 = "res://Characters/TestCharacter3/TestCharacter3.tscn"
 var CHARACTER_1
 var CHARACTER_2
 var CHARACTER_3

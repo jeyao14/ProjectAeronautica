@@ -26,6 +26,13 @@ onready var MAXAMMO = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/A
 onready var RELOADBAR = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/WeaponFrame/ReloadPanel/ReloadBar
 onready var RELOADTWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/WeaponFrame/ReloadPanel/ReloadTween
 
+onready var P1_CONTAINER = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1
+onready var P2_CONTAINER = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Party2
+onready var P3_CONTAINER = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Party3
+onready var PANEL1TWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Panel1Tween
+onready var PANEL2TWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Panel2Tween
+onready var PANEL3TWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Panel3Tween
+
 var ACTIVE_CHARACTER: Player
 var CHARACTER_1: Player
 var CHARACTER_2: Player
@@ -33,6 +40,8 @@ var CHARACTER_3: Player
 
 var original_color = Color("#ac2020")
 var new_color = Color("#ffc4c4")
+var active_color = Color("#ffffff")
+var inactive_color = Color("#82ffffff")
 
 func set_players(char1: Player, char2: Player, char3: Player):
 	self.CHARACTER_1 = char1
@@ -86,7 +95,6 @@ func initialize_values():
 	MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
 
 	RELOADBAR.value = 100
-	
 
 func set_new_values():
 	WEAPONICON.set_texture(ACTIVE_CHARACTER.WEAPONICON)
@@ -98,11 +106,22 @@ func setActive():
 #	var temp = PARTY_1
 	if(CHARACTER_1.active): #if new active character is located in bench1, swap active and bench1
 		ACTIVE_CHARACTER = CHARACTER_1
+		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, active_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	elif(CHARACTER_2.active): #if new active character is located in bench2, swap active and bench2
 		ACTIVE_CHARACTER = CHARACTER_2
+		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, active_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	elif(CHARACTER_3.active): #if new active character is located in bench2, swap active and bench2
 		ACTIVE_CHARACTER = CHARACTER_3
-		
+		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, active_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	PANEL1TWEEN.start()
+	PANEL2TWEEN.start()
+	PANEL3TWEEN.start()
 	set_new_values() #update GUI
 
 func start_reload_anim():
