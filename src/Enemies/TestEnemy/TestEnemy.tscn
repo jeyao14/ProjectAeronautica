@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.gd" type="Script" id=1]
-[ext_resource path="res://Enemies/TestEnemy/assets/death_sensei_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Shared/assets/death_sensei_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Characters/Shared/BulletSpawner.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SphereShape" id=1]
@@ -164,6 +164,7 @@ start_node = "Move"
 collision_layer = 4
 collision_mask = 15
 script = ExtResource( 1 )
+max_health = 200
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1, -0.0141737, 0.246378, 0 )
