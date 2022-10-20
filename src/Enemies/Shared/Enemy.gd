@@ -23,12 +23,10 @@ func _ready():
 	#self.global_position += velocity\
 	
 func hurt_enemy(damage):
-	print("enemy position: ", global_pos)
 	health -= damage
 	var text = damagetext.instance()
 	add_child(text)
-	text.set_values(damage, global_pos)
-	print("Enemy takes: ", damage)
+	text.set_values(damage, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+1, self.global_transform.origin.z))
 	if health <= 0:
 		kill_enemy()
 		

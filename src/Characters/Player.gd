@@ -23,6 +23,8 @@ onready var ANIMATION = $AnimationTree.get("parameters/playback")
 onready var SPRITE = $Sprite3D
 onready var HITBOX = get_node("HitBox/CollisionShape")
 
+var damagetext = preload("res://UI/DamageFloatingText.tscn")
+
 var mouse_direction = Vector3.ZERO
 
 signal character_active(speed)
@@ -104,5 +106,7 @@ func active_set(new_value):
 func hurt_player(damage):
 	if(active == true):
 		current_hp -= damage;
+		var text = damagetext.instance()
+		add_child(text)
+		text.set_values(damage, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+1, self.global_transform.origin.z))
 		emit_signal("player_damaged")
-		print(self)
