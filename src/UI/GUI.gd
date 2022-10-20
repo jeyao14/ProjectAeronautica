@@ -106,19 +106,19 @@ func setActive():
 #	var temp = PARTY_1
 	if(CHARACTER_1.active): #if new active character is located in bench1, swap active and bench1
 		ACTIVE_CHARACTER = CHARACTER_1
-		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, active_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, active_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, inactive_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, inactive_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	elif(CHARACTER_2.active): #if new active character is located in bench2, swap active and bench2
 		ACTIVE_CHARACTER = CHARACTER_2
-		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, active_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, inactive_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, active_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, inactive_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	elif(CHARACTER_3.active): #if new active character is located in bench2, swap active and bench2
 		ACTIVE_CHARACTER = CHARACTER_3
-		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, inactive_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, active_color, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL1TWEEN.interpolate_property(P1_CONTAINER, "modulate", P1_CONTAINER.modulate, inactive_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL2TWEEN.interpolate_property(P2_CONTAINER, "modulate", P2_CONTAINER.modulate, inactive_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		PANEL3TWEEN.interpolate_property(P3_CONTAINER, "modulate", P3_CONTAINER.modulate, active_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	PANEL1TWEEN.start()
 	PANEL2TWEEN.start()
 	PANEL3TWEEN.start()
