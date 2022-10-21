@@ -10,7 +10,6 @@ onready var COOLDOWN = $CooldownTimer
 onready var mouse_direction = Vector3.ZERO
 onready var BULLET_GROUP = $BulletGroup
 
-
 # Burst Variables
 export(int) var burst_count = 0
 var burst_timer = .1 setget set_burst_timer
@@ -24,6 +23,9 @@ export var random = false
 # Bullet speed override
 export var bullet_speed_override = 0.0
 export var bullet_speed_override_range = Vector2.ZERO
+
+#Bullet parameters
+var damage
 
 var BULLET
 var shoot = false
@@ -156,10 +158,16 @@ func set_burst_timer(value):
 
 func set_cooldown(value):
 	cooldown = value
+	if COOLDOWN == null:
+		return
 	COOLDOWN.wait_time = cooldown
-#	print("COOLDOWN CHANGED TO: ", COOLDOWN.wait_time)
 
 func set_bullet(path):
 	bullet_path = path;
 	BULLET = load(bullet_path)
 #	print("PATH CHANGED TO: ", bullet_path)
+
+
+func _on_CooldownTimer_ready():
+	COOLDOWN = $CooldownTimer
+	COOLDOWN.wait_time = cooldown

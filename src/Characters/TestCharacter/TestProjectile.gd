@@ -1,18 +1,6 @@
-extends Area
+extends Bullet
 
-
-var direction = Vector3.FORWARD
-var speed = 170
-var damage = 10
-var max_distance = 100.0
-var angle = 0.0
-
-onready var start_position = global_transform.origin
-
-#onready var movement_vector = direction * speed
-var movement_vector = direction
-
-signal test_signal
+#var movement_vector = direction * speed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

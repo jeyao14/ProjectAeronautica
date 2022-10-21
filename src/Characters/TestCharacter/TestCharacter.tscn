@@ -133,9 +133,8 @@ shaded = true
 alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
-ammocount = -1
-uses_ammo = false
-bullet_speed_override = 75.0
+spread_angle = 0.0
+bullet_speed_override = 50.0
 
 [node name="ShootTimer" type="Timer" parent="."]
 
