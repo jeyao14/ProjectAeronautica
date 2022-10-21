@@ -106,7 +106,10 @@ func active_set(new_value):
 func hurt_player(damage):
 	if(active == true):
 		current_hp -= damage;
-		var text = damagetext.instance()
-		add_child(text)
-		text.set_values(damage, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+1, self.global_transform.origin.z))
+		spawn_damage_num(damage)
 		emit_signal("player_damaged")
+		
+func spawn_damage_num(value):
+	var text = damagetext.instance()
+	add_child(text)
+	text.set_values(value, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+2, self.global_transform.origin.z))

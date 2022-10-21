@@ -24,14 +24,14 @@ func _ready():
 	
 func hurt_enemy(damage):
 	health -= damage
-	var text = damagetext.instance()
-	add_child(text)
-	text.set_values(damage, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+1, self.global_transform.origin.z))
+	spawn_damage_num(damage)
 	if health <= 0:
 		kill_enemy()
 		
-func spawn_damage_num(damage):
-	pass
+func spawn_damage_num(value):
+	var text = damagetext.instance()
+	add_child(text)
+	text.set_values(value, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+1, self.global_transform.origin.z))
 
 func kill_enemy():
 	
