@@ -66,12 +66,6 @@ func getPatternParameters():
 	SPAWNER.cooldown = 0.3/dex
 	SPAWNER.ammocount = magsize;
 	ammocount = magsize;
-	SPAWNER.full_auto = true;
-	SPAWNER.burst_count = 0;
-	SPAWNER.spread_count = 1;
-	SPAWNER.spread_angle = 10;
-	SPAWNER.random = true;
-	SPAWNER.bullet_speed_override = 80;
 	
 
 func test_signal_receive():

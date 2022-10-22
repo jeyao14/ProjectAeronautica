@@ -116,6 +116,11 @@ shaded = true
 alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
+full_auto = true
+spread_count = 1
+spread_angle = 10.0
+random = true
+bullet_speed_override = 40.0
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

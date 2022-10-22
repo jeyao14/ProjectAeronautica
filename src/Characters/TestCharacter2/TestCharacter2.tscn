@@ -116,8 +116,16 @@ shaded = true
 alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 5 )]
+spread_count = 5
+spread_angle = 25.0
+random = true
+bullet_speed_override_range = Vector2( 25, 35 )
 
 [node name="AbilitySpawner" parent="." instance=ExtResource( 5 )]
+ammocount = -1
+uses_ammo = false
+cooldown = 2.0
+bullet_speed_override = 30.0
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
