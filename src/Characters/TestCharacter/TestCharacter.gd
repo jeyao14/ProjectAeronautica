@@ -79,7 +79,7 @@ func GetSpawnerAmmoInfo():
 	emit_signal("ammo_changed")
 	
 func getPatternParameters():
-	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
+#	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
 	print("bullet path: ", SPAWNER.bullet_path)
 	SPAWNER.cooldown = 0.3/dex
 	SPAWNER.ammocount = magsize;

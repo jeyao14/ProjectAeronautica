@@ -8,9 +8,9 @@ onready var init_speed = speed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	movement_vector = direction.rotated(Vector3.UP, self.rotation.y)
-	rotation_degrees.y = angle
-	randomize()
+#	movement_vector = direction.rotated(Vector3.UP, self.rotation.y)
+#	rotation_degrees.y = angle
+#	randomize()
 #	if rand_range(1, 10) < 5:
 #		stun = true
 	pass # Replace with function body.

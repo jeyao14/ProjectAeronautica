@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://Characters/Projectiles/Bullet.gd"
+"path": "res://Characters/Shared/Bullet.gd"
 }, {
 "base": "KinematicBody",
 "class": "Enemy",

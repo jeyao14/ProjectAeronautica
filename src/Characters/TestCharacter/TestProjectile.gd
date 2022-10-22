@@ -4,8 +4,8 @@ extends Bullet
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	movement_vector = direction.rotated(Vector3.UP, self.rotation.y) * speed
-	rotation_degrees.y = angle
+#	movement_vector = direction.rotated(Vector3.UP, self.rotation.y) * speed
+#	rotation_degrees.y = angle
 	pass # Replace with function body.
 
 
