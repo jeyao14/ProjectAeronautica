@@ -51,13 +51,15 @@ func _ready():
 
 
 func _physics_process(delta):
+	if not ACTIVE_CHARACTER.is_physics_processing():
+		return
 	calculate_movement()
 	swap_handler()
 	process_actions()
 	get_global_cursor_pos()
 
 func calculate_movement():
-	var l_speed = speed;
+	var l_speed = ACTIVE_CHARACTER.speed;
 	if(!dash_timer):
 		if Input.is_action_pressed("move_forward"):
 			velocity.z = -1
@@ -171,6 +173,7 @@ func get_global_cursor_pos():
 	# else turn off visibility of cursor
 	else:
 		CURSOR.visible = false;
+
 
 
 #signals

@@ -2,7 +2,7 @@ extends Player
 
 onready var SPAWNER = $Spawner
 onready var ABILITYTIMER = $AbilityCooldown
-onready var	TURRETGROUP = $TurretGroup
+onready var TURRETGROUP = $TurretGroup
 onready var TURRETTYPE = preload("res://Characters/TestCharacter/Turret/TemplateTurret.tscn")
 
 onready var CHARACTERICON = preload("res://Assets/Characters/Maria_icon.png")
@@ -70,6 +70,7 @@ func ability_cooldown():
 
 func _on_HitBox_body_entered(body):
 	print("BODY ENTERED 1")
+	
 #	hurt_player()
 	pass # Replace with function body.
 	

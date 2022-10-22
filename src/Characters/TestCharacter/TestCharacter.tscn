@@ -87,7 +87,6 @@ extents = Vector3( 1, 1.08064, 1 )
 
 [node name="Calliope" type="KinematicBody"]
 collision_layer = 2
-collision_mask = 5
 collision/safe_margin = 1.0
 script = ExtResource( 2 )
 dex = 1.4
@@ -120,7 +119,7 @@ parameters/playback = SubResource( 10 )
 [node name="HitBox" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1.02493, 0, 0, 0, 1, 0, 0, 0, 0.650145, 0, 0, 0 )
 collision_layer = 2
-collision_mask = 4
+collision_mask = 132
 
 [node name="CollisionShape" parent="HitBox" index="0"]
 transform = Transform( 0.643798, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -135,6 +134,7 @@ alpha_cut = 2
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
 ammocount = -1
 uses_ammo = false
+cooldown = 5.0
 bullet_speed_override = 75.0
 
 [node name="ShootTimer" type="Timer" parent="."]

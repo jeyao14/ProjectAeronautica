@@ -156,10 +156,17 @@ func set_burst_timer(value):
 
 func set_cooldown(value):
 	cooldown = value
+	if COOLDOWN == null:
+		return
 	COOLDOWN.wait_time = cooldown
-#	print("COOLDOWN CHANGED TO: ", COOLDOWN.wait_time)
 
 func set_bullet(path):
 	bullet_path = path;
 	BULLET = load(bullet_path)
 #	print("PATH CHANGED TO: ", bullet_path)
+
+
+func _on_CooldownTimer_ready():
+	COOLDOWN = $CooldownTimer
+	COOLDOWN.wait_time = cooldown
+	print(COOLDOWN.wait_time)

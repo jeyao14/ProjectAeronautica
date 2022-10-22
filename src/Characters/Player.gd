@@ -18,10 +18,13 @@ var velocity = Vector3.ZERO
 var facing = 1
 onready var active = false  setget active_set
 
+onready var STATUS_HANDLER = GLOBALS.STATUS_EFFECT_HANDLER.instance()
+
 #onready var ANIMATION = get_node("AnimationTree")
 onready var ANIMATION = $AnimationTree.get("parameters/playback")
 onready var SPRITE = $Sprite3D
 onready var HITBOX = get_node("HitBox/CollisionShape")
+
 
 var damagetext = preload("res://UI/DamageFloatingText.tscn")
 
@@ -35,6 +38,9 @@ signal start_reload()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.add_child(STATUS_HANDLER)
+#	STATUS_HANDLER.PARENT = self
+	STATUS_HANDLER.set_defaults(self)
 	$AnimationTree.active = true
 	self.visible = active
 	HITBOX.disabled = !active
@@ -102,6 +108,7 @@ func active_set(new_value):
 	#HITBOX.set_deferred("disabled", !new_value)
 	if(HITBOX): 
 		HITBOX.disabled = !active
+	print("Hitbox: ", HITBOX.disabled)
 
 func hurt_player(damage):
 	if(active == true):

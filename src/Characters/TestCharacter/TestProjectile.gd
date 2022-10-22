@@ -8,6 +8,8 @@ var max_distance = 100.0
 var angle = 0.0
 
 onready var start_position = global_transform.origin
+export var stun = false
+export var slow = true
 
 #onready var movement_vector = direction * speed
 var movement_vector = direction
@@ -34,12 +36,20 @@ func distance_traveled():
 
 func _on_Projectile_area_entered(area):
 	if area is Enemy or area is World:
+		if area.STATUS_HANDLER and stun:
+			area.STATUS_HANDLER.stun()
+		elif area.STATUS_HANDLER and slow:
+			area.STATUS_HANDLER.slow()
 		emit_signal("test_signal")
 		queue_free()
 
 
 func _on_Projectile_body_entered(body):
 	if body is Enemy or body is World:
+		if body.STATUS_HANDLER and stun:
+			body.STATUS_HANDLER.stun()
+		elif body.STATUS_HANDLER and slow:
+			body.STATUS_HANDLER.slow()
 		body.hurt_enemy(damage)
 		pass
 	queue_free()
