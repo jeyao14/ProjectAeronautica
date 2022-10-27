@@ -8,7 +8,6 @@ func _ready():
 	rotation_degrees.y = angle
 	pass # Replace with function body.
 
-
 func _physics_process(delta):
 	self.translation += movement_vector * delta
 	if max_distance > 0.0:

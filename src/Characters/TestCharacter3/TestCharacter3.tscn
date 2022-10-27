@@ -76,6 +76,8 @@ speed = 15
 hp = 120
 dex = 1.4
 magsize = 30
+weap_damage_min = 3
+weap_damage_max = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.047211, 0 )

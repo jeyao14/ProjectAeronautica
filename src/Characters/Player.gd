@@ -11,12 +11,15 @@ export var def: float = 1.0
 export var dex: float = 1.0
 export var crit: float = 0.05
 export var magsize = 10
+export var weap_damage_min = 0
+export var weap_damage_max = 10
 var ammocount = magsize;
 var current_hp = hp;
 
 var velocity = Vector3.ZERO
 var facing = 1
 onready var active = false  setget active_set
+onready var alive = true
 
 #onready var ANIMATION = get_node("AnimationTree")
 onready var ANIMATION = $AnimationTree.get("parameters/playback")
@@ -102,6 +105,9 @@ func active_set(new_value):
 	#HITBOX.set_deferred("disabled", !new_value)
 	if(HITBOX): 
 		HITBOX.disabled = !active
+		
+#func alive_set(new_value):
+#	alive = new_value
 
 func hurt_player(damage):
 	if(active == true):
