@@ -15,8 +15,12 @@ var NAV = null
 var damagetext = preload("res://UI/DamageFloatingText.tscn")
 
 onready var global_pos = self.global_transform.origin
+onready var STATUS_HANDLER = GLOBALS.STATUS_EFFECT_HANDLER.instance()
 
 func _ready():
+	self.add_child(STATUS_HANDLER)
+#	STATUS_HANDLER.PARENT = self
+	STATUS_HANDLER.set_defaults(self)
 	health = max_health
 	#velocity = Vector3(1, velocity.y, 1)
 #func _physics_process(delta):

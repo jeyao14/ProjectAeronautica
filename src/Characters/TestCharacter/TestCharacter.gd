@@ -2,7 +2,7 @@ extends Player
 
 onready var SPAWNER = $Spawner
 onready var ABILITYTIMER = $AbilityCooldown
-onready var	TURRETGROUP = $TurretGroup
+onready var TURRETGROUP = $TurretGroup
 onready var TURRETTYPE = preload("res://Characters/TestCharacter/Turret/TemplateTurret.tscn")
 
 onready var CHARACTERICON = preload("res://Assets/Characters/Maria_icon.png")
@@ -76,6 +76,7 @@ func ability_cooldown():
 
 func _on_HitBox_body_entered(body):
 	print("BODY ENTERED 1")
+	
 #	hurt_player()
 	pass # Replace with function body.
 	
@@ -84,7 +85,7 @@ func GetSpawnerAmmoInfo():
 	emit_signal("ammo_changed")
 	
 func getPatternParameters():
-	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
+#	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
 	print("bullet path: ", SPAWNER.bullet_path)
 	SPAWNER.cooldown = 0.3/dex
 	SPAWNER.ammocount = magsize;
