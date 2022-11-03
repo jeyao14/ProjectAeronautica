@@ -88,6 +88,7 @@ func getPatternParameters():
 
 func getAbilityParameters():
 	ASPAWNER.bullet_path = "res://Characters/TestCharacter2/RhodesAbilityProjectile.tscn"
+	ASPAWNER.applied_status = "stun"
 #	ASPAWNER.cooldown = 2.0
 
 func test_signal_receive():
