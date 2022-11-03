@@ -2,5 +2,5 @@
 
 [ext_resource path="res://Common/Main.gd" type="Script" id=1]
 
-[node name="Node" type="CanvasLayer"]
+[node name="Menus" type="CanvasLayer"]
 script = ExtResource( 1 )

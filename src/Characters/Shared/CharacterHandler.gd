@@ -8,9 +8,9 @@ var velocity = Vector3.ZERO
 var ray_origin = Vector3();
 var ray_target = Vector3();
 
-export var character_path_1 = "res://Characters/TestCharacter/TestCharacter.tscn"
-export var character_path_2 = "res://Characters/TestCharacter2/TestCharacter2.tscn"
-export var character_path_3 = "res://Characters/TestCharacter3/TestCharacter3.tscn"
+export var CHARACTER_PATH_1 = GLOBALS.MARIA
+export var CHARACTER_PATH_2 = GLOBALS.RHODES
+export var CHARACTER_PATH_3 = GLOBALS.OLIVE
 var CHARACTER_1
 var CHARACTER_2
 var CHARACTER_3
@@ -28,9 +28,9 @@ var dash_cooldown = .5
 func _ready():
 	GLOBALS.CHARACTER_HANDLER = self
 	
-	var c_1 = load(character_path_1)
-	var c_2 = load(character_path_2)
-	var c_3 = load(character_path_3)
+	var c_1 = load(CHARACTER_PATH_1)
+	var c_2 = load(CHARACTER_PATH_2)
+	var c_3 = load(CHARACTER_PATH_3)
 	CHARACTER_1 = c_1.instance()
 	CHARACTER_2 = c_2.instance()
 	CHARACTER_3 = c_3.instance()
