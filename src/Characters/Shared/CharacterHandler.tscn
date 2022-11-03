@@ -24,11 +24,15 @@ shape = SubResource( 1 )
 [node name="CameraObject" parent="." instance=ExtResource( 3 )]
 rotate_speed = 3
 
+[node name="CameraBoom" parent="CameraObject" index="0"]
+transform = Transform( 1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0 )
+
 [node name="Camera" parent="CameraObject/CameraBoom" index="0"]
 transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, -0.00210762, -7.59292, 16.5704 )
 fov = 60.0
 
 [node name="RayCast" parent="CameraObject/CameraBoom/Camera" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0 )
 cast_to = Vector3( 0, 0, -30 )
 
 [node name="Cursor" type="MeshInstance" parent="."]

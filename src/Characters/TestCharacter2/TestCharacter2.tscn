@@ -127,7 +127,7 @@ bullet_speed_override_range = Vector2( 25, 35 )
 ammocount = -1
 uses_ammo = false
 cooldown = 2.0
-bullet_speed_override = 30.0
+bullet_speed_override = 20.0
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

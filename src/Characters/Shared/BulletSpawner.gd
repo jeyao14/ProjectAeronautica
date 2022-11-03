@@ -33,6 +33,9 @@ var BULLET
 var shoot = false
 var is_firing = false
 
+#status effect
+var applied_status
+
 signal update_ammo;
 
 # Called when the node enters the scene tree for the first time.
@@ -142,6 +145,8 @@ func spawn_bullet(angle = 0.0):
 	instance.translation = global_pos
 	if(damage_min != -1 and damage_max != -1):
 		instance.damage = calculate_damage()
+	instance.status = applied_status
+	
 	BULLET_GROUP.add_child(instance)
 	
 	
@@ -177,6 +182,16 @@ func calculate_damage():
 	var num = rng.randi_range(damage_min, damage_max)
 	var bullet_damage = num * attack
 	return bullet_damage
+	
+#func parse_status(status, instance):
+#	match(status):
+#		"Stun":
+#			instance.stun = true
+#		"Slow":
+#			instance.slow = true
+#		_:  
+#			# no valid string is passed
+#			return
 	
 func _on_CooldownTimer_ready():
 	COOLDOWN = $CooldownTimer

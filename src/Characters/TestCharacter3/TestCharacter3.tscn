@@ -128,3 +128,4 @@ bullet_speed_override = 40.0
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 
 [editable path="HitBox"]
+[editable path="Spawner"]
