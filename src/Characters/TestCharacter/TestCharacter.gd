@@ -26,12 +26,18 @@ func _physics_process(delta):
 	set_animation()
 	set_facing()
 	GetSpawnerAmmoInfo()
+	if current_hp <= 0:
+		set_alive()
+	
 	if SPAWNER.shoot:
 		SPAWNER.mouse_direction = mouse_direction
 #		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
 	if(ammocount > 0 && !is_reloading):
+		SPAWNER.damage_min = weap_damage_min
+		SPAWNER.damage_max = weap_damage_max
+		SPAWNER.attack = att
 		SPAWNER.shoot = true
 	
 
@@ -94,6 +100,12 @@ func getPatternParameters():
 func test_signal_receive():
 	print("SIGNAL")
 
+func set_alive():
+	if(alive == true):
+		alive = false;
+		if(GLOBALS.CHARACTER_HANDLER):
+			print("death detected")
+			GLOBALS.CHARACTER_HANDLER.find_next_alive_char()
 
 func _on_AbilityCooldown_timeout():
 	ability_active = false

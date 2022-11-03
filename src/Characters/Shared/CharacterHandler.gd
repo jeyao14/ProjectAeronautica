@@ -121,31 +121,21 @@ func process_actions():
 
 func swap_handler():
 	var next_character = null
-	if Input.is_action_just_pressed("swap_character_1"):
+	if Input.is_action_just_pressed("swap_character_1") and CHARACTER_1.alive:
 		next_character = CHARACTER_1
-#		CHARACTER_1.set_hitbox(true)
 		CHARACTER_2.active = false
-#		CHARACTER_2.set_hitbox(false)
 		CHARACTER_3.active = false
-#		CHARACTER_3.set_hitbox(false)
-	elif Input.is_action_just_pressed("swap_character_2"):
+	elif Input.is_action_just_pressed("swap_character_2") and CHARACTER_2.alive:
 		next_character = CHARACTER_2
-#		CHARACTER_2.set_hitbox(true)
 		CHARACTER_1.active = false
-#		CHARACTER_1.set_hitbox(false)
 		CHARACTER_3.active = false
-#		CHARACTER_3.set_hitbox(false)
-	elif Input.is_action_just_pressed("swap_character_3"):
+	elif Input.is_action_just_pressed("swap_character_3") and CHARACTER_3.alive:
 		next_character = CHARACTER_3
-#		CHARACTER_3.set_hitbox(true)
 		CHARACTER_1.active = false
-#		CHARACTER_1.set_hitbox(false)
 		CHARACTER_2.active = false
-#		CHARACTER_2.set_hitbox(false)
 	if (next_character):
 		ACTIVE_CHARACTER.active = false
 		next_character.active = true
-#		ACTIVE_CHARACTER.set_hitbox(true)
 		ACTIVE_CHARACTER = next_character
 		GUI.setActive()
 		swap_character_stats()
@@ -174,9 +164,28 @@ func get_global_cursor_pos():
 	else:
 		CURSOR.visible = false;
 
-
-
 #signals
 func swap_character_stats():
 	self.speed = ACTIVE_CHARACTER.speed
 
+func find_next_alive_char():
+	print("running find_next_alive_char")
+	var next_character = null
+	if CHARACTER_1.alive and !CHARACTER_1.active:
+		next_character = CHARACTER_1
+		CHARACTER_2.active = false
+		CHARACTER_3.active = false
+	elif CHARACTER_2.alive and !CHARACTER_2.active:
+		next_character = CHARACTER_2
+		CHARACTER_1.active = false
+		CHARACTER_3.active = false
+	elif CHARACTER_3.alive and !CHARACTER_3.active:
+		next_character = CHARACTER_3
+		CHARACTER_1.active = false
+		CHARACTER_2.active = false
+	if (next_character):
+		ACTIVE_CHARACTER.active = false
+		next_character.active = true
+		ACTIVE_CHARACTER = next_character
+		GUI.setActive()
+		swap_character_stats()

@@ -92,6 +92,7 @@ func attack():
 	if GLOBALS.CHARACTER_HANDLER == null:
 		return
 	SPAWNER.mouse_direction = GLOBALS.CHARACTER_HANDLER.global_transform.origin
+	SPAWNER
 	SPAWNER.shoot = true
 	ATTACK_TIMER.start()
 

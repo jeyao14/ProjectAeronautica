@@ -11,12 +11,15 @@ export var def: float = 1.0
 export var dex: float = 1.0
 export var crit: float = 0.05
 export var magsize = 10
+export var weap_damage_min = 0
+export var weap_damage_max = 10
 var ammocount = magsize;
 var current_hp = hp;
 
 var velocity = Vector3.ZERO
 var facing = 1
 onready var active = false  setget active_set
+onready var alive = true
 
 onready var STATUS_HANDLER = GLOBALS.STATUS_EFFECT_HANDLER.instance()
 
@@ -108,7 +111,6 @@ func active_set(new_value):
 	#HITBOX.set_deferred("disabled", !new_value)
 	if(HITBOX): 
 		HITBOX.disabled = !active
-	print("Hitbox: ", HITBOX.disabled)
 
 func hurt_player(damage):
 	if(active == true):

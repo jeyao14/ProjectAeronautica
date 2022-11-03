@@ -25,7 +25,9 @@ export var bullet_speed_override = 0.0
 export var bullet_speed_override_range = Vector2.ZERO
 
 #Bullet parameters
-var damage
+var damage_min = -1
+var damage_max = -1
+var attack = -1
 
 var BULLET
 var shoot = false
@@ -138,6 +140,8 @@ func spawn_bullet(angle = 0.0):
 	instance.rotation_degrees.y = direction_angle
 	instance.angle = direction_angle
 	instance.translation = global_pos
+	if(damage_min != -1 and damage_max != -1):
+		instance.damage = calculate_damage()
 	BULLET_GROUP.add_child(instance)
 	
 	
@@ -167,7 +171,13 @@ func set_bullet(path):
 	BULLET = load(bullet_path)
 #	print("PATH CHANGED TO: ", bullet_path)
 
-
+func calculate_damage():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var num = rng.randi_range(damage_min, damage_max)
+	var bullet_damage = num * attack
+	return bullet_damage
+	
 func _on_CooldownTimer_ready():
 	COOLDOWN = $CooldownTimer
 	COOLDOWN.wait_time = cooldown

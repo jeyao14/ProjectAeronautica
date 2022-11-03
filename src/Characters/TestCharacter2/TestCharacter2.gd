@@ -9,6 +9,9 @@ onready var CHARACTERICON = preload("res://Assets/Characters/Rhodes_icon.png")
 onready var WEAPONICON = preload("res://Assets/UI/Icons/WeaponIcons/shotgun.png")
 onready var charactername = "Rhodes"
 
+export var ability_damage_max = 10
+export var ability_damage_min = 20
+
 var is_reloading = false;
 var reload_time
 
@@ -23,6 +26,8 @@ func _physics_process(delta):
 	set_animation()
 	set_facing()
 	GetSpawnerAmmoInfo()
+	if current_hp <= 0:
+		set_alive()
 	if SPAWNER.shoot:
 		SPAWNER.mouse_direction = mouse_direction
 #		print("Ammo: ", ammocount, "/", magsize)
@@ -32,6 +37,9 @@ func _physics_process(delta):
 
 func use_attack():
 	if(ammocount > 0 && !is_reloading):
+		SPAWNER.damage_min = weap_damage_min
+		SPAWNER.damage_max = weap_damage_max
+		SPAWNER.attack = att
 		SPAWNER.shoot = true
 
 func reload():
@@ -56,6 +64,9 @@ func _on_HitBox_area_entered(area):
 	pass # Replace with function body.
 
 func use_ability():
+	ASPAWNER.damage_min = weap_damage_min
+	ASPAWNER.damage_max = weap_damage_max
+	ASPAWNER.attack = att
 	ASPAWNER.shoot = true;
 	
 func stop_ability():
@@ -81,3 +92,10 @@ func getAbilityParameters():
 
 func test_signal_receive():
 	print("SIGNAL")
+	
+func set_alive():
+	if(alive == true):
+		alive = false;
+		if(GLOBALS.CHARACTER_HANDLER):
+			print("death detected")
+			GLOBALS.CHARACTER_HANDLER.find_next_alive_char()
