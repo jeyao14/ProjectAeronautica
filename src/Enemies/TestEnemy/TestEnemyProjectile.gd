@@ -39,13 +39,10 @@ func stun_player():
 	handler.ACTIVE_CHARACTER.add_child(stun)
 
 func _on_Projectile_area_entered(area):
-	print("test_signal")
 	if area is World:
 		queue_free()
 	elif area is Player:
-		print("area: ", area)
 		if stun:
-			print("stun player")
 			stun_player()
 		area.hurt_player(damage)
 		queue_free()
@@ -55,7 +52,6 @@ func _on_Projectile_body_entered(body):
 	if body is World:
 		queue_free()
 	elif body is Player:
-		print("body: ", body)
 		if stun and body.STATUS_HANDLER:
 			body.STATUS_HANDLER.stun()
 		elif slow and body.STATUS_HANDLER:

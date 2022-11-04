@@ -59,7 +59,6 @@ func stop_attack():
 	SPAWNER.shoot = false
 
 func _on_HitBox_area_entered(area):
-	print("AREA ENTERED 2")
 #	hurt_player()
 	pass # Replace with function body.
 
@@ -92,11 +91,10 @@ func getAbilityParameters():
 #	ASPAWNER.cooldown = 2.0
 
 func test_signal_receive():
-	print("SIGNAL")
+	pass
 	
 func set_alive():
 	if(alive == true):
 		alive = false;
 		if(GLOBALS.CHARACTER_HANDLER):
-			print("death detected")
 			GLOBALS.CHARACTER_HANDLER.find_next_alive_char()

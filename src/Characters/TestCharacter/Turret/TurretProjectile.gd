@@ -1,18 +1,6 @@
-extends Area
+extends Bullet
 
 
-export var direction = Vector3.FORWARD
-export var speed = 170
-export var damage = 10
-export var max_distance = 100.0
-export var angle = 0.0
-
-onready var start_position = global_transform.origin
-
-#onready var movement_vector = direction * speed
-var movement_vector = direction
-
-signal test_signal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,7 +20,6 @@ func distance_traveled():
 		queue_free()
 
 func _on_Projectile_area_entered(area):
-	emit_signal("test_signal")
 	queue_free()
 
 

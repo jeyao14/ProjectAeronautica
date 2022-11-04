@@ -103,7 +103,6 @@ func stop_ability():
 
 func set_hitbox(active):
 	HITBOX.set_disabled(!active)
-	print(HITBOX.disabled)
 
 func active_set(new_value):
 	active = new_value

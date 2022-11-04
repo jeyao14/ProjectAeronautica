@@ -7,6 +7,7 @@ onready var SLOW_TIMER = $SlowTimer
 export var stun = false
 
 export var slow = false
+
 var base_speed = 0.0
 var slowed_speed = 0.0
 # Called when the node enters the scene tree for the first time.

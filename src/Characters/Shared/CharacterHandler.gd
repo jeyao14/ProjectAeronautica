@@ -157,9 +157,7 @@ func get_global_cursor_pos():
 	if(result):
 		CURSOR.visible = true;
 		CURSOR.global_transform.origin = result.position;
-#		print(result.position)
 		ACTIVE_CHARACTER.mouse_direction = result.position
-#		print(ACTIVE_CHARACTER.mouse_direction)
 	# else turn off visibility of cursor
 	else:
 		CURSOR.visible = false;
@@ -169,7 +167,6 @@ func swap_character_stats():
 	self.speed = ACTIVE_CHARACTER.speed
 
 func find_next_alive_char():
-	print("running find_next_alive_char")
 	var next_character = null
 	if CHARACTER_1.alive and !CHARACTER_1.active:
 		next_character = CHARACTER_1

@@ -47,7 +47,6 @@ func reload():
 	is_reloading = true;
 	SPAWNER.shoot = false;
 	emit_signal("start_reload")
-	print("Maria reload time: ", reload_time)
 	yield(get_tree().create_timer(reload_time,false),"timeout");
 	ammocount = magsize;
 	SPAWNER.ammocount = ammocount;
@@ -60,7 +59,6 @@ func stop_attack():
 #func _on_HitBox_area_entered(area):
 
 func use_ability():
-	print("using test character 1 ability")
 	if(TURRETGROUP.get_child_count() == 0 and not ability_active):
 		ability_active = true
 		var instance = TURRETTYPE.instance()
@@ -72,10 +70,8 @@ func use_ability():
 
 func ability_cooldown():
 	ABILITYTIMER.start()
-	print("ability_cooldown")
 
 func _on_HitBox_body_entered(body):
-	print("BODY ENTERED 1")
 	
 #	hurt_player()
 	pass # Replace with function body.
@@ -85,8 +81,6 @@ func GetSpawnerAmmoInfo():
 	emit_signal("ammo_changed")
 	
 func getPatternParameters():
-#	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
-	print("bullet path: ", SPAWNER.bullet_path)
 	SPAWNER.cooldown = 0.25/dex
 	SPAWNER.ammocount = magsize;
 	ammocount = magsize;
@@ -98,13 +92,12 @@ func getPatternParameters():
 #	SPAWNER.bullet_speed_override = 75;
 
 func test_signal_receive():
-	print("SIGNAL")
+	pass
 
 func set_alive():
 	if(alive == true):
 		alive = false;
 		if(GLOBALS.CHARACTER_HANDLER):
-			print("death detected")
 			GLOBALS.CHARACTER_HANDLER.find_next_alive_char()
 
 func _on_AbilityCooldown_timeout():

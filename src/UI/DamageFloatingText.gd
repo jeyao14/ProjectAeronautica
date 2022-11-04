@@ -18,4 +18,3 @@ func set_values(value, start_pos):
 	TWEEN.interpolate_property(self, "translation", translation, end_pos, tween_length, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	TWEEN.start()
 	
-	print("damage text pos: ", self.global_transform.origin)

@@ -8,7 +8,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	print("speed: ", speed)
 	self.translation += movement_vector * delta
 	if max_distance > 0.0:
 		distance_traveled()

@@ -25,7 +25,6 @@ func _on_Projectile_area_entered(area):
 			area.STATUS_HANDLER.stun()
 		elif area.STATUS_HANDLER and slow:
 			area.STATUS_HANDLER.slow()
-		emit_signal("test_signal")
 		queue_free()
 
 

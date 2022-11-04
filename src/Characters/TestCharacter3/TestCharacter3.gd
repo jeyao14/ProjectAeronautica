@@ -40,7 +40,6 @@ func reload():
 	is_reloading = true;
 	SPAWNER.shoot = false;
 	emit_signal("start_reload")
-	print("Maria reload time: ", reload_time)
 	yield(get_tree().create_timer(reload_time,false),"timeout");
 	ammocount = magsize;
 	SPAWNER.ammocount = ammocount;
@@ -51,7 +50,6 @@ func stop_attack():
 	SPAWNER.shoot = false
 
 func _on_HitBox_area_entered(area):
-	print("AREA ENTERED 3")
 #	hurt_player()
 	pass # Replace with function body.
 
@@ -61,7 +59,6 @@ func use_ability():
 	SPAWNER.applied_status = ""
 	
 func _on_HitBox_body_entered(body):
-	print("BODY ENTERED 3")
 #	hurt_player()
 	pass # Replace with function body.
 	
@@ -76,11 +73,10 @@ func getPatternParameters():
 	ammocount = magsize;
 
 func test_signal_receive():
-	print("SIGNAL")
+	pass
 
 func set_alive():
 	if(alive == true):
 		alive = false;
 		if(GLOBALS.CHARACTER_HANDLER):
-			print("death detected")
 			GLOBALS.CHARACTER_HANDLER.find_next_alive_char()

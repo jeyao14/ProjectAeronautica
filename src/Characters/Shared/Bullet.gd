@@ -13,7 +13,7 @@ onready var start_position = global_transform.origin
 
 #onready var movement_vector = direction * speed
 var movement_vector = direction
-var status
+var status = ""
 
 signal test_signal
 
