@@ -64,8 +64,8 @@ func _on_HitBox_area_entered(area):
 	pass # Replace with function body.
 
 func use_ability():
-	ASPAWNER.damage_min = weap_damage_min
-	ASPAWNER.damage_max = weap_damage_max
+	ASPAWNER.damage_min = ability_damage_min
+	ASPAWNER.damage_max = ability_damage_max
 	ASPAWNER.attack = att
 	ASPAWNER.shoot = true;
 	
@@ -82,12 +82,13 @@ func GetSpawnerAmmoInfo():
 func getPatternParameters():
 #	SPAWNER.cooldown = 0.9 + -((dex*0.8)/100.0)
 	SPAWNER.bullet_path = "res://Characters/TestCharacter2/RhodesProjectile.tscn"
-	SPAWNER.cooldown = 0.3/dex
+	SPAWNER.cooldown = 0.25/dex
 	SPAWNER.ammocount = magsize;
 	ammocount = magsize;
 
 func getAbilityParameters():
 	ASPAWNER.bullet_path = "res://Characters/TestCharacter2/RhodesAbilityProjectile.tscn"
+	ASPAWNER.applied_status = "stun"
 #	ASPAWNER.cooldown = 2.0
 
 func test_signal_receive():

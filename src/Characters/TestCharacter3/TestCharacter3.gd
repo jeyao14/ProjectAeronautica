@@ -56,8 +56,10 @@ func _on_HitBox_area_entered(area):
 	pass # Replace with function body.
 
 func use_ability():
-	print("using test character 1 ability")
-
+	SPAWNER.applied_status = "slow"
+	yield(get_tree().create_timer(10,false),"timeout");
+	SPAWNER.applied_status = ""
+	
 func _on_HitBox_body_entered(body):
 	print("BODY ENTERED 3")
 #	hurt_player()
@@ -68,14 +70,14 @@ func GetSpawnerAmmoInfo():
 	
 func getPatternParameters():
 #	SPAWNER.cooldown = 0.9 + -((dex*0.8)/100.0)
-	SPAWNER.cooldown = 0.3/dex
+	SPAWNER.bullet_path = "res://Characters/TestCharacter3/OliveProjectile.tscn"
+	SPAWNER.cooldown = 0.25/dex
 	SPAWNER.ammocount = magsize;
 	ammocount = magsize;
-	
 
 func test_signal_receive():
 	print("SIGNAL")
-	
+
 func set_alive():
 	if(alive == true):
 		alive = false;

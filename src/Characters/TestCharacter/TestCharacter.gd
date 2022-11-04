@@ -87,7 +87,7 @@ func GetSpawnerAmmoInfo():
 func getPatternParameters():
 #	SPAWNER.bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn"
 	print("bullet path: ", SPAWNER.bullet_path)
-	SPAWNER.cooldown = 0.3/dex
+	SPAWNER.cooldown = 0.25/dex
 	SPAWNER.ammocount = magsize;
 	ammocount = magsize;
 #	SPAWNER.full_auto = false;
