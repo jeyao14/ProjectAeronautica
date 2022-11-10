@@ -8,8 +8,13 @@ var paused = false setget set_pause
 
 onready var STATUS_EFFECT_HANDLER = preload("res://Common/StatusEffects/StatusEffectHandler.tscn")
 
-# UI ELEMENTS ------------------------------------
+# MENU ELEMENTS ----------------------------------
 var MAIN_MENU = "res://UI/TestMainMenu.tscn"
+var PAUSE_MENU = "res://UI/PauseMenu.tscn"
+
+# UI ELEMENTS ------------------------------------
+var GUI = "res://UI/GUI.tscn"
+var GAME_OVER = "res://UI/EndGameScreen.tscn"
 
 # LEVEL ELEMENTS _________________________________
 var TEST_LEVEL = "res://World/TestLevel.tscn"
