@@ -2,6 +2,7 @@ extends CanvasLayer
 
 
 var level = null
+var level_name = ""
 var player = null
 
 # Called when the node enters the scene tree for the first time.
@@ -22,12 +23,13 @@ func clear_menus():
 
 func load_level(level = "TestLevel"):
 	GLOBALS.paused = true
-	level = GLOBALS.load_level(level)
-	GLOBALS.ROOT.add_child(level)
+	self.level = GLOBALS.load_level(level)
+	level_name = level
+	GLOBALS.ROOT.add_child(self.level)
 	
 	
 	
-	var spawn_node = level.get_node("CharacterSpawnPoint")
+	var spawn_node = self.level.get_node("CharacterSpawnPoint")
 	var spawn_pos = Vector3.ZERO
 	if spawn_node:
 		spawn_pos = spawn_node.global_transform.origin
@@ -45,18 +47,24 @@ func load_level(level = "TestLevel"):
 #	self.add_child(gui)
 #	gui.setup_signals()
 
+func restart_game():
+	var temp_level_name = level_name
+	unload_game(false)
+	load_level(temp_level_name)
 
-func unload_game():
+func unload_game(main_menu = true):
 	GLOBALS.paused = true
 	clear_menus()
 	
 	level = null
+	level_name = ""
 	player = null
 	
 	for node in GLOBALS.ROOT.get_children():
 		if not (node == self or node.name == "GLOBALS" or node.name == "ImportData"):
 			node.queue_free()
 	
-	main_menu()
+	if(main_menu):
+		main_menu()
 	
 	GLOBALS.paused = false

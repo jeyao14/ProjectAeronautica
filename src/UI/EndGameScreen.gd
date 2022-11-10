@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 
 # Declare member variables here. Examples:
@@ -8,6 +8,8 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if GLOBALS:
+		GLOBALS.paused = true
 	pass # Replace with function body.
 
 
@@ -17,8 +19,11 @@ func _ready():
 
 
 func _on_RestartButton_pressed():
+	if GLOBALS.MENUS:
+		GLOBALS.MENUS.restart_game()
 	pass # Replace with function body.
 
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	if GLOBALS.MENUS:
+		GLOBALS.MENUS.unload_game()

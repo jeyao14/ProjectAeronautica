@@ -193,3 +193,6 @@ func find_next_alive_char():
 		GUI.setActive()
 #		emit_signal("gui_set_active")
 		swap_character_stats()
+	else:
+		var instance = load(GLOBALS.GAME_OVER).instance()
+		GLOBALS.MENUS.add_child(instance)
