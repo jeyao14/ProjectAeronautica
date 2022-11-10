@@ -14,6 +14,7 @@ var PAUSE_MENU = "res://UI/PauseMenu.tscn"
 
 # UI ELEMENTS ------------------------------------
 var GUI = "res://UI/GUI.tscn"
+var GAME_OVER = "res://UI/EndGameScreen.tscn"
 
 # LEVEL ELEMENTS _________________________________
 var TEST_LEVEL = "res://World/TestLevel.tscn"
