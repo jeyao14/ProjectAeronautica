@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 onready var P1_CHARACTERICON = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Icon/CharacterIcon
 onready var P1_HEALTHBAR = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Health/VBoxContainer/HealthBar
@@ -43,7 +43,22 @@ var new_color = Color("#ffc4c4")
 var active_color = Color("#ffffff")
 var inactive_color = Color("#82ffffff")
 
+
+func setup_signals():
+	var handler = GLOBALS.CHARACTER_HANDLER
+	handler.connect("gui_set_players", self, "set_players")
+	handler.connect("gui_set_active", self, "setActive")
+	
+
 func set_players(char1: Player, char2: Player, char3: Player):
+#func set_players():
+#	if not GLOBALS.CHARACTER_HANDLER:
+#		return
+#	var handler = GLOBALS.CHARACTER_HANDLER
+#	var char1 = handler.CHARACTER_1
+#	var char2 = handler.CHARACTER_2
+#	var char3 = handler.CHARACTER_3
+	
 	self.CHARACTER_1 = char1
 	self.CHARACTER_2 = char2
 	self.CHARACTER_3 = char3

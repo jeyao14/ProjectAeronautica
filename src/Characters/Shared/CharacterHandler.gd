@@ -8,9 +8,9 @@ var velocity = Vector3.ZERO
 var ray_origin = Vector3();
 var ray_target = Vector3();
 
-export var CHARACTER_PATH_1 = GLOBALS.MARIA
-export var CHARACTER_PATH_2 = GLOBALS.RHODES
-export var CHARACTER_PATH_3 = GLOBALS.OLIVE
+onready var CHARACTER_PATH_1 = GLOBALS.MARIA
+onready var CHARACTER_PATH_2 = GLOBALS.RHODES
+onready var CHARACTER_PATH_3 = GLOBALS.OLIVE
 var CHARACTER_1
 var CHARACTER_2
 var CHARACTER_3
@@ -23,6 +23,9 @@ onready var GUI = $GUI;
 var dash_timer = false;
 var can_dash = true
 var dash_cooldown = .5
+
+signal gui_set_players
+signal gui_set_active
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +50,9 @@ func _ready():
 #	CHARACTER_3.set_hitbox(false)
 	
 	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)
+#	emit_signal("gui_set_players", CHARACTER_1, CHARACTER_2, CHARACTER_3)
 	swap_character_stats()
+
 
 
 func _physics_process(delta):
@@ -138,6 +143,7 @@ func swap_handler():
 		next_character.active = true
 		ACTIVE_CHARACTER = next_character
 		GUI.setActive()
+#		emit_signal("gui_set_active")
 		swap_character_stats()
 
 func get_global_cursor_pos():
@@ -185,4 +191,5 @@ func find_next_alive_char():
 		next_character.active = true
 		ACTIVE_CHARACTER = next_character
 		GUI.setActive()
+#		emit_signal("gui_set_active")
 		swap_character_stats()
