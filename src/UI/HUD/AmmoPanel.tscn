@@ -4,7 +4,8 @@
 [ext_resource path="res://Assets/GUI/legendary fade2.png" type="Texture" id=2]
 [ext_resource path="res://Assets/GUI/reloadbar_bg.png" type="Texture" id=3]
 [ext_resource path="res://Assets/GUI/reloadbar_white.png" type="Texture" id=4]
-[ext_resource path="res://UI/AmmoPanelFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://UI/HUD/AmmoPanelFont.tres" type="DynamicFont" id=5]
+
 
 [sub_resource type="StyleBoxEmpty" id=5]
 

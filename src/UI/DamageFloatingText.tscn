@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://UI/AmmoPanelFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/HUD/AmmoPanelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/DamageFloatingText.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]

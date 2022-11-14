@@ -1,8 +1,9 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://UI/GUI.gd" type="Script" id=1]
-[ext_resource path="res://UI/AmmoPanel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UI/HealthPanel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/HUD/GUI.gd" type="Script" id=1]
+[ext_resource path="res://UI/HUD/AmmoPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/HUD/HealthPanel.tscn" type="PackedScene" id=4]
+
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
