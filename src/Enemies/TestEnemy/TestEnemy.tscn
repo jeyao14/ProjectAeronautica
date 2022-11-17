@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Shared/assets/death_sensei_spritesheet.png" type="Texture" id=2]
@@ -161,17 +161,6 @@ start_node = "Move"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
-[sub_resource type="ViewportTexture" id=17]
-viewport_path = NodePath("Viewport")
-
-[sub_resource type="SpatialMaterial" id=18]
-resource_local_to_scene = true
-albedo_texture = SubResource( 17 )
-
-[sub_resource type="ViewportTexture" id=19]
-flags = 2
-viewport_path = NodePath("Viewport")
-
 [node name="Enemy" type="KinematicBody"]
 collision_layer = 4
 collision_mask = 15
@@ -215,17 +204,18 @@ bullet_path = "res://Enemies/TestEnemy/TestEnemyProjectile.tscn"
 ammocount = -1
 spread_count = 1
 
+[node name="Spawner2" parent="." instance=ExtResource( 3 )]
+bullet_path = "res://Enemies/TestEnemy/TestEnemyProjectile.tscn"
+ammocount = -1
+spread_count = 1
+
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
 autostart = true
 
 [node name="Node2D" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94571, 0 )
-
-[node name="MeshInstance" parent="Node2D" index="1"]
-material_override = SubResource( 18 )
-texture = SubResource( 19 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

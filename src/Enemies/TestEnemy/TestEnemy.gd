@@ -8,6 +8,7 @@ var threshhold = 1
 onready var TIMER = $PathTimer
 onready var ATTACK_TIMER = $AttackTimer
 onready var SPAWNER = $Spawner
+onready var SPAWNER2 = $Spawner2
 onready var SPRITE = $Sprite3D
 onready var ANIM_PLAYER = $AnimationTree.get("parameters/playback")
 onready var ANIM_TREE = $AnimationTree
@@ -17,6 +18,8 @@ func _ready():
 		NAV = get_node(nav_path)
 	velocity.y = gravity
 	ANIM_TREE.active = true
+#	SPAWNER.applied_status = "slow"
+#	SPAWNER2.applied_status = "stun"
 
 func _physics_process(delta):
 	if GLOBALS.CHARACTER_HANDLER == null or not alive or NAV == null:
@@ -94,6 +97,9 @@ func attack():
 	SPAWNER.mouse_direction = GLOBALS.CHARACTER_HANDLER.global_transform.origin
 	SPAWNER
 	SPAWNER.shoot = true
+#	SPAWNER2.mouse_direction = GLOBALS.CHARACTER_HANDLER.global_transform.origin
+#	SPAWNER2
+#	SPAWNER2.shoot = true
 	ATTACK_TIMER.start()
 
 func _on_Timer_timeout():

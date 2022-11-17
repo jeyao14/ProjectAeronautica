@@ -56,7 +56,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if not ACTIVE_CHARACTER.is_physics_processing():
+	if ACTIVE_CHARACTER.STATUS_HANDLER.stun:
 		return
 	calculate_movement()
 	swap_handler()
