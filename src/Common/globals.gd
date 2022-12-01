@@ -11,6 +11,8 @@ onready var STATUS_EFFECT_HANDLER = preload("res://Common/StatusEffects/StatusEf
 # MENU ELEMENTS ----------------------------------
 var MAIN_MENU = "res://UI/TestMainMenu.tscn"
 var PAUSE_MENU = "res://UI/PauseMenu.tscn"
+var PARTY_MENU = "res://UI/inventory.tscn"
+var OPTIONS_MENU  = "res://UI/Options.tscn"
 
 # UI ELEMENTS ------------------------------------
 var GUI = "res://UI/GUI.tscn"

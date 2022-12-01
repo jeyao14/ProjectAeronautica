@@ -18,7 +18,7 @@ func _ready():
 		NAV = get_node(nav_path)
 	velocity.y = gravity
 	ANIM_TREE.active = true
-#	SPAWNER.applied_status = "slow"
+	SPAWNER.applied_status = "slow"
 #	SPAWNER2.applied_status = "stun"
 
 func _physics_process(delta):
