@@ -40,6 +40,7 @@ config/icon="res://icon.png"
 
 ImportData="*res://Characters/Shared/ImportData.gd"
 GLOBALS="*res://Common/globals.gd"
+inventory="*res://Data/partyinventory.json"
 
 [display]
 
@@ -139,6 +140,11 @@ reload={
 pause={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pick_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
