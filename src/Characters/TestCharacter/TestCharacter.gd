@@ -94,12 +94,11 @@ func getPatternParameters():
 func test_signal_receive():
 	pass
 
-func set_alive():
-	if(alive == true):
-		alive = false;
-		if(GLOBALS.CHARACTER_HANDLER):
-			GLOBALS.CHARACTER_HANDLER.find_next_alive_char()
-
 func _on_AbilityCooldown_timeout():
 	ability_active = false
 	pass # Replace with function body.
+	
+func spawn_damage_num(value):
+	var text = damagetext.instance()
+	add_child(text)
+	text.set_values(value, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+2, self.global_transform.origin.z))

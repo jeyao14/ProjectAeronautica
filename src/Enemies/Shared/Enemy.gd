@@ -13,9 +13,12 @@ var nav_path = ""
 var NAV = null
 
 var damagetext = preload("res://UI/DamageFloatingText.tscn")
+var statusicon = preload("res://UI/StatusEffectIcon.tscn")
+onready var STATUSCONTAINER = $Node2D/Viewport/Control/Panel/StatusContainer
 
 onready var global_pos = self.global_transform.origin
 onready var STATUS_HANDLER = GLOBALS.STATUS_EFFECT_HANDLER.instance()
+var statusref = {}
 
 func _ready():
 	self.add_child(STATUS_HANDLER)
@@ -37,7 +40,18 @@ func spawn_damage_num(value):
 	add_child(text)
 	text.set_values(value, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+1, self.global_transform.origin.z))
 
-func kill_enemy():
+func create_status_icon(var tag, var icon):
+	print("create_status_icon() called")
+	var status = statusicon.instance();
+	STATUSCONTAINER.add_child(status);
+	statusref[tag] = status;
+	status.set_values(icon);
 	
+func clear_status(var tag):
+	var statustoclear = statusref[tag]
+	statustoclear.queue_free();
+	statusref.erase(tag)
+
+func kill_enemy():
 	
 	queue_free()

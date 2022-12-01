@@ -39,22 +39,35 @@ func stun_player():
 	handler.ACTIVE_CHARACTER.add_child(stun)
 
 func _on_Projectile_area_entered(area):
-	if area is World:
-		queue_free()
-	elif area is Player:
-		if stun:
-			stun_player()
-		area.hurt_player(damage)
-		queue_free()
+	if area is Player or area is World:
+#		if area.STATUS_HANDLER and stun:
+#			area.STATUS_HANDLER.stun()
+#		elif area.STATUS_HANDLER and slow:
+#			area.STATUS_HANDLER.slow()
+		if area.STATUS_HANDLER:
+			match(status):
+				"stun":
+					area.STATUS_HANDLER.stun()
+				"slow":
+					area.STATUS_HANDLER.slow()
+				_:  
+					# no valid string is passed
+					pass
+			emit_signal("test_signal")
+			queue_free()
 
 
 func _on_Projectile_body_entered(body):
-	if body is World:
-		queue_free()
-	elif body is Player:
-		if stun and body.STATUS_HANDLER:
-			body.STATUS_HANDLER.stun()
-		elif slow and body.STATUS_HANDLER:
-			body.STATUS_HANDLER.slow()
-		body.hurt_player(damage)
-		queue_free()
+	if body is Player or body is World:
+		if body.STATUS_HANDLER:
+			match(status):
+				"stun":
+					body.STATUS_HANDLER.stun(10.0)
+				"slow":
+					body.STATUS_HANDLER.slow(2.0)
+				_:  
+					# no valid string is passed
+					pass
+			body.hurt_player(damage)
+			emit_signal("test_signal")
+			queue_free()

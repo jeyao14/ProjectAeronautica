@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://UI/GUI.gd" type="Script" id=1]
-[ext_resource path="res://UI/AmmoPanel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UI/HealthPanel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/HUD/GUI.gd" type="Script" id=1]
+[ext_resource path="res://UI/HUD/AmmoPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/HUD/HealthPanel.tscn" type="PackedScene" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -136,95 +136,101 @@ margin_bottom = 960.0
 
 [node name="Top" type="HBoxContainer" parent="MarginContainer/Rows"]
 margin_right = 1850.0
-margin_bottom = 280.0
+margin_bottom = 232.0
 size_flags_vertical = 3
 
 [node name="Mid" type="HBoxContainer" parent="MarginContainer/Rows"]
-margin_top = 284.0
+margin_top = 236.0
 margin_right = 1850.0
-margin_bottom = 564.0
+margin_bottom = 468.0
 size_flags_vertical = 3
 
 [node name="Bot" type="HBoxContainer" parent="MarginContainer/Rows"]
-margin_top = 568.0
+margin_top = 472.0
 margin_right = 1850.0
 margin_bottom = 960.0
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Rows/Bot"]
 margin_right = 1850.0
-margin_bottom = 392.0
+margin_bottom = 488.0
 size_flags_horizontal = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Rows/Bot/MarginContainer"]
 margin_right = 1850.0
-margin_bottom = 392.0
+margin_bottom = 488.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="PartyRows" type="VBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer"]
 margin_right = 1850.0
-margin_bottom = 392.0
+margin_bottom = 488.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows"]
 margin_right = 1850.0
-margin_bottom = 128.0
+margin_bottom = 160.0
 
 [node name="Party1" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_right = 300.0
+margin_right = 360.0
+margin_bottom = 160.0
+rect_scale = Vector2( 1, 1 )
 
 [node name="HealthBar" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Health/VBoxContainer" index="1"]
 custom_styles/fg = SubResource( 8 )
 custom_styles/bg = SubResource( 3 )
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer"]
-margin_left = 304.0
+margin_left = 364.0
 margin_right = 1850.0
-margin_bottom = 128.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 20.0
 
 [node name="Panel1Tween" type="Tween" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer"]
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows"]
-margin_top = 132.0
+margin_top = 164.0
 margin_right = 1850.0
-margin_bottom = 260.0
+margin_bottom = 324.0
 
 [node name="Party2" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_right = 300.0
+margin_right = 360.0
+margin_bottom = 160.0
+rect_scale = Vector2( 1, 1 )
 
 [node name="HealthBar" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Party2/HealthPanel/Health/VBoxContainer" index="1"]
 custom_styles/fg = SubResource( 4 )
 custom_styles/bg = SubResource( 5 )
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2"]
-margin_left = 304.0
+margin_left = 364.0
 margin_right = 1850.0
-margin_bottom = 128.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 20.0
 
 [node name="Panel2Tween" type="Tween" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2"]
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows"]
-margin_top = 264.0
+margin_top = 328.0
 margin_right = 1850.0
-margin_bottom = 392.0
+margin_bottom = 488.0
 
 [node name="Party3" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_right = 300.0
+margin_right = 360.0
+margin_bottom = 160.0
+rect_scale = Vector2( 1, 1 )
 
 [node name="HealthBar" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Party3/HealthPanel/Health/VBoxContainer" index="1"]
 custom_styles/fg = SubResource( 6 )
 custom_styles/bg = SubResource( 7 )
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3"]
-margin_left = 304.0
+margin_left = 364.0
 margin_right = 1850.0
-margin_bottom = 128.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 20.0
 
@@ -232,15 +238,15 @@ size_flags_stretch_ratio = 20.0
 
 [node name="AmmoPanel" type="VBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer"]
 margin_right = 1850.0
-margin_bottom = 392.0
+margin_bottom = 488.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel"]
-margin_top = 196.0
+margin_top = 292.0
 margin_right = 1850.0
-margin_bottom = 392.0
+margin_bottom = 488.0
 size_flags_horizontal = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer"]
@@ -321,19 +327,14 @@ margin_bottom = 165.0
 
 [node name="CurrentAmmo" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/AmmoCountCont/AmmoCount/HBoxContainer/HBoxContainer" index="0"]
 margin_top = 41.0
-margin_right = 40.0
 margin_bottom = 123.0
 
 [node name="Seperate" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/AmmoCountCont/AmmoCount/HBoxContainer/HBoxContainer" index="1"]
-margin_left = 44.0
 margin_top = 41.0
-margin_right = 104.0
 margin_bottom = 123.0
 
 [node name="MaxAmmo" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/AmmoCountCont/AmmoCount/HBoxContainer/HBoxContainer" index="2"]
-margin_left = 108.0
 margin_top = 41.0
-margin_right = 148.0
 margin_bottom = 123.0
 
 [node name="CenterContainer2" parent="MarginContainer/Rows/Bot/MarginContainer/PanelContainer/AmmoPanel/HBoxContainer/AmmoPanel/AmmoCountCont/AmmoCount/HBoxContainer" index="2"]

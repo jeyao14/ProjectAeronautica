@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Viewport")
+
+[node name="Node2D" type="Spatial"]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 128, 16 )
+transparent_bg = true
+hdr = false
+render_target_v_flip = true
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="Control" type="Control" parent="Viewport"]
+margin_right = 128.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="PanelContainer" parent="Viewport/Control"]
+margin_right = 128.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 5 )
+
+[node name="StatusContainer" type="HBoxContainer" parent="Viewport/Control/Panel"]
+margin_right = 128.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Quad" type="Sprite3D" parent="."]
+transform = Transform( 0.998011, 0, 0, 0, 0.998011, 0, 0, 0, 0.998011, 0, 0, 0 )
+pixel_size = 0.05
+billboard = 1
+shaded = true
+texture = SubResource( 6 )

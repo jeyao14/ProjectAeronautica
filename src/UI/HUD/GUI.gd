@@ -33,6 +33,15 @@ onready var PANEL1TWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContain
 onready var PANEL2TWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Panel2Tween
 onready var PANEL3TWEEN = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Panel3Tween
 
+onready var P1_STATUS = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer/Party1/HealthPanel/Health/VBoxContainer/StatusContainer
+onready var P2_STATUS = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer2/Party2/HealthPanel/Health/VBoxContainer/StatusContainer
+onready var P3_STATUS = $MarginContainer/Rows/Bot/MarginContainer/PanelContainer/PartyRows/HBoxContainer3/Party3/HealthPanel/Health/VBoxContainer/StatusContainer
+var P1_status_ref = {}
+var P2_status_ref = {}
+var P3_status_ref = {}
+
+var statusicon = preload("res://UI/StatusEffectIcon.tscn")
+
 var ACTIVE_CHARACTER: Player
 var CHARACTER_1: Player
 var CHARACTER_2: Player
@@ -82,6 +91,18 @@ func set_players(char1: Player, char2: Player, char3: Player):
 	CHARACTER_1.connect("start_reload", self, "start_reload_anim")
 	CHARACTER_2.connect("start_reload", self, "start_reload_anim")
 	CHARACTER_3.connect("start_reload", self, "start_reload_anim")
+	
+	CHARACTER_1.connect("add_status", self, "P1_add_status_icon")
+	CHARACTER_2.connect("add_status", self, "P2_add_status_icon")
+	CHARACTER_3.connect("add_status", self, "P3_add_status_icon")
+	
+	CHARACTER_1.connect("remove_status", self, "P1_remove_status_icon")
+	CHARACTER_2.connect("remove_status", self, "P2_remove_status_icon")
+	CHARACTER_3.connect("remove_status", self, "P3_remove_status_icon")
+	
+	CHARACTER_1.connect("clear_status", self, "P1_clear_all_status")
+	CHARACTER_2.connect("clear_status", self, "P2_clear_all_status")
+	CHARACTER_3.connect("clear_status", self, "P3_clear_all_status")
 
 func initialize_values():
 	P1_HEALTHBAR.max_value = CHARACTER_1.hp
@@ -150,7 +171,6 @@ func change_ammo():
 	MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
 
 func change_P1_hp():
-	print("change_P1_hp")
 	var P1_bar_style = P1_HEALTHBAR.get("custom_styles/fg")
 	
 	P1_HEALTHTWEEN.interpolate_property(P1_HEALTHBAR, "value", P1_HEALTHBAR.value, CHARACTER_1.current_hp, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -160,7 +180,6 @@ func change_P1_hp():
 	P1_HEALTHTWEEN.start()
 
 func change_P2_hp():
-	print("change_P2_hp")
 	var P2_bar_style = P2_HEALTHBAR.get("custom_styles/fg")
 	
 	P2_HEALTHTWEEN.interpolate_property(P2_HEALTHBAR, "value", P2_HEALTHBAR.value, CHARACTER_2.current_hp, 0.2, Tween.TRANS_LINEAR)
@@ -170,7 +189,6 @@ func change_P2_hp():
 	P2_HEALTHTWEEN.start()
 
 func change_P3_hp():
-	print("change_P3_hp")
 	var P3_bar_style = P3_HEALTHBAR.get("custom_styles/fg")
 	
 	P3_HEALTHTWEEN.interpolate_property(P3_HEALTHBAR, "value", P3_HEALTHBAR.value, CHARACTER_3.current_hp, 0.2, Tween.TRANS_LINEAR)
@@ -178,3 +196,63 @@ func change_P3_hp():
 	P3_HEALTHTWEEN.interpolate_property(P3_bar_style, "bg_color", original_color, new_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	P3_HEALTHTWEEN.interpolate_property(P3_bar_style, "bg_color", new_color, original_color, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	P3_HEALTHTWEEN.start()
+	
+func P1_add_status_icon(var tag, var icon):
+	print("P1_add_status_icon")
+	var status = statusicon.instance();
+	P1_STATUS.add_child(status);
+	P1_status_ref[tag] = status;
+	status.set_values(icon);
+
+func P1_remove_status_icon(var tag):
+	if(P1_status_ref.has(tag)):
+		print("P1_remove_status_icon")
+		var icontodelete = P1_status_ref.get(tag)
+		icontodelete.queue_free()
+		P1_status_ref.erase(tag)
+	
+func P2_add_status_icon(var tag, var icon):
+	print("P2_add_status_icon")
+	var status = statusicon.instance();
+	P2_STATUS.add_child(status);
+	P2_status_ref[tag] = status;
+	status.set_values(icon);
+
+func P2_remove_status_icon(var tag):
+	if(P2_status_ref.has(tag)):
+		var icontodelete = P2_status_ref.get(tag)
+		icontodelete.queue_free()
+		P2_status_ref.erase(tag)
+
+func P3_add_status_icon(var tag, var icon):
+	print("P3_add_status_icon")
+	var status = statusicon.instance();
+	P3_STATUS.add_child(status);
+	P3_status_ref[tag] = status;
+	status.set_values(icon);
+
+func P3_remove_status_icon(var tag):
+	if(P3_status_ref.has(tag)):
+		print("P3_remove_status_icon")
+		var icontodelete = P3_status_ref.get(tag)
+		icontodelete.queue_free()
+		P3_status_ref.erase(tag)
+	
+func P1_clear_all_status():
+	print("P1_clear_all_status")
+	for n in P1_STATUS.get_children():
+		P1_STATUS.remove_child(n)
+		n.queue_free()
+	P1_status_ref.clear()
+
+func P2_clear_all_status():
+	for n in P2_STATUS.get_children():
+		P2_STATUS.remove_child(n)
+		n.queue_free()
+	P2_status_ref.clear()
+	
+func P3_clear_all_status():
+	for n in P3_STATUS.get_children():
+		P3_STATUS.remove_child(n)
+		n.queue_free()
+	P3_status_ref.clear()

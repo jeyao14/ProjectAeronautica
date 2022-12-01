@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Shared/assets/death_sensei_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Characters/Shared/BulletSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/StatusIcon.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -175,6 +176,7 @@ vframes = 8
 frame = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -202,10 +204,20 @@ bullet_path = "res://Enemies/TestEnemy/TestEnemyProjectile.tscn"
 ammocount = -1
 spread_count = 1
 
+[node name="Spawner2" parent="." instance=ExtResource( 3 )]
+bullet_path = "res://Enemies/TestEnemy/TestEnemyProjectile.tscn"
+ammocount = -1
+spread_count = 1
+
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
 autostart = true
 
+[node name="Node2D" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+
 [connection signal="timeout" from="PathTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+
+[editable path="Node2D"]
