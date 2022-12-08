@@ -95,13 +95,13 @@ margin_right = 1490.0
 [node name="CenterContainer" parent="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer" index="0"]
 margin_right = 650.0
 
-[node name="TextureRect" parent="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/CenterContainer" index="0"]
-margin_left = 325.0
-margin_right = 325.0
-
-[node name="Panel" parent="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/CenterContainer" index="1"]
+[node name="Panel" parent="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/CenterContainer" index="0"]
 margin_left = 0.0
 margin_right = 650.0
+
+[node name="CharacterSprite" parent="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/CenterContainer" index="1"]
+margin_left = 325.0
+margin_right = 325.0
 
 [node name="VBoxContainer" parent="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer" index="1"]
 margin_left = 700.0
@@ -138,9 +138,13 @@ margin_bottom = 230.0
 margin_top = 7.0
 margin_bottom = 222.0
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/CenterContainer4/CharIconContainer/Char1" to="." method="_on_Char1_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/CenterContainer4/CharIconContainer/Char2" to="." method="_on_Char2_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/CenterContainer4/CharIconContainer/Char3" to="." method="_on_Char3_pressed"]
+
 [editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer"]
-[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/HBoxContainer"]
-[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/HBoxContainer2"]
-[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/HBoxContainer3"]
-[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/HBoxContainer4"]
-[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/HBoxContainer5"]
+[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/HP"]
+[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/ATT"]
+[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/DEX"]
+[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/DEF"]
+[editable path="MarginContainer/HBoxContainer/CharInfoMargin/CharInfoContainer/HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/LUCK"]

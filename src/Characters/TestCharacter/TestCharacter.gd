@@ -40,7 +40,6 @@ func use_attack():
 		SPAWNER.attack = att
 		SPAWNER.shoot = true
 	
-
 func reload():
 	if(is_reloading || ammocount == magsize):
 		return
