@@ -14,7 +14,7 @@ func _ready():
 func _on_Start_Game_pressed():
 	if GLOBALS.MENUS:
 		GLOBALS.MENUS.clear_menus()
-		GLOBALS.MENUS.load_level("TestLevel")
+		GLOBALS.MENUS.load_level("TEST_ROOM_1")
 	pass # Replace with function body.
 
 

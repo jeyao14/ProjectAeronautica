@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://World/Common/Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Common/Wall.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1 )
+
+[node name="DoorWall" type="StaticBody"]
+
+[node name="Door" parent="." instance=ExtResource( 1 )]
+text_offset = 6
+
+[node name="CollisionShape" parent="Door/Hitbox" index="0"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1.5, 0, 2, 0 )
+
+[node name="Doorway" type="StaticBody" parent="."]
+
+[node name="Left" type="MeshInstance" parent="Doorway"]
+transform = Transform( 0.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, -2.5, 2.5, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="LeftCollision" type="CollisionShape" parent="Doorway"]
+transform = Transform( 0.5, 0, 0, 0, 2.5, 0, 0, 0, 2, -2.5, 2.5, 0 )
+shape = SubResource( 2 )
+
+[node name="Right" type="MeshInstance" parent="Doorway"]
+transform = Transform( 0.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 2.5, 2.5, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="RightCollision" type="CollisionShape" parent="Doorway"]
+transform = Transform( 0.5, 0, 0, 0, 2.5, 0, 0, 0, 2, 2.5, 2.5, 0 )
+shape = SubResource( 2 )
+
+[node name="Top" type="MeshInstance" parent="Doorway"]
+transform = Transform( 3, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 4.5, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="Wall" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
+[node name="MeshInstance" parent="Wall" index="0"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, -2, 2, 0 )
+
+[node name="CollisionShape" parent="Wall" index="1"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1.5, -2, 2, 0 )
+
+[node name="Wall2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
+[node name="MeshInstance" parent="Wall2" index="0"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 2, 2, 0 )
+
+[node name="CollisionShape" parent="Wall2" index="1"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1.5, 2, 2, 0 )
+
+[editable path="Door"]
+[editable path="Wall"]
+[editable path="Wall2"]

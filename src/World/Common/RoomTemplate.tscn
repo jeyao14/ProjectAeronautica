@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="Level" type="Spatial"]
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+
+[node name="EnemyGroup" type="Node" parent="."]

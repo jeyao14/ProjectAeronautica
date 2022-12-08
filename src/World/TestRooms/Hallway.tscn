@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/Common/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Common/Floor.tscn" type="PackedScene" id=2]
+
+[node name="Hallway" type="Spatial"]
+
+[node name="Floor" parent="." instance=ExtResource( 2 )]
+
+[node name="MeshInstance" parent="Floor" index="0"]
+transform = Transform( 4, 0, 0, 0, 5, 0, 0, 0, 4, 0, 0, 0 )
+
+[node name="CollisionShape" parent="Floor" index="1"]
+transform = Transform( 4, 0, 0, 0, 5, 0, 0, 0, 4, 0, 0, 0.0845244 )
+
+[node name="Wall" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
+
+[node name="Wall2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+
+[editable path="Floor"]

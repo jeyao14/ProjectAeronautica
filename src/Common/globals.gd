@@ -15,9 +15,13 @@ var PAUSE_MENU = "res://UI/PauseMenu.tscn"
 # UI ELEMENTS ------------------------------------
 var GUI = "res://UI/GUI.tscn"
 var GAME_OVER = "res://UI/EndGameScreen.tscn"
+var DAMAGE_FLOATING_TEXT = "res://UI/DamageFloatingText.tscn"
 
 # LEVEL ELEMENTS _________________________________
 var TEST_LEVEL = "res://World/TestLevel.tscn"
+
+# ROOM ELEMENTS ----------------------------------
+var TEST_ROOM_1 = "res://World/TestRooms/SmallRoom.tscn"
 
 # CHARACTER ELEMENTS -----------------------------
 export var HANDLER = "res://Characters/Shared/CharacterHandler.tscn"
@@ -33,8 +37,10 @@ func load_level(level):
 	var instance = null
 	# Add new level types here
 	match(level):
-		"TestLevel":
-			instance = load("res://World/TestLevel.tscn").instance()
+		"TEST_LEVEL":
+			instance = load(TEST_LEVEL).instance()
+		"TEST_ROOM_1":
+			instance = load(TEST_ROOM_1).instance()
 		_:
 			return null
 	if instance == null:

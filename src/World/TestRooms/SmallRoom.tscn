@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://World/Common/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Common/CharacterSpawnPoint.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Common/Floor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/Common/DoorWall.tscn" type="PackedScene" id=5]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -24.5, 2.5, -24.25, -25.5, 2.5, -25.5, -25.5, 2.5, -19.25, -24.5, 2.5, -18.25, -24.5, 2.5, 18.5, -24.5, 2.5, 12.5, -25.5, 2.5, 12.75, -25.5, 2.5, 19, -19.25, 2.5, -25.5, -25.5, 2.5, -25.5, -24.5, 2.5, -24.25, -18.75, 2.5, -24.5, 24.5, 2.5, 18, 25.5, 2.5, 19, 25.5, 2.5, 12.75, 24.5, 2.5, 12, -24.5, 2.5, -18.25, -25.5, 2.5, -19.25, -25.5, 2.5, -12.75, -24.5, 2.5, -12, 12.75, 2.5, 25.5, 19, 2.5, 25.5, 18.5, 2.5, 24.5, 12.5, 2.5, 24.5, -24.5, 2.5, -12, -25.5, 2.5, -12.75, -25.5, 2.5, -6.5, -24.5, 2.5, -6, 19, 2.5, 25.5, 25.5, 2.5, 25.5, 24.5, 2.5, 24.25, 18.5, 2.5, 24.5, -12.75, 2.5, -25.5, -19.25, 2.5, -25.5, -18.75, 2.5, -24.5, -12.5, 2.5, -24.5, -24.25, 2.5, 24.5, -24.5, 2.5, 18.5, -25.5, 2.5, 19, -25.5, 2.5, 25.5, -6.5, 2.5, -25.5, -12.75, 2.5, -25.5, -12.5, 2.5, -24.5, -6.5, 2.5, -24.5, 6.25, 2.5, 25.5, 12.75, 2.5, 25.5, 12.5, 2.5, 24.5, 6.25, 2.5, 24.5, -24.5, 2.5, -6, -25.5, 2.5, -6.5, -25.5, 2.5, 0, -24.5, 2.5, 0.25, -24.25, 2.5, 24.5, -25.5, 2.5, 25.5, -19.25, 2.5, 25.5, -18.25, 2.5, 24.5, -24.5, 2.5, 0.25, -25.5, 2.5, 0, -25.5, 2.5, 6.25, -24.5, 2.5, 6.25, 25.5, 2.5, -6.5, 24.5, 2.5, -6.5, 24.5, 2.5, -0.25, 25.5, 2.5, 0, -6.5, 2.5, -25.5, -6.5, 2.5, -24.5, -0.25, 2.5, -24.5, 0, 2.5, -25.5, -24.5, 2.5, 12.5, -24.5, 2.5, 6.25, -25.5, 2.5, 6.25, -25.5, 2.5, 12.75, 0, 2.5, -25.5, -0.25, 2.5, -24.5, 5.75, 2.5, -24.5, 6.25, 2.5, -25.5, -6.5, 2.5, 25.5, -6, 2.5, 24.5, -12, 2.5, 24.5, -12.75, 2.5, 25.5, 6.25, 2.5, -25.5, 5.75, 2.5, -24.5, 12, 2.5, -24.5, 12.75, 2.5, -25.5, 0, 2.5, 25.5, 0.25, 2.5, 24.5, -6, 2.5, 24.5, -6.5, 2.5, 25.5, 12.75, 2.5, -25.5, 12, 2.5, -24.5, 18, 2.5, -24.5, 19, 2.5, -25.5, 25.5, 2.5, 6.25, 24.5, 2.5, 5.75, 24.5, 2.5, 12, 25.5, 2.5, 12.75, 19, 2.5, -25.5, 18, 2.5, -24.5, 24.25, 2.5, -24.5, 25.5, 2.5, -25.5, 6.25, 2.5, 25.5, 6.25, 2.5, 24.5, 0.25, 2.5, 24.5, 0, 2.5, 25.5, 25.5, 2.5, -19.25, 25.5, 2.5, -25.5, 24.25, 2.5, -24.5, 24.5, 2.5, -18.75, 24.5, 2.5, 24.25, 25.5, 2.5, 25.5, 25.5, 2.5, 19, 24.5, 2.5, 18, 25.5, 2.5, -12.75, 25.5, 2.5, -19.25, 24.5, 2.5, -18.75, 24.5, 2.5, -12.5, -18.25, 2.5, 24.5, -19.25, 2.5, 25.5, -12.75, 2.5, 25.5, -12, 2.5, 24.5, 25.5, 2.5, -6.5, 25.5, 2.5, -12.75, 24.5, 2.5, -12.5, 24.5, 2.5, -6.5, 25.5, 2.5, 0, 24.5, 2.5, -0.25, 24.5, 2.5, 5.75, 25.5, 2.5, 6.25, -11.75, 0.5, -23.25, -23.25, 0.5, -23.25, -23.25, 0.5, -11.75, -23.25, 0.5, 11.75, -23.25, 0.5, 23.5, -11.75, 0.5, 23.5, 23.5, 0.5, -11.75, 23.5, 0.5, -23.25, 11.75, 0.5, -23.25, 11.75, 0.5, 23.5, 23.5, 0.5, 23.5, 23.5, 0.5, 11.75, 0, 0.5, -23.25, -11.75, 0.5, -23.25, -23.25, 0.5, -11.75, -23.25, 0.5, 0, -23.25, 0.5, 11.75, -11.75, 0.5, 23.5, 0, 0.5, 23.5, 23.5, 0.5, 0, 23.5, 0.5, -11.75, 11.75, 0.5, -23.25, 0, 0.5, -23.25, 0, 0.5, 23.5, 11.75, 0.5, 23.5, 23.5, 0.5, 11.75, -23.25, 0.5, 0, -23.25, 0.5, 11.75, 0, 0.5, 23.5, 23.5, 0.5, 11.75, 23.5, 0.5, 0, 0, 0.5, -23.25 )
+polygons = [ PoolIntArray( 3, 2, 0 ), PoolIntArray( 0, 2, 1 ), PoolIntArray( 5, 4, 6 ), PoolIntArray( 6, 4, 7 ), PoolIntArray( 11, 10, 8 ), PoolIntArray( 8, 10, 9 ), PoolIntArray( 15, 14, 12 ), PoolIntArray( 12, 14, 13 ), PoolIntArray( 19, 18, 16 ), PoolIntArray( 16, 18, 17 ), PoolIntArray( 23, 22, 20 ), PoolIntArray( 20, 22, 21 ), PoolIntArray( 27, 26, 24 ), PoolIntArray( 24, 26, 25 ), PoolIntArray( 31, 30, 28 ), PoolIntArray( 28, 30, 29 ), PoolIntArray( 35, 34, 32 ), PoolIntArray( 32, 34, 33 ), PoolIntArray( 37, 36, 38 ), PoolIntArray( 38, 36, 39 ), PoolIntArray( 43, 42, 40 ), PoolIntArray( 40, 42, 41 ), PoolIntArray( 47, 46, 44 ), PoolIntArray( 44, 46, 45 ), PoolIntArray( 51, 50, 48 ), PoolIntArray( 48, 50, 49 ), PoolIntArray( 55, 54, 52 ), PoolIntArray( 52, 54, 53 ), PoolIntArray( 59, 58, 56 ), PoolIntArray( 56, 58, 57 ), PoolIntArray( 61, 60, 62 ), PoolIntArray( 62, 60, 63 ), PoolIntArray( 65, 64, 66 ), PoolIntArray( 66, 64, 67 ), PoolIntArray( 69, 68, 70 ), PoolIntArray( 70, 68, 71 ), PoolIntArray( 73, 72, 74 ), PoolIntArray( 74, 72, 75 ), PoolIntArray( 77, 76, 78 ), PoolIntArray( 78, 76, 79 ), PoolIntArray( 81, 80, 82 ), PoolIntArray( 82, 80, 83 ), PoolIntArray( 85, 84, 86 ), PoolIntArray( 86, 84, 87 ), PoolIntArray( 89, 88, 90 ), PoolIntArray( 90, 88, 91 ), PoolIntArray( 93, 92, 94 ), PoolIntArray( 94, 92, 95 ), PoolIntArray( 97, 96, 98 ), PoolIntArray( 98, 96, 99 ), PoolIntArray( 101, 100, 102 ), PoolIntArray( 102, 100, 103 ), PoolIntArray( 107, 106, 104 ), PoolIntArray( 104, 106, 105 ), PoolIntArray( 111, 110, 108 ), PoolIntArray( 108, 110, 109 ), PoolIntArray( 115, 114, 112 ), PoolIntArray( 112, 114, 113 ), PoolIntArray( 119, 118, 116 ), PoolIntArray( 116, 118, 117 ), PoolIntArray( 123, 122, 120 ), PoolIntArray( 120, 122, 121 ), PoolIntArray( 125, 124, 126 ), PoolIntArray( 126, 124, 127 ), PoolIntArray( 130, 129, 128 ), PoolIntArray( 133, 132, 131 ), PoolIntArray( 136, 135, 134 ), PoolIntArray( 139, 138, 137 ), PoolIntArray( 141, 140, 142 ), PoolIntArray( 142, 140, 143 ), PoolIntArray( 146, 145, 144 ), PoolIntArray( 148, 147, 149 ), PoolIntArray( 149, 147, 150 ), PoolIntArray( 153, 152, 151 ), PoolIntArray( 155, 154, 156 ), PoolIntArray( 156, 154, 157 ), PoolIntArray( 157, 154, 158 ), PoolIntArray( 158, 154, 159 ) ]
+
+[node name="Level" type="Spatial"]
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 1 )
+
+[node name="Floor" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 3 )]
+
+[node name="DoorWall" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24 )
+
+[node name="Door" parent="Navigation/NavigationMeshInstance/DoorWall" index="0"]
+health = 750
+
+[node name="Wall" parent="Navigation/NavigationMeshInstance/DoorWall" index="2"]
+transform = Transform( 6, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
+[node name="Wall2" parent="Navigation/NavigationMeshInstance/DoorWall" index="3"]
+transform = Transform( 6, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
+[node name="WWall" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 1 )]
+transform = Transform( -5.24537e-07, 0, 1, 0, 1, 0, -12, 0, -4.37114e-08, -25, 0, 0 )
+
+[node name="EWall" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 1 )]
+transform = Transform( -5.24537e-07, 0, 1, 0, 1, 0, -12, 0, -4.37114e-08, 25, 0, 0 )
+
+[node name="SWall" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 1 )]
+transform = Transform( 13, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25 )
+
+[node name="EnemyGroup" type="Node" parent="."]
+
+[node name="CharacterSpawnPoint" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.906, 0.5, 0 )
+
+[editable path="Navigation/NavigationMeshInstance/Floor"]
+[editable path="Navigation/NavigationMeshInstance/DoorWall"]
+[editable path="Navigation/NavigationMeshInstance/DoorWall/Door"]
+[editable path="Navigation/NavigationMeshInstance/DoorWall/Wall"]
+[editable path="Navigation/NavigationMeshInstance/DoorWall/Wall2"]
+[editable path="Navigation/NavigationMeshInstance/WWall"]
+[editable path="Navigation/NavigationMeshInstance/EWall"]
+[editable path="Navigation/NavigationMeshInstance/SWall"]
