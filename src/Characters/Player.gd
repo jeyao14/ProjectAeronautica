@@ -17,7 +17,19 @@ var ammocount = magsize;
 var current_hp = hp;
 
 var velocity = Vector3.ZERO
-var facing = 1
+var facing_x = 1
+var facing_z = 0
+
+const MOVEMENTS = {
+	"move_forward":0,
+	"move_back":1,
+	"move_right":2,
+	"move_left":3,
+}
+
+var direction_history = []
+var motion = -1
+
 onready var active = false  setget active_set
 onready var alive = true
 
@@ -56,38 +68,62 @@ func _ready():
 	HITBOX.disabled = !active
 
 func set_facing():
-	if is_movement_pressed().x > 0:
-		facing = 1
-	elif is_movement_pressed().x < 0:
-		facing = -1
-	
-	if facing > 0:
+	if facing_x > 0:
 		SPRITE.flip_h = false
 	else:
 		SPRITE.flip_h = true
 
 func set_animation():
-	if is_movement_pressed() != Vector2.ZERO:
-		ANIMATION.travel("Run")
+	is_movement_pressed();
+	if motion > -1:
+		match motion:
+			1:
+				facing_z = -1
+				ANIMATION.travel("Run_d")
+			0:
+				facing_z = 1
+				ANIMATION.travel("Run_u")
+			2:
+				facing_x = -1
+				facing_z = -1
+				ANIMATION.travel("Run_lr")
+			3:
+				facing_x = 1
+				facing_z = -1
+				ANIMATION.travel("Run_lr")
+#		if recent_dir == 2:
+#			ANIMATION.travel("Run_lr")
+#		if recent_dir == 1:
+#			ANIMATION.travel("Run_u")
+#		if recent_dir == 0:
+#			ANIMATION.travel("Run_d")
 	else:
-		ANIMATION.travel("Idle")
-		
+		if facing_z == -1:
+			ANIMATION.travel("Idle_f")
+		if facing_z == 1:
+			ANIMATION.travel("Idle_r")
 	pass
 
 func is_movement_pressed():
 	var x = 0
 	var z = 0
-	if Input.is_action_pressed("move_forward"):
-		z = -1
-	elif Input.is_action_pressed("move_back"):
-		z = 1
-
-	if Input.is_action_pressed("move_right"):
-		x = 1
-	elif Input.is_action_pressed("move_left"):
-		x = -1
+	motion = -1
 	
-	return Vector2(x, z)
+	# loop through all the directions
+	# check to see if a key has been released, and if so, we
+	# want to remove it from the array holding all the pressed keys
+	for direction in MOVEMENTS.keys():
+		if Input.is_action_just_released(direction):
+			var index = direction_history.find(direction)
+			if index != -1:
+				direction_history.remove(index)
+		if Input.is_action_just_pressed(direction):
+			direction_history.append(direction)
+			
+	if direction_history.size():
+		var direction = direction_history[direction_history.size() - 1]
+		motion = MOVEMENTS[direction]
+
 
 func use_attack():
 	print("using attack");
@@ -156,3 +192,6 @@ func clear_status(var tag):
 func clear_all_status():
 	emit_signal("clear_status")
 	print("cleared_complete")
+	
+func test(input):
+	print(input);
