@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Characters/Shared/HitBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Assets/StartGameBox.gd" type="Script" id=2]
+[ext_resource path="res://UI/InteractionIcon.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CylinderMesh" id=2]
+
+[sub_resource type="SphereShape" id=3]
+
+[sub_resource type="SphereShape" id=1]
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("Node2D/Viewport")
+
+[node name="StartGameBox" type="KinematicBody"]
+axis_lock_motion_x = true
+axis_lock_motion_y = true
+axis_lock_motion_z = true
+move_lock_x = true
+move_lock_y = true
+move_lock_z = true
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = SubResource( 2 )
+
+[node name="HitBox" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.35152, 0, 0, 0, 1.35152, 0, 0, 0, 1.35152, 0, 0, 0 )
+collision_mask = 3
+
+[node name="CollisionShape" parent="HitBox" index="0"]
+transform = Transform( 1.73342, 0, 0, 0, 1.73342, 0, 0, 0, 1.73342, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="Node2D" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05702, 0 )
+
+[node name="Quad" parent="Node2D" index="1"]
+texture = SubResource( 4 )
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="area_exited" from="HitBox" to="." method="_on_HitBox_area_exited"]
+
+[editable path="HitBox"]
+[editable path="Node2D"]

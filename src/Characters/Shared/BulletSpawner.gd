@@ -1,7 +1,7 @@
 extends Spatial
 
 
-export var bullet_path = "res://Characters/TestCharacter/TestProjectile.tscn" setget set_bullet
+export var bullet_path = "res://Characters/Maria/TestProjectile.tscn" setget set_bullet
 export(int) var ammocount =  0
 export var uses_ammo = true;
 export var cooldown = .5 setget set_cooldown

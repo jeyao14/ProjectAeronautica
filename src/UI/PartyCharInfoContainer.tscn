@@ -1,0 +1,294 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Assets/UI/charinfoweaponframe.png" type="Texture" id=1]
+[ext_resource path="res://UI/StatInfo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/PartyCharInfoContainer.gd" type="Script" id=3]
+[ext_resource path="res://Characters/Maria/Assets/calli_spritesheet.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Characters/Maria/mariaspritesheet_v002_no_srgb.png" type="Texture" id=5]
+[ext_resource path="res://Assets/arial.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=32]
+size = 64
+font_data = ExtResource( 6 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 300, 0, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 600, 0, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 4 )
+region = Rect2( 900, 0, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 1800, 2880, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 2160, 2880, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 2520, 2880, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 2880, 2880, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 3240, 2880, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 3600, 2880, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 3960, 2880, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 3240, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 360, 3240, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 720, 3240, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 1080, 3240, 360, 360 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 1440, 3240, 360, 360 )
+
+[sub_resource type="SpriteFrames" id=31]
+animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "Calli_idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
+"loop": true,
+"name": "Maria_idle",
+"speed": 12.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="PartyCharInfoContainer" type="VBoxContainer"]
+margin_left = 379.0
+margin_right = 1363.0
+margin_bottom = 1055.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+custom_constants/separation = 20
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 984.0
+margin_bottom = 1055.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+custom_constants/separation = 5
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 350, 350 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="VBoxContainer/CenterContainer"]
+margin_left = 317.0
+margin_top = 25.0
+margin_right = 667.0
+margin_bottom = 375.0
+rect_min_size = Vector2( 350, 350 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="VBoxContainer/CenterContainer/Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -92.0
+margin_right = 92.0
+margin_bottom = 432.0
+custom_fonts/font = SubResource( 32 )
+text = "NULL
+"
+align = 1
+
+[node name="Control" type="Control" parent="VBoxContainer/CenterContainer"]
+margin_left = 492.0
+margin_top = 200.0
+margin_right = 492.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CharSprite" type="AnimatedSprite" parent="VBoxContainer/CenterContainer/Control/CenterContainer"]
+frames = SubResource( 31 )
+animation = "Maria_idle"
+frame = 6
+playing = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 405.0
+margin_right = 984.0
+margin_bottom = 1055.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 391.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/VBoxContainer/MarginContainer"]
+margin_right = 984.0
+margin_bottom = 391.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2"]
+margin_left = 117.0
+margin_right = 867.0
+margin_bottom = 391.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HP" parent="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer" instance=ExtResource( 2 )]
+
+[node name="ATT" parent="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 79.0
+margin_bottom = 154.0
+
+[node name="DEX" parent="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 158.0
+margin_bottom = 233.0
+
+[node name="DEF" parent="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 237.0
+margin_bottom = 312.0
+
+[node name="LUCK" parent="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 316.0
+margin_bottom = 391.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 395.0
+margin_right = 984.0
+margin_bottom = 650.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/MarginContainer2"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 964.0
+margin_bottom = 235.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 50
+alignment = 1
+
+[node name="WFrameCont" type="CenterContainer" parent="VBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 232.0
+margin_right = 447.0
+margin_bottom = 215.0
+
+[node name="WeaponFrame" type="TextureRect" parent="VBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/WFrameCont"]
+margin_right = 215.0
+margin_bottom = 215.0
+texture = ExtResource( 1 )
+
+[node name="WIconCont" type="CenterContainer" parent="VBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/WFrameCont/WeaponFrame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -107.5
+margin_top = -107.5
+margin_right = 107.5
+margin_bottom = 107.5
+
+[node name="WeaponIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/WFrameCont/WeaponFrame/WIconCont"]
+margin_left = 107.0
+margin_top = 107.0
+margin_right = 107.0
+margin_bottom = 107.0
+
+[node name="AFrameCont" type="CenterContainer" parent="VBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 497.0
+margin_right = 712.0
+margin_bottom = 215.0
+
+[node name="AbilityFrame" type="TextureRect" parent="VBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/AFrameCont"]
+margin_right = 215.0
+margin_bottom = 215.0
+texture = ExtResource( 1 )
+
+[node name="AIconCont" type="CenterContainer" parent="VBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/AFrameCont/AbilityFrame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -107.5
+margin_top = -107.5
+margin_right = 107.5
+margin_bottom = 107.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AbilityIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/AFrameCont/AbilityFrame/AIconCont"]
+margin_left = 107.0
+margin_top = 107.0
+margin_right = 107.0
+margin_bottom = 107.0
+
+[editable path="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/HP"]
+[editable path="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/ATT"]
+[editable path="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/DEX"]
+[editable path="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/DEF"]
+[editable path="VBoxContainer/VBoxContainer/MarginContainer/CenterContainer2/VBoxContainer/LUCK"]
