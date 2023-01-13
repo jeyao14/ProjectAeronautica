@@ -6,6 +6,7 @@ var level_name = ""
 var player = null
 var inventory = null
 var options = null
+var party = {"1":GLOBALS.MARIA, "2":GLOBALS.RHODES,"3":GLOBALS.OLIVE}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,13 +24,16 @@ func main_menu():
 	self.add_child(main_menu)
 	self.add_child(options_menu)
 	options = options_menu
+	
+func load_default_party():
+	pass
 
 func clear_menus():
 	for menu in self.get_children():
 		menu.queue_free()
 
-
-func load_level(level = "TestLevel"):
+func load_level(level):
+	print(level)
 	GLOBALS.paused = true
 	self.level = GLOBALS.load_level(level)
 	level_name = level
@@ -41,6 +45,9 @@ func load_level(level = "TestLevel"):
 		spawn_pos = spawn_node.global_transform.origin
 	
 	player = load(GLOBALS.HANDLER).instance()
+	player.CHARACTER_PATH_1 = party["1"]
+	player.CHARACTER_PATH_2 = party["2"]
+	player.CHARACTER_PATH_3 = party["3"]
 	player.global_transform.origin = spawn_pos
 	GLOBALS.ROOT.add_child(player)
 	

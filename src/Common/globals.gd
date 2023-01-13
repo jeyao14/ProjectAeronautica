@@ -20,12 +20,14 @@ var GAME_OVER = "res://UI/EndGameScreen.tscn"
 
 # LEVEL ELEMENTS _________________________________
 var TEST_LEVEL = "res://World/TestLevel.tscn"
+var HUB_WORLD = "res://World/Hubworld.tscn"
 
 # CHARACTER ELEMENTS -----------------------------
 export var HANDLER = "res://Characters/Shared/CharacterHandler.tscn"
-export var MARIA = "res://Characters/TestCharacter/TestCharacter.tscn"
-export var RHODES = "res://Characters/TestCharacter2/TestCharacter2.tscn"
-export var OLIVE = "res://Characters/TestCharacter3/TestCharacter3.tscn"
+export var MARIA = "res://Characters/Maria/TestCharacter.tscn"
+export var RHODES = "res://Characters/Rhodes/TestCharacter2.tscn"
+export var OLIVE = "res://Characters/Olive/TestCharacter3.tscn"
+export var SAN = "res://Characters/San/San.tscn"
 
 func ready():
 	ROOT = get_tree().root
@@ -37,6 +39,8 @@ func load_level(level):
 	match(level):
 		"TestLevel":
 			instance = load("res://World/TestLevel.tscn").instance()
+		"Hubworld":
+			instance = load("res://World/Hubworld.tscn").instance()
 		_:
 			return null
 	if instance == null:

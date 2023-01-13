@@ -8,9 +8,9 @@ var velocity = Vector3.ZERO
 var ray_origin = Vector3();
 var ray_target = Vector3();
 
-onready var CHARACTER_PATH_1 = GLOBALS.MARIA
-onready var CHARACTER_PATH_2 = GLOBALS.RHODES
-onready var CHARACTER_PATH_3 = GLOBALS.OLIVE
+var CHARACTER_PATH_1 = GLOBALS.MARIA
+var CHARACTER_PATH_2 = GLOBALS.RHODES
+var CHARACTER_PATH_3 = GLOBALS.OLIVE
 var CHARACTER_1
 var CHARACTER_2
 var CHARACTER_3
@@ -41,6 +41,9 @@ func _ready():
 	add_child(CHARACTER_2)
 	add_child(CHARACTER_3)
 	
+	print(CHARACTER_1)
+	print(CHARACTER_2)
+	print(CHARACTER_3)
 	#change the next two lines to change the starting active character
 	CHARACTER_1.active = true
 	ACTIVE_CHARACTER = CHARACTER_1
@@ -52,7 +55,6 @@ func _ready():
 	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)
 #	emit_signal("gui_set_players", CHARACTER_1, CHARACTER_2, CHARACTER_3)
 	swap_character_stats()
-
 
 
 func _physics_process(delta):
@@ -117,7 +119,7 @@ func process_actions():
 	if Input.is_action_just_pressed("reload"):
 		ACTIVE_CHARACTER.reload()
 	if Input.is_action_just_pressed("use_ability"):
-		ACTIVE_CHARACTER.use_ability()
+		ACTIVE_CHARACTER.activate_ability()
 	if Input.is_action_just_released("use_ability"):
 		ACTIVE_CHARACTER.stop_ability()
 	if Input.is_action_just_pressed("use_ult"):
@@ -196,3 +198,6 @@ func find_next_alive_char():
 	else:
 		var instance = load(GLOBALS.GAME_OVER).instance()
 		GLOBALS.MENUS.add_child(instance)
+
+func change_character(new_character, position):
+	GLOBALS.CHARACTER_HANDLER.party

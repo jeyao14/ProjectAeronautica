@@ -2,11 +2,12 @@
 
 [ext_resource path="res://Characters/Shared/CharacterHandler.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Characters/TestCharacter/TestProjectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Characters/Maria/TestProjectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Shared/BulletSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Tiles/cgshare-book-ground-floor-003.jpg" type="Texture" id=5]
 [ext_resource path="res://Assets/Tiles/cgshare-book-ground-floor-002.jpg" type="Texture" id=6]
-[ext_resource path="res://Characters/TestCharacter/Turret/TemplateTurret.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Characters/Maria/Turret/TemplateTurret.tscn" type="PackedScene" id=5]
+
 
 
 [sub_resource type="CubeMesh" id=3]

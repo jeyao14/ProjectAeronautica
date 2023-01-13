@@ -9,14 +9,14 @@ onready var LUCK = $HBoxContainer/VBoxContainer/MarginContainer/CenterContainer2
 onready var WEP_ICON = $HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/WFrameCont/WeaponFrame/WIconCont/WeaponIcon
 onready var ABI_ICON = $HBoxContainer/VBoxContainer/MarginContainer2/HBoxContainer/AFrameCont/AbilityFrame/AIconCont/AbilityIcon
 
-onready var CHAR_SPRITE = $HBoxContainer/CenterContainer/CharacterSprite
+onready var CHAR_SPRITE = $HBoxContainer/CenterContainer/Control/CenterContainer/CharSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func populate_info(character):
-	CHAR_SPRITE.texture = character.SPRITE;
+	CHAR_SPRITE.animation = character.idle_anim
 	
 	HP.populate_values("HP", character.hp)
 	ATT.populate_values("ATT", character.att)

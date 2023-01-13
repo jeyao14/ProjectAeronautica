@@ -1,0 +1,176 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://World/Assets/StartGameBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://NPCs/Captain.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 0.10259, 1 )
+
+[sub_resource type="CubeMesh" id=10]
+
+[sub_resource type="CubeMesh" id=13]
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 3, 0.5, 0.2 )
+
+[sub_resource type="CubeMesh" id=11]
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 0.2, 0.5, 3 )
+
+[sub_resource type="CubeMesh" id=12]
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 0.2, 0.5, 3 )
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 0.2, 0.5, 5 )
+
+[sub_resource type="CubeMesh" id=7]
+
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 0.2, 0.5, 5 )
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 2, 0.5, 0.2 )
+
+[sub_resource type="CubeMesh" id=9]
+
+[sub_resource type="BoxShape" id=19]
+extents = Vector3( 2, 0.5, 0.2 )
+
+[sub_resource type="CubeMesh" id=8]
+
+[sub_resource type="BoxShape" id=20]
+extents = Vector3( 5, 0.5, 0.2 )
+
+[node name="Level" type="Spatial"]
+
+[node name="Interactable" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27197, -21.0508 )
+
+[node name="Arena" type="Spatial" parent="."]
+transform = Transform( -2, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, -2, 0.088645, 0.441188, -0.0391359 )
+
+[node name="Base" type="StaticBody" parent="Arena"]
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/Base"]
+transform = Transform( 5, 0, 0, 0, 0.332347, 0, 0, 0, 5, 0, 0, 0 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/Base"]
+transform = Transform( 5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CockpitBase" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/CockpitBase"]
+transform = Transform( 3, 0, 0, 0, 0.332, 0, 0, 0, 3, 0, 0, 0 )
+mesh = SubResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/CockpitBase"]
+transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CockpitNorth" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 11 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/CockpitNorth"]
+transform = Transform( 3, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0, 0 )
+mesh = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/CockpitNorth"]
+shape = SubResource( 6 )
+
+[node name="CockpitEast" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.3, 8 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/CockpitEast"]
+transform = Transform( 0.2, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0 )
+mesh = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/CockpitEast"]
+shape = SubResource( 14 )
+
+[node name="CockpitWest" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.3, 8 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/CockpitWest"]
+transform = Transform( 0.2, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0 )
+mesh = SubResource( 12 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/CockpitWest"]
+shape = SubResource( 15 )
+
+[node name="West" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.3, 0 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/West"]
+transform = Transform( 0.2, 0, 0, 0, 0.5, 0, 0, 0, 5, 0, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/West"]
+shape = SubResource( 16 )
+
+[node name="East" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.3, 0 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/East"]
+transform = Transform( 0.2, 0, 0, 0, 0.5, 0, 0, 0, 5, 0, 0, 0 )
+mesh = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/East"]
+shape = SubResource( 17 )
+
+[node name="NorthL" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.3, 5 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/NorthL"]
+transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0, 0 )
+mesh = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/NorthL"]
+shape = SubResource( 18 )
+
+[node name="NorthR" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.3, 5 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/NorthR"]
+transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0, 0 )
+mesh = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/NorthR"]
+shape = SubResource( 19 )
+
+[node name="South" type="StaticBody" parent="Arena"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -5 )
+collision_mask = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="Arena/South"]
+transform = Transform( 5, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0, 0 )
+mesh = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Arena/South"]
+shape = SubResource( 20 )
+
+[node name="CharacterSpawnPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Captain" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26272, 1.21575, -16.9397 )

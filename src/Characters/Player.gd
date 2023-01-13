@@ -20,6 +20,8 @@ var velocity = Vector3.ZERO
 var facing_x = 1
 var facing_z = 0
 
+var idle_anim = "Calli_idle"
+
 const MOVEMENTS = {
 	"move_forward":0,
 	"move_back":1,
@@ -76,6 +78,7 @@ func set_facing():
 func set_animation():
 	is_movement_pressed();
 	if motion > -1:
+#		print(motion)
 		match motion:
 			1:
 				facing_z = -1
