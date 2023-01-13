@@ -40,7 +40,7 @@ config/icon="res://icon.png"
 
 ImportData="*res://Characters/Shared/ImportData.gd"
 GLOBALS="*res://Common/globals.gd"
-inventory="*res://Data/partyinventory.json"
+Inventory="*res://Data/inventory.gd"
 
 [display]
 
