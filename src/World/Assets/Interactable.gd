@@ -1,6 +1,8 @@
 extends KinematicBody
 class_name Interactable
 
+var detected : bool = false
+
 onready var INTERACTION_CONTAINER = $Node2D/Viewport/Control/Panel/InteractionContainer
 
 var speech_bubble = preload("res://ButtonInteraction.tscn")
