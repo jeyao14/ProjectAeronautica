@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/PartySelection/PartySelection.gd" type="Script" id=1]
 [ext_resource path="res://UI/PartyCharInfoContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -122,6 +123,16 @@ margin_left = 0.0
 margin_right = 750.0
 margin_bottom = 1020.0
 
+[node name="Button" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -84.0
+margin_top = 17.0
+margin_right = -20.0
+margin_bottom = 81.0
+texture_normal = ExtResource( 3 )
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SelectionContainer/PartySlot_1/Button" to="." method="_on_Party1_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SelectionContainer/PartySlot_2/Button" to="." method="_on_Party_2_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SelectionContainer/PartySlot_3/Button" to="." method="_on_Party3_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

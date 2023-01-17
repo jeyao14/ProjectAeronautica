@@ -7,6 +7,7 @@ var player = null
 var inventory = null
 var options = null
 var party = {"1":GLOBALS.MARIA, "2":GLOBALS.RHODES,"3":GLOBALS.OLIVE}
+var party_setup_screen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -56,12 +57,19 @@ func load_level(level):
 	var inventory_menu = load(GLOBALS.PARTY_MENU).instance()
 	var options_menu = load(GLOBALS.OPTIONS_MENU).instance()
 	
+	var party_setup = load(GLOBALS.PARTY_SETUP).instance()
+	
 	GLOBALS.paused = false
 	self.add_child(pause_menu)
 	self.add_child(inventory_menu)
 	self.add_child(options_menu)
 	inventory = inventory_menu
 	options = options_menu
+	
+	self.add_child(party_setup)
+	party_setup_screen = party_setup
+	
+	
 #	var gui = load(GLOBALS.GUI).instance()
 #	self.add_child(gui)
 #	gui.setup_signals()

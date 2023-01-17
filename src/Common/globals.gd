@@ -5,6 +5,7 @@ var ROOT = null
 var MENUS = null # declared by Main scene in ready function
 
 var paused = false setget set_pause
+var in_menu = false
 
 onready var STATUS_EFFECT_HANDLER = preload("res://Common/StatusEffects/StatusEffectHandler.tscn")
 
@@ -13,6 +14,7 @@ var MAIN_MENU = "res://UI/TestMainMenu.tscn"
 var PAUSE_MENU = "res://UI/PauseMenu.tscn"
 var PARTY_MENU = "res://UI/inventory.tscn"
 var OPTIONS_MENU  = "res://UI/Options.tscn"
+var PARTY_SETUP = "res://UI/PartySelection/PartySelection.tscn"
 
 # UI ELEMENTS ------------------------------------
 var GUI = "res://UI/GUI.tscn"

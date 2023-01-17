@@ -8,9 +8,9 @@ var velocity = Vector3.ZERO
 var ray_origin = Vector3();
 var ray_target = Vector3();
 
-var CHARACTER_PATH_1 = GLOBALS.MARIA
-var CHARACTER_PATH_2 = GLOBALS.RHODES
-var CHARACTER_PATH_3 = GLOBALS.OLIVE
+var CHARACTER_PATH_1 = GLOBALS.MENUS.party["1"]
+var CHARACTER_PATH_2 = GLOBALS.MENUS.party["2"]
+var CHARACTER_PATH_3 = GLOBALS.MENUS.party["3"]
 var CHARACTER_1
 var CHARACTER_2
 var CHARACTER_3
@@ -55,7 +55,6 @@ func _ready():
 	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)
 #	emit_signal("gui_set_players", CHARACTER_1, CHARACTER_2, CHARACTER_3)
 	swap_character_stats()
-
 
 func _physics_process(delta):
 	if ACTIVE_CHARACTER.STATUS_HANDLER.stun:
@@ -199,5 +198,24 @@ func find_next_alive_char():
 		var instance = load(GLOBALS.GAME_OVER).instance()
 		GLOBALS.MENUS.add_child(instance)
 
-func change_character(new_character, position):
-	GLOBALS.CHARACTER_HANDLER.party
+func reload_party():
+	var c_1 = load(GLOBALS.MENUS.party["1"])
+	var c_2 = load(GLOBALS.MENUS.party["2"])
+	var c_3 = load(GLOBALS.MENUS.party["3"])
+	CHARACTER_1.queue_free()
+	CHARACTER_2.queue_free()
+	CHARACTER_3.queue_free()
+	CHARACTER_1 = c_1.instance()
+	CHARACTER_2 = c_2.instance()
+	CHARACTER_3 = c_3.instance()
+	add_child(CHARACTER_1)
+	add_child(CHARACTER_2)
+	add_child(CHARACTER_3)
+	CHARACTER_1.active = true
+	ACTIVE_CHARACTER = CHARACTER_1
+	
+	print("CHARACTER_1", CHARACTER_1)
+	print("CHARACTER_2", CHARACTER_2)
+	print("CHARACTER_3", CHARACTER_3)
+	
+	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)
