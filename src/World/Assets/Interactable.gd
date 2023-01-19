@@ -3,6 +3,8 @@ class_name Interactable
 
 onready var INTERACTION_CONTAINER = $Node2D/Viewport/Control/Panel/InteractionContainer
 
+var detected : bool = false
+
 var speech_bubble = preload("res://ButtonInteraction.tscn")
 
 # Called when the node enters the scene tree for the first time.
