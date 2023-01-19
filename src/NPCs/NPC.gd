@@ -3,6 +3,7 @@ class_name NPC
 
 export var title = ""
 
+var detect : bool = false
 
 onready var HITBOX = get_node("HitBox/CollisionShape")
 onready var COLLIDER = $InteractionDetection

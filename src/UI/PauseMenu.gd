@@ -10,8 +10,14 @@ func _ready():
 func _physics_process(delta):
 	if(!GLOBALS.MENUS.inventory.visible) and (!GLOBALS.MENUS.options.visible):
 		focus_input = true;
+	if(GLOBALS.MENUS.party_setup_screen.visible):
+		GLOBALS.in_menu = true;
+	else:
+		GLOBALS.in_menu = false;
 
 func _input(event):	
+	if(GLOBALS.in_menu):
+		return
 	if event.is_action_pressed("pause") and focus_input:
 		GLOBALS.paused = !GLOBALS.paused
 		self.visible = GLOBALS.paused
