@@ -167,7 +167,6 @@ size_flags_vertical = 3
 [node name="CharSprite" type="AnimatedSprite" parent="VBoxContainer/CenterContainer/Control/CenterContainer"]
 frames = SubResource( 31 )
 animation = "Maria_idle"
-frame = 6
 playing = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]

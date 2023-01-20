@@ -66,7 +66,7 @@ func _on_HitBox_area_entered(area):
 #	hurt_player()
 	pass # Replace with function body.
 
-func use_ability():
+func activate_ability():
 	ASPAWNER.damage_min = ability_damage_min
 	ASPAWNER.damage_max = ability_damage_max
 	ASPAWNER.attack = att

@@ -13,7 +13,7 @@ func _ready():
 	pass # Replace with function body.
 	
 func _process(delta):
-	if delta and Input.is_action_just_pressed("interact"):
+	if detect and Input.is_action_just_pressed("interact"):
 		GLOBALS.MENUS.party_setup_screen.activate_screen();
 
 func _on_HitBox_area_entered(area):

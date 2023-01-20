@@ -58,6 +58,8 @@ func load_level(level):
 	var options_menu = load(GLOBALS.OPTIONS_MENU).instance()
 	
 	var party_setup = load(GLOBALS.PARTY_SETUP).instance()
+	self.add_child(party_setup)
+	party_setup_screen = party_setup
 	
 	GLOBALS.paused = false
 	self.add_child(pause_menu)
@@ -65,9 +67,6 @@ func load_level(level):
 	self.add_child(options_menu)
 	inventory = inventory_menu
 	options = options_menu
-	
-	self.add_child(party_setup)
-	party_setup_screen = party_setup
 	
 	
 #	var gui = load(GLOBALS.GUI).instance()
