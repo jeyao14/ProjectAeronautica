@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://World/Assets/Interactable.gd"
 }, {
+"base": "Interactable",
+"class": "Items",
+"language": "GDScript",
+"path": "res://Items/items.gd"
+}, {
 "base": "KinematicBody",
 "class": "NPC",
 "language": "GDScript",
@@ -43,6 +48,7 @@ _global_script_class_icons={
 "Bullet": "",
 "Enemy": "",
 "Interactable": "",
+"Items": "",
 "NPC": "",
 "Player": "",
 "San": ""
