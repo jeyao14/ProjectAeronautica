@@ -4,17 +4,13 @@
 [ext_resource path="res://Enemies/TestEnemy/TestEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/Maria/TestProjectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Shared/BulletSpawner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Tiles/cgshare-book-ground-floor-003.jpg" type="Texture" id=5]
-[ext_resource path="res://Assets/Tiles/cgshare-book-ground-floor-002.jpg" type="Texture" id=6]
 [ext_resource path="res://Characters/Maria/Turret/TemplateTurret.tscn" type="PackedScene" id=5]
-
-
+[ext_resource path="res://Assets/Tiles/cgshare-book-ground-floor-002.jpg" type="Texture" id=6]
 
 [sub_resource type="CubeMesh" id=3]
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 1, 1, 1, 0 )
-albedo_texture = ExtResource( 5 )
 uv1_scale = Vector3( 15, 15, 15 )
 
 [sub_resource type="BoxShape" id=2]
@@ -142,9 +138,9 @@ light_energy = 5.0
 light_bake_mode = 2
 light_cull_mask = 4294967293
 shadow_enabled = true
+
 [node name="KinematicBody2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.23049, -8.78869, 0.901168, -7.72448 )
-
 
 [editable path="KinematicBody"]
 [editable path="KinematicBody/CameraObject"]

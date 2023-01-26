@@ -59,7 +59,7 @@ func _on_HitBox_area_entered(area):
 #	hurt_player()
 	pass # Replace with function body.
 
-func use_ability():
+func activate_ability():
 	SPAWNER.applied_status = "slow"
 	yield(get_tree().create_timer(10,false),"timeout");
 	SPAWNER.applied_status = ""

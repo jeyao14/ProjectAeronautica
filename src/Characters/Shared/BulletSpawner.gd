@@ -41,7 +41,7 @@ signal update_ammo;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	BULLET = load(bullet_path)
-#	print("spawner bullet path: ", bullet_path)
+	print("spawner bullet path: ", BULLET)
 	COOLDOWN.wait_time = cooldown
 #	print("spawner cooldown: ", cooldown)
 	BURST_TIMER.wait_time = burst_timer
