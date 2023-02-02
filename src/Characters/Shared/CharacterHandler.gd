@@ -3,6 +3,7 @@ extends KinematicBody
 export var gravity = -10
 export var speed = 1
 export var dodge_markiplier = 3;
+export var debug_mode = false
 var velocity = Vector3.ZERO
 
 var ray_origin = Vector3();
@@ -30,7 +31,8 @@ signal gui_set_active
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GLOBALS.CHARACTER_HANDLER = self
-	
+	if debug_mode:
+		gravity = 0
 	var c_1 = load(CHARACTER_PATH_1)
 	var c_2 = load(CHARACTER_PATH_2)
 	var c_3 = load(CHARACTER_PATH_3)
@@ -79,22 +81,35 @@ func calculate_movement():
 		else:
 			velocity.x = 0;
 		
-		if Input.is_action_just_pressed("dodgeroll") and can_dash:
-			dodge()
+		if debug_mode:
+			if Input.is_action_pressed("dodgeroll"):
+				velocity.y = 1
+			if Input.is_action_pressed("debug_down"):
+				velocity.y = -1
+			if Input.is_action_just_released("dodgeroll") or Input.is_action_just_released("debug_down"):
+				velocity.y = 0
+		else:
+			if Input.is_action_just_pressed("dodgeroll") and can_dash:
+				dodge()
 	else:
 		l_speed *= dodge_markiplier;
 	
 	
 	
-	if(is_on_floor()):
+	if(is_on_floor() and not debug_mode):
 		velocity.y = 0
 
 	var l_velocity = velocity.rotated(Vector3.UP, CAMERABOOM.rotation.y).normalized()
 	l_velocity.x *= l_speed
 	l_velocity.z *= l_speed
-	l_velocity.y = gravity
 	
-	move_and_slide(l_velocity, Vector3.UP, true)
+	
+	if debug_mode:
+		l_velocity.y *= l_speed
+		move_and_slide(l_velocity, Vector3.UP, true)
+	else:
+		l_velocity.y = gravity
+		move_and_slide(l_velocity, Vector3.UP, true)
 	pass
 	
 func dodge():

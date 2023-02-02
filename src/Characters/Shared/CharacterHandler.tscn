@@ -30,6 +30,7 @@ transform = Transform( 1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0
 [node name="Camera" parent="CameraObject/CameraBoom" index="0"]
 transform = Transform( 1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, -0.00210762, -7.59292, 16.5704 )
 fov = 60.0
+far = 1000.0
 
 [node name="RayCast" parent="CameraObject/CameraBoom/Camera" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0 )

@@ -1,5 +1,5 @@
 extends StaticBody
-
+class_name Door
 
 onready var HITBOX = $Hitbox
 export var locked = false
@@ -30,7 +30,6 @@ func spawn_damage_ui(damage = 1):
 	text.set_values(damage, Vector3(self.global_transform.origin.x, self.global_transform.origin.y+text_offset, self.global_transform.origin.z + 1))
 	
 func _on_Hitbox_area_entered(area):
-	print(area)
 	if area is Bullet:
 		damage_door(area.damage)
 	
@@ -40,7 +39,6 @@ func _on_Hitbox_area_entered(area):
 
 
 func _on_Hitbox_body_entered(body):
-	print(body)
 	if body is Bullet:
 		damage_door(body.damage)
 	

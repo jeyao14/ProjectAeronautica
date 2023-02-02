@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World/Common/TestHallway.gd" type="Script" id=1]
+[ext_resource path="res://World/Common/Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Common/Floor.tscn" type="PackedScene" id=3]
+
+[node name="Hallway" type="Spatial"]
+
+[node name="Floor" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape" parent="Floor" index="1"]
+transform = Transform( 4, 0, 0, 0, 5, 0, 0, 0, 4, 0, 0, 0.0845244 )
+
+[node name="Wall" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
+
+[node name="Wall3" parent="." instance=ExtResource( 2 )]
+transform = Transform( -9.83506e-08, 0, 1, 0, 1, 0, -2.25, 0, -4.37114e-08, 4, 0, 0.5 )
+
+[node name="Wall2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -3.5 )
+script = ExtResource( 1 )
+
+[editable path="Floor"]
+[editable path="Wall2"]

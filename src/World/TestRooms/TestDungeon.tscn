@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World/TestRooms/TestDungeon.gd" type="Script" id=1]
+[ext_resource path="res://World/TestRooms/SmallRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Common/CharacterSpawnPoint.tscn" type="PackedScene" id=3]
+
+[node name="level" type="Spatial"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="Rooms" type="Spatial" parent="."]
+
+[node name="SpawnRoom" parent="Rooms" instance=ExtResource( 2 )]
+spawn_active = true
+
+[node name="CharacterSpawnPoint" parent="." instance=ExtResource( 3 )]
+
+[connection signal="rooms_spawned" from="." to="." method="_on_level_rooms_spawned"]
+
+[editable path="Rooms/SpawnRoom"]
+[editable path="Rooms/SpawnRoom/Navigation/NavigationMeshInstance/Floor"]
+[editable path="Rooms/SpawnRoom/Navigation/NavigationMeshInstance/DoorWall"]
+[editable path="Rooms/SpawnRoom/Navigation/NavigationMeshInstance/DoorWall/Door"]
+[editable path="Rooms/SpawnRoom/Navigation/NavigationMeshInstance/DoorWall/Wall"]
+[editable path="Rooms/SpawnRoom/Navigation/NavigationMeshInstance/DoorWall/Wall2"]
+[editable path="Rooms/SpawnRoom/Navigation/NavigationMeshInstance/WWall"]
+[editable path="Rooms/SpawnRoom/Navigation/NavigationMeshInstance/EWall"]
+[editable path="Rooms/SpawnRoom/Navigation/NavigationMeshInstance/SWall"]
+[editable path="Rooms/SpawnRoom/Boundary"]

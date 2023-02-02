@@ -21,6 +21,16 @@ var DAMAGE_FLOATING_TEXT = "res://UI/DamageFloatingText.tscn"
 var TEST_LEVEL = "res://World/TestLevel.tscn"
 
 # ROOM ELEMENTS ----------------------------------
+	# TEST ROOMS
+var TEST_ROOMS = [
+	"res://World/TestRooms/SmallRoom.tscn",
+	"res://World/TestRooms/MediumRoom.tscn"
+]
+var TEST_HALLWAYS = [
+	"res://World/TestRooms/TestHallway.tscn",
+	"res://World/TestRooms/TestLeftCornerHallway.tscn"
+]
+
 var TEST_ROOM_1 = "res://World/TestRooms/SmallRoom.tscn"
 
 # CHARACTER ELEMENTS -----------------------------
@@ -38,7 +48,8 @@ func load_level(level):
 	# Add new level types here
 	match(level):
 		"TEST_LEVEL":
-			instance = load(TEST_LEVEL).instance()
+#			instance = load(TEST_LEVEL).instance()
+			instance = load("res://World/TestRooms/TestLevel.tscn").instance()
 		"TEST_ROOM_1":
 			instance = load(TEST_ROOM_1).instance()
 		_:
