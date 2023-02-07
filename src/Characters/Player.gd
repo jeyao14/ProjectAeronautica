@@ -18,7 +18,7 @@ var current_hp = hp;
 
 var velocity = Vector3.ZERO
 var facing_x = 1
-var facing_z = 0
+var facing_z = -1
 
 var idle_anim = "Calli_idle"
 
@@ -47,6 +47,12 @@ var damagetext = preload("res://UI/DamageFloatingText.tscn")
 var statusicon = preload("res://UI/StatusEffectIcon.tscn")
 onready var STATUSCONTAINER = $Node2D/Viewport/Control/Panel/StatusContainer
 var statusref = {}
+
+var ability_active = false
+var ability_anim = false
+var dodge_anim = false;
+var dodge_picked = false
+var dodge_dir = 1;
 
 signal add_status(tag, icon)
 signal remove_status(tag)
@@ -77,7 +83,33 @@ func set_facing():
 
 func set_animation():
 	is_movement_pressed();
-	if motion > -1:
+	if ability_anim:
+		return;
+	if dodge_anim:
+		if dodge_picked:
+			return
+		dodge_picked = true;
+		match motion:
+			1:
+				facing_z = -1
+				ANIMATION.travel("roll_d")
+				return
+			0:
+				facing_z = 1
+				ANIMATION.travel("roll_u")
+				return
+			2:
+				facing_x = -1
+				facing_z = -1
+				ANIMATION.travel("roll_lr")
+				return
+			3:
+				facing_x = 1
+				facing_z = -1
+				ANIMATION.travel("roll_lr")
+				return
+		return
+	if motion > -1 and !dodge_anim:
 #		print(motion)
 		match motion:
 			1:
@@ -94,12 +126,6 @@ func set_animation():
 				facing_x = 1
 				facing_z = -1
 				ANIMATION.travel("Run_lr")
-#		if recent_dir == 2:
-#			ANIMATION.travel("Run_lr")
-#		if recent_dir == 1:
-#			ANIMATION.travel("Run_u")
-#		if recent_dir == 0:
-#			ANIMATION.travel("Run_d")
 	else:
 		if facing_z == -1:
 			ANIMATION.travel("Idle_f")
@@ -164,6 +190,9 @@ func hurt_player(damage):
 		current_hp -= damage;
 		spawn_damage_num(damage)
 		emit_signal("player_damaged")
+		
+func death_anim():
+	set_alive()
 		
 func set_alive():
 	if(alive == true):

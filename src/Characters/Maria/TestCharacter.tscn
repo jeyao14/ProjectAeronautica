@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://Characters/Maria/TestCharacter.gd" type="Script" id=2]
 [ext_resource path="res://Characters/Shared/HitBox.tscn" type="PackedScene" id=3]
@@ -188,7 +188,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=46]
 resource_name = "death"
-length = 0.833333
+length = 1.25
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -197,10 +197,24 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]
+"values": [ 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 26, 26, 26, 26, 26, 26 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_alive"
+} ]
 }
 
 [sub_resource type="Animation" id=49]
@@ -275,6 +289,18 @@ animation = "Run_lr"
 [sub_resource type="AnimationNodeAnimation" id=27]
 animation = "Run_u"
 
+[sub_resource type="AnimationNodeAnimation" id=94]
+animation = "death"
+
+[sub_resource type="AnimationNodeAnimation" id=70]
+animation = "roll_d"
+
+[sub_resource type="AnimationNodeAnimation" id=71]
+animation = "roll_lr"
+
+[sub_resource type="AnimationNodeAnimation" id=72]
+animation = "roll_u"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
@@ -316,62 +342,126 @@ animation = "Run_u"
 [sub_resource type="AnimationNodeStateMachineTransition" id=45]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
+switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=56]
-auto_advance = true
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=58]
-auto_advance = true
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=59]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=61]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=62]
+switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=63]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=64]
-auto_advance = true
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=65]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=66]
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=67]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=73]
+switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+[sub_resource type="AnimationNodeStateMachineTransition" id=74]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=76]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=77]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=78]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=79]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=80]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=81]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=82]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=84]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=85]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=86]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=87]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=88]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=89]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=90]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=91]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=92]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=93]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=97]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=98]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=99]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=100]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=101]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=102]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=9]
 states/Ability_f/node = SubResource( 52 )
-states/Ability_f/position = Vector2( 103.219, 6 )
+states/Ability_f/position = Vector2( 420.219, -72 )
 states/Ability_r/node = SubResource( 53 )
-states/Ability_r/position = Vector2( 74.219, 233 )
+states/Ability_r/position = Vector2( 438.219, 413 )
 states/Idle_f/node = SubResource( 20 )
-states/Idle_f/position = Vector2( 103.219, 82 )
+states/Idle_f/position = Vector2( 106.219, 118 )
 states/Idle_r/node = SubResource( 25 )
-states/Idle_r/position = Vector2( 103.219, 153 )
+states/Idle_r/position = Vector2( 111.219, 193 )
 states/Run_d/node = SubResource( 26 )
-states/Run_d/position = Vector2( 793, 212 )
+states/Run_d/position = Vector2( 895, 193 )
 states/Run_lr/node = SubResource( 21 )
-states/Run_lr/position = Vector2( 682, 108 )
+states/Run_lr/position = Vector2( 895, 98 )
 states/Run_u/node = SubResource( 27 )
-states/Run_u/position = Vector2( 793, 6 )
-transitions = [ "Idle_f", "Run_lr", SubResource( 22 ), "Run_lr", "Idle_f", SubResource( 23 ), "Idle_f", "Run_u", SubResource( 28 ), "Run_u", "Idle_f", SubResource( 29 ), "Idle_f", "Run_d", SubResource( 30 ), "Run_d", "Idle_f", SubResource( 31 ), "Idle_r", "Run_u", SubResource( 32 ), "Run_u", "Idle_r", SubResource( 33 ), "Run_lr", "Idle_r", SubResource( 34 ), "Idle_r", "Run_lr", SubResource( 35 ), "Idle_r", "Run_d", SubResource( 36 ), "Run_d", "Idle_r", SubResource( 37 ), "Run_d", "Run_lr", SubResource( 38 ), "Run_lr", "Run_d", SubResource( 39 ), "Run_lr", "Run_u", SubResource( 40 ), "Run_u", "Run_lr", SubResource( 41 ), "Run_u", "Run_d", SubResource( 42 ), "Run_d", "Run_u", SubResource( 43 ), "Idle_f", "Idle_r", SubResource( 44 ), "Idle_r", "Idle_f", SubResource( 45 ), "Ability_f", "Idle_f", SubResource( 54 ), "Idle_f", "Ability_f", SubResource( 55 ), "Ability_f", "Run_u", SubResource( 56 ), "Run_u", "Ability_f", SubResource( 57 ), "Ability_f", "Run_lr", SubResource( 58 ), "Run_lr", "Ability_f", SubResource( 59 ), "Ability_f", "Run_d", SubResource( 60 ), "Run_d", "Ability_f", SubResource( 61 ), "Ability_r", "Idle_r", SubResource( 62 ), "Idle_r", "Ability_r", SubResource( 63 ), "Ability_r", "Run_u", SubResource( 64 ), "Run_u", "Ability_r", SubResource( 65 ), "Ability_r", "Run_d", SubResource( 66 ), "Run_d", "Ability_r", SubResource( 67 ), "Ability_r", "Run_lr", SubResource( 68 ), "Run_lr", "Ability_r", SubResource( 69 ) ]
+states/Run_u/position = Vector2( 895, 6 )
+states/death/node = SubResource( 94 )
+states/death/position = Vector2( 70.7995, 389 )
+states/roll_d/node = SubResource( 70 )
+states/roll_d/position = Vector2( 1135, 547.438 )
+states/roll_lr/node = SubResource( 71 )
+states/roll_lr/position = Vector2( 801, 519.438 )
+states/roll_u/node = SubResource( 72 )
+states/roll_u/position = Vector2( 1216, 320.438 )
+transitions = [ "Idle_f", "Run_lr", SubResource( 22 ), "Run_lr", "Idle_f", SubResource( 23 ), "Idle_f", "Run_u", SubResource( 28 ), "Run_u", "Idle_f", SubResource( 29 ), "Idle_f", "Run_d", SubResource( 30 ), "Run_d", "Idle_f", SubResource( 31 ), "Idle_r", "Run_u", SubResource( 32 ), "Run_u", "Idle_r", SubResource( 33 ), "Run_lr", "Idle_r", SubResource( 34 ), "Idle_r", "Run_lr", SubResource( 35 ), "Idle_r", "Run_d", SubResource( 36 ), "Run_d", "Idle_r", SubResource( 37 ), "Run_d", "Run_lr", SubResource( 38 ), "Run_lr", "Run_d", SubResource( 39 ), "Run_lr", "Run_u", SubResource( 40 ), "Run_u", "Run_lr", SubResource( 41 ), "Run_u", "Run_d", SubResource( 42 ), "Run_d", "Run_u", SubResource( 43 ), "Idle_f", "Idle_r", SubResource( 44 ), "Idle_r", "Idle_f", SubResource( 45 ), "Ability_f", "Idle_f", SubResource( 54 ), "Idle_f", "Ability_f", SubResource( 55 ), "Run_u", "Ability_f", SubResource( 57 ), "Run_lr", "Ability_f", SubResource( 59 ), "Run_d", "Ability_f", SubResource( 61 ), "Ability_r", "Idle_r", SubResource( 62 ), "Idle_r", "Ability_r", SubResource( 63 ), "Run_u", "Ability_r", SubResource( 65 ), "Run_d", "Ability_r", SubResource( 67 ), "Run_lr", "Ability_r", SubResource( 69 ), "roll_u", "Idle_f", SubResource( 73 ), "roll_u", "Idle_r", SubResource( 74 ), "roll_lr", "Idle_f", SubResource( 75 ), "roll_d", "Idle_f", SubResource( 76 ), "roll_lr", "Idle_r", SubResource( 77 ), "roll_d", "Idle_r", SubResource( 78 ), "Idle_f", "roll_u", SubResource( 79 ), "Idle_f", "roll_lr", SubResource( 80 ), "Idle_f", "roll_d", SubResource( 81 ), "Idle_r", "roll_d", SubResource( 82 ), "Idle_r", "roll_lr", SubResource( 83 ), "Idle_r", "roll_u", SubResource( 84 ), "Run_d", "roll_u", SubResource( 85 ), "Run_d", "roll_lr", SubResource( 86 ), "Run_d", "roll_d", SubResource( 87 ), "Run_lr", "roll_u", SubResource( 88 ), "Run_lr", "roll_lr", SubResource( 89 ), "Run_lr", "roll_d", SubResource( 90 ), "Run_u", "roll_u", SubResource( 91 ), "Run_u", "roll_lr", SubResource( 92 ), "Run_u", "roll_d", SubResource( 93 ), "Idle_r", "death", SubResource( 95 ), "Idle_f", "death", SubResource( 96 ), "Ability_r", "death", SubResource( 97 ), "Run_d", "death", SubResource( 98 ), "Run_lr", "death", SubResource( 99 ), "Run_u", "death", SubResource( 100 ), "Ability_f", "death", SubResource( 101 ), "death", "Idle_f", SubResource( 102 ) ]
 start_node = "Idle_f"
-graph_offset = Vector2( -106.781, -43.8625 )
+graph_offset = Vector2( -120.891, 120.487 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
@@ -424,6 +514,7 @@ anims/roll_u = SubResource( 48 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 10 )
 
 [node name="HitBox" parent="." instance=ExtResource( 3 )]

@@ -40,6 +40,7 @@ collision_mask = 4
 shape = SubResource( 4 )
 
 [node name="Spawner" parent="." instance=ExtResource( 2 )]
+ammocount = -1
 
 [node name="LifespanTimer" type="Timer" parent="."]
 wait_time = 2.0

@@ -443,6 +443,7 @@ shaded = true
 alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
+bullet_path = "res://Characters/San/Projectile_San.tscn"
 uses_ammo = false
 spread_angle = 0.0
 bullet_speed_override = 50.0

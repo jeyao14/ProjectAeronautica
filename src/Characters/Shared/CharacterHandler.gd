@@ -26,6 +26,7 @@ var dash_cooldown = .5
 
 signal gui_set_players
 signal gui_set_active
+signal dodge_anim
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -102,11 +103,15 @@ func dodge():
 	can_dash = false
 	dash_timer = true;
 	ACTIVE_CHARACTER.set_hitbox(false);
+	ACTIVE_CHARACTER.dodge_anim = true;
 	yield(get_tree().create_timer(0.5,false),"timeout");
 	dash_timer = false;
 	ACTIVE_CHARACTER.set_hitbox(true);
+	ACTIVE_CHARACTER.dodge_anim = false
+	ACTIVE_CHARACTER.dodge_picked = false
 	yield(get_tree().create_timer(dash_cooldown, false), "timeout")
 	can_dash = true
+	
 	
 #	while()
 	

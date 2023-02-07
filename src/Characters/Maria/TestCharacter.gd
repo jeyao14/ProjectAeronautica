@@ -12,11 +12,8 @@ onready var CHARACTERICON = load(character_icon)
 onready var WEAPONICON = load(weapon_icon)
 onready var charactername = "Maria"
 
-
 var is_reloading = false;
 var reload_time
-
-var ability_active = false
 
 func _ready():
 #	don't let this stat go beyond 100
@@ -28,14 +25,67 @@ func _ready():
 
 func _physics_process(delta):
 	set_animation()
-	set_facing()
+	if(!dodge_anim):
+		set_facing()
 	GetSpawnerAmmoInfo()
 	if current_hp <= 0:
-		set_alive()
+		ANIMATION.travel("death")
 	
 	if SPAWNER.shoot:
 		SPAWNER.mouse_direction = mouse_direction
 #		print("Ammo: ", ammocount, "/", magsize)
+
+func set_animation():
+	is_movement_pressed();
+	if ability_anim:
+		return;
+	if dodge_anim:
+		if dodge_picked:
+			return
+		dodge_picked = true;
+		match motion:
+			1:
+				facing_z = -1
+				ANIMATION.travel("roll_d")
+				return
+			0:
+				facing_z = 1
+				ANIMATION.travel("roll_u")
+				return
+			2:
+				facing_x = -1
+				facing_z = -1
+				ANIMATION.travel("roll_lr")
+				return
+			3:
+				facing_x = 1
+				facing_z = -1
+				ANIMATION.travel("roll_lr")
+				return
+		return
+	if motion > -1 and !dodge_anim:
+#		print(motion)
+		match motion:
+			1:
+				facing_z = -1
+				ANIMATION.travel("Run_d")
+			0:
+				facing_z = 1
+				ANIMATION.travel("Run_u")
+			2:
+				facing_x = -1
+				facing_z = -1
+				ANIMATION.travel("Run_lr")
+			3:
+				facing_x = 1
+				facing_z = -1
+				ANIMATION.travel("Run_lr")
+	else:
+		if facing_z == -1:
+			ANIMATION.travel("Idle_f")
+		if facing_z == 1:
+			ANIMATION.travel("Idle_r")
+	pass
 
 func use_attack():
 	if(ammocount > 0 && !is_reloading):
@@ -60,18 +110,21 @@ func stop_attack():
 	SPAWNER.shoot = false
 
 #func _on_HitBox_area_entered(area):
-
-func use_ability():
-	
-	if facing_z == -1:
-		ANIMATION.travel("Ability_f")
-	if facing_z == 1:
-		ANIMATION.travel("Ability_r")
 	
 func activate_ability():
 	print(facing_z)
+	
 	if(TURRETGROUP.get_child_count() == 0 and not ability_active):
 		ability_active = true
+		ability_anim = true
+		
+		if facing_z == -1:
+			ANIMATION.travel("Ability_f")
+		if facing_z == 1:
+			ANIMATION.travel("Ability_r")
+			
+		yield(get_tree().create_timer(0.5,false),"timeout");
+		ability_anim = false;
 		var instance = TURRETTYPE.instance()
 		var global_pos = self.global_transform.origin
 		var spawn_origin = Vector3(mouse_direction.x, global_pos.y, mouse_direction.z)

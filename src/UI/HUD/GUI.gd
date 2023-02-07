@@ -126,9 +126,12 @@ func initialize_values():
 	P3_CHARACTERICON.set_texture(CHARACTER_3.CHARACTERICON)
 	
 	WEAPONICON.set_texture(ACTIVE_CHARACTER.WEAPONICON)
-	
-	CURRENTAMMO.text = ACTIVE_CHARACTER.ammocount as String
-	MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
+	if(ACTIVE_CHARACTER.ammocount != -1 and ACTIVE_CHARACTER.magsize != -1):
+		CURRENTAMMO.text = ACTIVE_CHARACTER.ammocount as String
+		MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
+	else:
+		CURRENTAMMO.text = "∞"
+		MAXAMMO.text = "∞"
 
 	RELOADBAR.value = 100
 
@@ -167,8 +170,12 @@ func start_reload_anim():
 	RELOADTWEEN.start()
 
 func change_ammo():
-	CURRENTAMMO.text = ACTIVE_CHARACTER.ammocount as String
-	MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
+	if(ACTIVE_CHARACTER.ammocount != -1 and ACTIVE_CHARACTER.magsize != -1):
+		CURRENTAMMO.text = ACTIVE_CHARACTER.ammocount as String
+		MAXAMMO.text = ACTIVE_CHARACTER.magsize as String
+	else:
+		CURRENTAMMO.text = "∞"
+		MAXAMMO.text = "∞"
 
 func change_P1_hp():
 	var P1_bar_style = P1_HEALTHBAR.get("custom_styles/fg")

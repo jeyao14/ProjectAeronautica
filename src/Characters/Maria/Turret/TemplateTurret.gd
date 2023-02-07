@@ -64,7 +64,7 @@ func stop_attack():
 	SPAWNER.shoot = false
 
 func get_pattern_parameters():
-	SPAWNER.bullet_path = "res://Characters/TestCharacter/Turret/TurretProjectile.tscn";
+	SPAWNER.bullet_path = "res://Characters/Maria/Turret/TurretProjectile.tscn";
 	SPAWNER.cooldown = 0.5;
 	SPAWNER.ammocount = -1;
 	SPAWNER.uses_ammo = false;

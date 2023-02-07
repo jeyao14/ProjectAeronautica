@@ -14,8 +14,6 @@ onready var charactername = "San"
 var is_reloading = false;
 var reload_time
 
-var ability_active = false
-
 func _ready():
 #	don't let this stat go beyond 100
 	getCharData()

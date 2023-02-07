@@ -5,7 +5,6 @@
 [ext_resource path="res://Characters/Olive/Assets/smg_mid.png" type="Texture" id=3]
 [ext_resource path="res://Characters/Olive/Assets/SMG_base.png" type="Texture" id=4]
 
-
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.357031
 height = 0.487917
