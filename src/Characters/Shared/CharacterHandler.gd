@@ -2,7 +2,7 @@ extends KinematicBody
 
 export var gravity = -10
 export var speed = 1
-export var dodge_markiplier = 3;
+export var dodge_markiplier = 2;
 var velocity = Vector3.ZERO
 
 var ray_origin = Vector3();
@@ -41,10 +41,6 @@ func _ready():
 	add_child(CHARACTER_1)
 	add_child(CHARACTER_2)
 	add_child(CHARACTER_3)
-	
-	print(CHARACTER_1)
-	print(CHARACTER_2)
-	print(CHARACTER_3)
 	#change the next two lines to change the starting active character
 	CHARACTER_1.active = true
 	ACTIVE_CHARACTER = CHARACTER_1
@@ -218,9 +214,5 @@ func reload_party():
 	add_child(CHARACTER_3)
 	CHARACTER_1.active = true
 	ACTIVE_CHARACTER = CHARACTER_1
-	
-	print("CHARACTER_1", CHARACTER_1)
-	print("CHARACTER_2", CHARACTER_2)
-	print("CHARACTER_3", CHARACTER_3)
 	
 	GUI.set_players(CHARACTER_1, CHARACTER_2, CHARACTER_3)

@@ -9,8 +9,35 @@
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 0.605, 0.175, 1.14 )
 
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 101 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=51]
-resource_name = "Ability_f"
+resource_name = "ability_d"
 length = 0.583333
 step = 0.0833333
 tracks/0/type = "value"
@@ -41,7 +68,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=47]
-resource_name = "Ability_r"
+resource_name = "ability_u"
 length = 0.583333
 step = 0.0833333
 tracks/0/type = "value"
@@ -69,121 +96,6 @@ tracks/1/keys = {
 "args": [  ],
 "method": "activate_ability"
 } ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "Idle_f"
-loop = true
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112 ]
-}
-
-[sub_resource type="Animation" id=19]
-resource_name = "Idle_r"
-loop = true
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64 ]
-}
-
-[sub_resource type="Animation" id=17]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 101 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=18]
-resource_name = "Run_d"
-length = 0.666667
-loop = true
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 65, 66, 67, 68, 69, 70, 71, 72 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "Run_lr"
-length = 0.666667
-loop = true
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
-}
-
-[sub_resource type="Animation" id=24]
-resource_name = "Run_u"
-length = 0.666667
-loop = true
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 36, 37, 38, 39, 40, 41, 42, 43 ]
 }
 
 [sub_resource type="Animation" id=46]
@@ -215,6 +127,40 @@ tracks/1/keys = {
 "args": [  ],
 "method": "set_alive"
 } ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle_d"
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "idle_u"
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64 ]
 }
 
 [sub_resource type="Animation" id=49]
@@ -268,29 +214,74 @@ tracks/0/keys = {
 "values": [ 45, 46, 47, 48, 49, 50, 51 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=52]
-animation = "Ability_f"
+[sub_resource type="Animation" id=18]
+resource_name = "run_d"
+length = 0.666667
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 65, 66, 67, 68, 69, 70, 71, 72 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "run_lr"
+length = 0.666667
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "run_u"
+length = 0.666667
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38, 39, 40, 41, 42, 43 ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=53]
-animation = "Ability_r"
+animation = "ability_d"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "Idle_f"
-
-[sub_resource type="AnimationNodeAnimation" id=25]
-animation = "Idle_r"
-
-[sub_resource type="AnimationNodeAnimation" id=26]
-animation = "Run_d"
-
-[sub_resource type="AnimationNodeAnimation" id=21]
-animation = "Run_lr"
-
-[sub_resource type="AnimationNodeAnimation" id=27]
-animation = "Run_u"
+[sub_resource type="AnimationNodeAnimation" id=52]
+animation = "ability_u"
 
 [sub_resource type="AnimationNodeAnimation" id=94]
 animation = "death"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "idle_d"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "idle_u"
 
 [sub_resource type="AnimationNodeAnimation" id=70]
 animation = "roll_d"
@@ -300,6 +291,15 @@ animation = "roll_lr"
 
 [sub_resource type="AnimationNodeAnimation" id=72]
 animation = "roll_u"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "run_d"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "run_lr"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "run_u"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
@@ -437,31 +437,31 @@ auto_advance = true
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=9]
-states/Ability_f/node = SubResource( 52 )
-states/Ability_f/position = Vector2( 420.219, -72 )
-states/Ability_r/node = SubResource( 53 )
-states/Ability_r/position = Vector2( 438.219, 413 )
-states/Idle_f/node = SubResource( 20 )
-states/Idle_f/position = Vector2( 106.219, 118 )
-states/Idle_r/node = SubResource( 25 )
-states/Idle_r/position = Vector2( 111.219, 193 )
-states/Run_d/node = SubResource( 26 )
-states/Run_d/position = Vector2( 895, 193 )
-states/Run_lr/node = SubResource( 21 )
-states/Run_lr/position = Vector2( 895, 98 )
-states/Run_u/node = SubResource( 27 )
-states/Run_u/position = Vector2( 895, 6 )
+states/ability_d/node = SubResource( 53 )
+states/ability_d/position = Vector2( 446.219, 417 )
+states/ability_u/node = SubResource( 52 )
+states/ability_u/position = Vector2( 420.219, -72 )
 states/death/node = SubResource( 94 )
 states/death/position = Vector2( 70.7995, 389 )
+states/idle_d/node = SubResource( 20 )
+states/idle_d/position = Vector2( 106.219, 117 )
+states/idle_u/node = SubResource( 25 )
+states/idle_u/position = Vector2( 111.219, 193 )
 states/roll_d/node = SubResource( 70 )
 states/roll_d/position = Vector2( 1135, 547.438 )
 states/roll_lr/node = SubResource( 71 )
-states/roll_lr/position = Vector2( 801, 519.438 )
+states/roll_lr/position = Vector2( 794, 536.438 )
 states/roll_u/node = SubResource( 72 )
-states/roll_u/position = Vector2( 1216, 320.438 )
-transitions = [ "Idle_f", "Run_lr", SubResource( 22 ), "Run_lr", "Idle_f", SubResource( 23 ), "Idle_f", "Run_u", SubResource( 28 ), "Run_u", "Idle_f", SubResource( 29 ), "Idle_f", "Run_d", SubResource( 30 ), "Run_d", "Idle_f", SubResource( 31 ), "Idle_r", "Run_u", SubResource( 32 ), "Run_u", "Idle_r", SubResource( 33 ), "Run_lr", "Idle_r", SubResource( 34 ), "Idle_r", "Run_lr", SubResource( 35 ), "Idle_r", "Run_d", SubResource( 36 ), "Run_d", "Idle_r", SubResource( 37 ), "Run_d", "Run_lr", SubResource( 38 ), "Run_lr", "Run_d", SubResource( 39 ), "Run_lr", "Run_u", SubResource( 40 ), "Run_u", "Run_lr", SubResource( 41 ), "Run_u", "Run_d", SubResource( 42 ), "Run_d", "Run_u", SubResource( 43 ), "Idle_f", "Idle_r", SubResource( 44 ), "Idle_r", "Idle_f", SubResource( 45 ), "Ability_f", "Idle_f", SubResource( 54 ), "Idle_f", "Ability_f", SubResource( 55 ), "Run_u", "Ability_f", SubResource( 57 ), "Run_lr", "Ability_f", SubResource( 59 ), "Run_d", "Ability_f", SubResource( 61 ), "Ability_r", "Idle_r", SubResource( 62 ), "Idle_r", "Ability_r", SubResource( 63 ), "Run_u", "Ability_r", SubResource( 65 ), "Run_d", "Ability_r", SubResource( 67 ), "Run_lr", "Ability_r", SubResource( 69 ), "roll_u", "Idle_f", SubResource( 73 ), "roll_u", "Idle_r", SubResource( 74 ), "roll_lr", "Idle_f", SubResource( 75 ), "roll_d", "Idle_f", SubResource( 76 ), "roll_lr", "Idle_r", SubResource( 77 ), "roll_d", "Idle_r", SubResource( 78 ), "Idle_f", "roll_u", SubResource( 79 ), "Idle_f", "roll_lr", SubResource( 80 ), "Idle_f", "roll_d", SubResource( 81 ), "Idle_r", "roll_d", SubResource( 82 ), "Idle_r", "roll_lr", SubResource( 83 ), "Idle_r", "roll_u", SubResource( 84 ), "Run_d", "roll_u", SubResource( 85 ), "Run_d", "roll_lr", SubResource( 86 ), "Run_d", "roll_d", SubResource( 87 ), "Run_lr", "roll_u", SubResource( 88 ), "Run_lr", "roll_lr", SubResource( 89 ), "Run_lr", "roll_d", SubResource( 90 ), "Run_u", "roll_u", SubResource( 91 ), "Run_u", "roll_lr", SubResource( 92 ), "Run_u", "roll_d", SubResource( 93 ), "Idle_r", "death", SubResource( 95 ), "Idle_f", "death", SubResource( 96 ), "Ability_r", "death", SubResource( 97 ), "Run_d", "death", SubResource( 98 ), "Run_lr", "death", SubResource( 99 ), "Run_u", "death", SubResource( 100 ), "Ability_f", "death", SubResource( 101 ), "death", "Idle_f", SubResource( 102 ) ]
-start_node = "Idle_f"
-graph_offset = Vector2( -120.891, 120.487 )
+states/roll_u/position = Vector2( 1239, 333.438 )
+states/run_d/node = SubResource( 26 )
+states/run_d/position = Vector2( 895, 193 )
+states/run_lr/node = SubResource( 21 )
+states/run_lr/position = Vector2( 895, 98 )
+states/run_u/node = SubResource( 27 )
+states/run_u/position = Vector2( 895, 6 )
+transitions = [ "idle_d", "run_lr", SubResource( 22 ), "run_lr", "idle_d", SubResource( 23 ), "idle_d", "run_u", SubResource( 28 ), "run_u", "idle_d", SubResource( 29 ), "idle_d", "run_d", SubResource( 30 ), "run_d", "idle_d", SubResource( 31 ), "idle_u", "run_u", SubResource( 32 ), "run_u", "idle_u", SubResource( 33 ), "run_lr", "idle_u", SubResource( 34 ), "idle_u", "run_lr", SubResource( 35 ), "idle_u", "run_d", SubResource( 36 ), "run_d", "idle_u", SubResource( 37 ), "run_d", "run_lr", SubResource( 38 ), "run_lr", "run_d", SubResource( 39 ), "run_lr", "run_u", SubResource( 40 ), "run_u", "run_lr", SubResource( 41 ), "run_u", "run_d", SubResource( 42 ), "run_d", "run_u", SubResource( 43 ), "idle_d", "idle_u", SubResource( 44 ), "idle_u", "idle_d", SubResource( 45 ), "ability_u", "idle_d", SubResource( 54 ), "idle_d", "ability_u", SubResource( 55 ), "run_u", "ability_u", SubResource( 57 ), "run_lr", "ability_u", SubResource( 59 ), "run_d", "ability_u", SubResource( 61 ), "ability_d", "idle_u", SubResource( 62 ), "idle_u", "ability_d", SubResource( 63 ), "run_u", "ability_d", SubResource( 65 ), "run_d", "ability_d", SubResource( 67 ), "run_lr", "ability_d", SubResource( 69 ), "roll_u", "idle_d", SubResource( 73 ), "roll_u", "idle_u", SubResource( 74 ), "roll_lr", "idle_d", SubResource( 75 ), "roll_d", "idle_d", SubResource( 76 ), "roll_lr", "idle_u", SubResource( 77 ), "roll_d", "idle_u", SubResource( 78 ), "idle_d", "roll_u", SubResource( 79 ), "idle_d", "roll_lr", SubResource( 80 ), "idle_d", "roll_d", SubResource( 81 ), "idle_u", "roll_d", SubResource( 82 ), "idle_u", "roll_lr", SubResource( 83 ), "idle_u", "roll_u", SubResource( 84 ), "run_d", "roll_u", SubResource( 85 ), "run_d", "roll_lr", SubResource( 86 ), "run_d", "roll_d", SubResource( 87 ), "run_lr", "roll_u", SubResource( 88 ), "run_lr", "roll_lr", SubResource( 89 ), "run_lr", "roll_d", SubResource( 90 ), "run_u", "roll_u", SubResource( 91 ), "run_u", "roll_lr", SubResource( 92 ), "run_u", "roll_d", SubResource( 93 ), "idle_u", "death", SubResource( 95 ), "idle_d", "death", SubResource( 96 ), "ability_d", "death", SubResource( 97 ), "run_d", "death", SubResource( 98 ), "run_lr", "death", SubResource( 99 ), "run_u", "death", SubResource( 100 ), "ability_u", "death", SubResource( 101 ), "death", "idle_d", SubResource( 102 ) ]
+start_node = "idle_d"
+graph_offset = Vector2( 189.014, 1.45129 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
@@ -498,18 +498,18 @@ frame = 101
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite3D")
-anims/Ability_f = SubResource( 51 )
-anims/Ability_r = SubResource( 47 )
-anims/Idle_f = SubResource( 2 )
-anims/Idle_r = SubResource( 19 )
 anims/RESET = SubResource( 17 )
-anims/Run_d = SubResource( 18 )
-anims/Run_lr = SubResource( 4 )
-anims/Run_u = SubResource( 24 )
+anims/ability_d = SubResource( 51 )
+anims/ability_u = SubResource( 47 )
 anims/death = SubResource( 46 )
+anims/idle_d = SubResource( 2 )
+anims/idle_u = SubResource( 19 )
 anims/roll_d = SubResource( 49 )
 anims/roll_lr = SubResource( 50 )
 anims/roll_u = SubResource( 48 )
+anims/run_d = SubResource( 18 )
+anims/run_lr = SubResource( 4 )
+anims/run_u = SubResource( 24 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 9 )

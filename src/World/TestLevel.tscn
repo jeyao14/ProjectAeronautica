@@ -89,7 +89,15 @@ shape = SubResource( 4 )
 
 [node name="Spawner2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -42.5598 )
-enemies_per_spawn = 2
+max_enemy_count = 1
+
+[node name="Spawner3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.662, 0, -42.5598 )
+max_enemy_count = 0
+
+[node name="Spawner4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4639, 0, -42.5598 )
+max_enemy_count = 0
 
 [node name="EnemyGroup" type="Node" parent="."]
 

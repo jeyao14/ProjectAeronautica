@@ -6,7 +6,7 @@ var level_name = ""
 var player = null
 var inventory = null
 var options = null
-var party = {"1":GLOBALS.MARIA, "2":GLOBALS.RHODES,"3":GLOBALS.OLIVE}
+var party = {"1":GLOBALS.SAN, "2":GLOBALS.RHODES,"3":GLOBALS.OLIVE}
 var party_setup_screen
 
 # Called when the node enters the scene tree for the first time.

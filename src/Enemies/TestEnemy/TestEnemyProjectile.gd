@@ -2,8 +2,10 @@ extends Bullet
 
 export var speed_increment = 1.0
 export var max_speed = 100.0
+export var min_speed = 0
 
 onready var init_speed = speed
+var reflected = false;
 #onready var movement_vector = direction * speed
 
 # Called when the node enters the scene tree for the first time.
@@ -17,19 +19,12 @@ func _ready():
 
 
 func _physics_process(delta):
-	if speed < -init_speed:
+	if speed <= min_speed:
 		queue_free()
-	if speed < max_speed:
+	if speed <= max_speed:
 		speed += speed_increment
 	
-	self.translation += (movement_vector * speed) * delta
-	if max_distance > 0.0:
-		distance_traveled()
-	pass
-
-func distance_traveled():
-	if global_transform.origin.distance_to(start_position) > max_distance:
-		queue_free()
+	standard_translate(delta)
 
 func stun_player():
 	if GLOBALS.CHARACTER_HANDLER == null:
@@ -39,35 +34,72 @@ func stun_player():
 	handler.ACTIVE_CHARACTER.add_child(stun)
 
 func _on_Projectile_area_entered(area):
-	if area is Player or area is World:
-#		if area.STATUS_HANDLER and stun:
-#			area.STATUS_HANDLER.stun()
-#		elif area.STATUS_HANDLER and slow:
-#			area.STATUS_HANDLER.slow()
-		if area.STATUS_HANDLER:
-			match(status):
-				"stun":
-					area.STATUS_HANDLER.stun()
-				"slow":
-					area.STATUS_HANDLER.slow()
-				_:  
-					# no valid string is passed
-					pass
-			emit_signal("test_signal")
-			queue_free()
+	if reflected == false:
+		if area is Player or area is World:
+	#		if area.STATUS_HANDLER and stun:
+	#			area.STATUS_HANDLER.stun()
+	#		elif area.STATUS_HANDLER and slow:
+	#			area.STATUS_HANDLER.slow()
+			if area.STATUS_HANDLER:
+				match(status):
+					"stun":
+						area.STATUS_HANDLER.stun()
+					"slow":
+						area.STATUS_HANDLER.slow()
+					_:  
+						# no valid string is passed
+						pass
+				queue_free()
+	elif reflected == true:
+		if area is Enemy or area is World:
+#			print("reflected bullet")
+	#		if area.STATUS_HANDLER and stun:
+	#			area.STATUS_HANDLER.stun()
+	#		elif area.STATUS_HANDLER and slow:
+	#			area.STATUS_HANDLER.slow()
+			if area.STATUS_HANDLER:
+				match(status):
+					"stun":
+						area.STATUS_HANDLER.stun()
+					"slow":
+						area.STATUS_HANDLER.slow()
+					_:  
+						# no valid string is passed
+						pass
+				queue_free()
 
 
 func _on_Projectile_body_entered(body):
-	if body is Player or body is World:
-		if body.STATUS_HANDLER:
-			match(status):
-				"stun":
-					body.STATUS_HANDLER.stun(10.0)
-				"slow":
-					body.STATUS_HANDLER.slow(2.0)
-				_:  
-					# no valid string is passed
-					pass
-			body.hurt_player(damage)
-			emit_signal("test_signal")
-			queue_free()
+	if reflected == false:
+		if body is Player or body is World:
+			if body.STATUS_HANDLER:
+				match(status):
+					"stun":
+						body.STATUS_HANDLER.stun(10.0)
+					"slow":
+						body.STATUS_HANDLER.slow(2.0)
+					_:  
+						# no valid string is passed
+						pass
+				body.hurt_player(damage)
+				emit_signal("test_signal")
+				queue_free()
+	elif reflected == true:
+		if body is Enemy or body is World:
+			print(speed)
+			print(speed_increment)
+	#		if area.STATUS_HANDLER and stun:
+	#			area.STATUS_HANDLER.stun()
+	#		elif area.STATUS_HANDLER and slow:
+	#			area.STATUS_HANDLER.slow()
+			if body.STATUS_HANDLER:
+				match(status):
+					"stun":
+						body.STATUS_HANDLER.stun()
+					"slow":
+						body.STATUS_HANDLER.slow()
+					_:  
+						# no valid string is passed
+						pass
+				body.hurt_enemy(damage)
+				queue_free()

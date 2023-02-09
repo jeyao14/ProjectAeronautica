@@ -1,7 +1,7 @@
 extends KinematicBody
 class_name Player
 
-export var gravity = -10
+var gravity = -10
 export var speed = 10
 
 #ALL STATS ARE CAPPED AT 100
@@ -114,23 +114,23 @@ func set_animation():
 		match motion:
 			1:
 				facing_z = -1
-				ANIMATION.travel("Run_d")
+				ANIMATION.travel("run_d")
 			0:
 				facing_z = 1
-				ANIMATION.travel("Run_u")
+				ANIMATION.travel("run_u")
 			2:
 				facing_x = -1
 				facing_z = -1
-				ANIMATION.travel("Run_lr")
+				ANIMATION.travel("run_lr")
 			3:
 				facing_x = 1
 				facing_z = -1
-				ANIMATION.travel("Run_lr")
+				ANIMATION.travel("run_lr")
 	else:
 		if facing_z == -1:
-			ANIMATION.travel("Idle_f")
+			ANIMATION.travel("idle_d")
 		if facing_z == 1:
-			ANIMATION.travel("Idle_r")
+			ANIMATION.travel("idle_u")
 	pass
 
 func is_movement_pressed():

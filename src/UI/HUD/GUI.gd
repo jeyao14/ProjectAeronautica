@@ -164,7 +164,6 @@ func setActive():
 	set_new_values() #update GUI
 
 func start_reload_anim():
-	print("start_reload_anim")
 	RELOADBAR.value = 0
 	RELOADTWEEN.interpolate_property(RELOADBAR, "value", RELOADBAR.value, 100, ACTIVE_CHARACTER.reload_time, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	RELOADTWEEN.start()
@@ -205,7 +204,6 @@ func change_P3_hp():
 	P3_HEALTHTWEEN.start()
 	
 func P1_add_status_icon(var tag, var icon):
-	print("P1_add_status_icon")
 	var status = statusicon.instance();
 	P1_STATUS.add_child(status);
 	P1_status_ref[tag] = status;
@@ -213,13 +211,11 @@ func P1_add_status_icon(var tag, var icon):
 
 func P1_remove_status_icon(var tag):
 	if(P1_status_ref.has(tag)):
-		print("P1_remove_status_icon")
 		var icontodelete = P1_status_ref.get(tag)
 		icontodelete.queue_free()
 		P1_status_ref.erase(tag)
 	
 func P2_add_status_icon(var tag, var icon):
-	print("P2_add_status_icon")
 	var status = statusicon.instance();
 	P2_STATUS.add_child(status);
 	P2_status_ref[tag] = status;
@@ -232,7 +228,6 @@ func P2_remove_status_icon(var tag):
 		P2_status_ref.erase(tag)
 
 func P3_add_status_icon(var tag, var icon):
-	print("P3_add_status_icon")
 	var status = statusicon.instance();
 	P3_STATUS.add_child(status);
 	P3_status_ref[tag] = status;
@@ -240,13 +235,11 @@ func P3_add_status_icon(var tag, var icon):
 
 func P3_remove_status_icon(var tag):
 	if(P3_status_ref.has(tag)):
-		print("P3_remove_status_icon")
 		var icontodelete = P3_status_ref.get(tag)
 		icontodelete.queue_free()
 		P3_status_ref.erase(tag)
 	
 func P1_clear_all_status():
-	print("P1_clear_all_status")
 	for n in P1_STATUS.get_children():
 		P1_STATUS.remove_child(n)
 		n.queue_free()

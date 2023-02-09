@@ -14,9 +14,7 @@ var is_reloading = false;
 var reload_time
 
 func _ready():
-	print("olive initialized")
 	getCharData()
-	print("olive data: ",data)
 	getPatternParameters()
 	reload_time = 0.6/dex
 	current_hp = hp;

@@ -27,7 +27,7 @@ func _physics_process(delta):
 	if path.size() > 0:
 		move_to_target()
 		set_facing()
-	move_enemy()
+#	move_enemy()
 	pass
 
 func set_facing():

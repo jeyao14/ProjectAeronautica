@@ -8,16 +8,16 @@ func _ready():
 
 
 func _physics_process(delta):
-	self.translation += movement_vector * delta
-	if max_distance > 0.0:
-		distance_traveled()
-	pass
+	standard_translate(delta)
 
 func distance_traveled():
 	if global_transform.origin.distance_to(start_position) > max_distance:
 		queue_free()
 
 func _on_Projectile_area_entered(area):
+	if area is Bullet:
+		if area:
+			bullet_reflect(area)
 	if area is Enemy or area is World:
 #		if area.STATUS_HANDLER and stun:
 #			area.STATUS_HANDLER.stun()
@@ -34,8 +34,10 @@ func _on_Projectile_area_entered(area):
 					pass
 			emit_signal("test_signal")
 
-
 func _on_Projectile_body_entered(body):
+	if body is Bullet:
+		if body:
+			bullet_reflect(body)
 	if body is Enemy or body is World:
 		if body.STATUS_HANDLER:
 			match(status):
@@ -48,3 +50,14 @@ func _on_Projectile_body_entered(body):
 					pass
 			body.hurt_enemy(damage)
 			emit_signal("test_signal")
+
+func bullet_reflect(target):
+		target.set_collision_layer_bit(3, true)
+		target.set_collision_layer_bit(7, false)
+		target.set_collision_mask_bit(0, true)
+		target.set_collision_mask_bit(2, true)
+		target.set_collision_mask_bit(1, false)
+		target.set_collision_mask_bit(3, false)
+		target.reflected = true
+		target.movement_vector = self.movement_vector.normalized()
+		target.rotation.y = self.rotation.y

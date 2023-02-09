@@ -8,10 +8,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	self.translation += movement_vector * delta
-	if max_distance > 0.0:
-		distance_traveled()
-	pass
+	standard_translate(delta)
 
 func distance_traveled():
 	if global_transform.origin.distance_to(start_position) > max_distance:

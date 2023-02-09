@@ -162,7 +162,7 @@ start_node = "Move"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
 [sub_resource type="ViewportTexture" id=17]
-viewport_path = NodePath("Viewport")
+viewport_path = NodePath("Node2D/Viewport")
 
 [node name="Enemy" type="KinematicBody"]
 collision_layer = 4

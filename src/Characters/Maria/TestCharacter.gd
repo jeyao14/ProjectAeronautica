@@ -68,23 +68,23 @@ func set_animation():
 		match motion:
 			1:
 				facing_z = -1
-				ANIMATION.travel("Run_d")
+				ANIMATION.travel("run_d")
 			0:
 				facing_z = 1
-				ANIMATION.travel("Run_u")
+				ANIMATION.travel("run_u")
 			2:
 				facing_x = -1
 				facing_z = -1
-				ANIMATION.travel("Run_lr")
+				ANIMATION.travel("run_lr")
 			3:
 				facing_x = 1
 				facing_z = -1
-				ANIMATION.travel("Run_lr")
+				ANIMATION.travel("run_lr")
 	else:
 		if facing_z == -1:
-			ANIMATION.travel("Idle_f")
+			ANIMATION.travel("idle_d")
 		if facing_z == 1:
-			ANIMATION.travel("Idle_r")
+			ANIMATION.travel("idle_u")
 	pass
 
 func use_attack():
@@ -119,9 +119,9 @@ func activate_ability():
 		ability_anim = true
 		
 		if facing_z == -1:
-			ANIMATION.travel("Ability_f")
+			ANIMATION.travel("ability_f")
 		if facing_z == 1:
-			ANIMATION.travel("Ability_r")
+			ANIMATION.travel("ability_r")
 			
 		yield(get_tree().create_timer(0.5,false),"timeout");
 		ability_anim = false;

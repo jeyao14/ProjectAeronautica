@@ -19,22 +19,19 @@ signal test_signal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	movement_vector = direction.rotated(Vector3.UP, self.rotation.y).normalized() * speed
+	movement_vector = direction.rotated(Vector3.UP, self.rotation.y).normalized()
 	rotation_degrees.y = angle
 	pass # Replace with function body.
-
-
-func _physics_process(delta):
-	self.translation += movement_vector * delta
+	
+func standard_translate(delta):
+	self.translation += (movement_vector * speed) * delta
 	if max_distance > 0.0:
 		distance_traveled()
-	pass
 
 func distance_traveled():
 	if global_transform.origin.distance_to(start_position) > max_distance:
 		queue_free()
-
-
+		
 func _on_Projectile_area_entered(area):
 	if area is Enemy or area is World:
 		if area.STATUS_HANDLER:

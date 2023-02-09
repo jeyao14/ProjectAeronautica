@@ -443,10 +443,11 @@ shaded = true
 alpha_cut = 2
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.408018, 0 )
 bullet_path = "res://Characters/San/Projectile_San.tscn"
-uses_ammo = false
+ammocount = -1
+full_auto = true
 spread_angle = 0.0
-bullet_speed_override = 50.0
 
 [node name="ShootTimer" type="Timer" parent="."]
 

@@ -18,7 +18,6 @@ func _ready():
 #	don't let this stat go beyond 100
 	getCharData()
 	getPatternParameters()
-	print("san magsize: ", magsize)
 	reload_time = 0.6/dex
 	current_hp = hp;
 	pass # Replace with function body.
@@ -36,11 +35,10 @@ func _physics_process(delta):
 #		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
-	if(ammocount > 0 && !is_reloading):
-		SPAWNER.damage_min = weap_damage_min
-		SPAWNER.damage_max = weap_damage_max
-		SPAWNER.attack = att
-		SPAWNER.shoot = true
+	SPAWNER.damage_min = weap_damage_min
+	SPAWNER.damage_max = weap_damage_max
+	SPAWNER.attack = att
+	SPAWNER.shoot = true
 	
 func reload():
 	if(is_reloading || ammocount == magsize):
@@ -67,6 +65,7 @@ func use_ability():
 		ANIMATION.travel("Ability_r")
 	
 func activate_ability():
+	
 	pass
 	
 func ability_cooldown():
@@ -94,7 +93,7 @@ func getCharData():
 	idle_anim = "Maria_idle"
 	
 func getPatternParameters():
-	SPAWNER.cooldown = 0.25/dex
+	SPAWNER.cooldown = 0.5/dex
 	SPAWNER.ammocount = magsize;
 	ammocount = magsize;
 #	SPAWNER.full_auto = false;

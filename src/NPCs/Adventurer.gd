@@ -22,6 +22,5 @@ func _on_HitBox_area_entered(area):
 	
 
 func _on_HitBox_area_exited(area):
-	print("player left detection")
 	clear_speech_bubble();
 	detect = false;

@@ -177,4 +177,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26272, 1.21575, -16.9397 )
 
 [node name="Adventurer" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57084, 1.83594, -1.35347 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.18878, 1.83594, -6.29641 )
