@@ -11,8 +11,16 @@ onready var CHARACTERICON = load(character_icon)
 onready var WEAPONICON = preload("res://Assets/Characters/Maria/rifle.png")
 onready var charactername = "San"
 
+onready var ABILITYMARKER = $AbilityMarkerSpawn/Spatial
+onready var ABILITYRAYCAST = $AbilityMarkerSpawn/Spatial/MeshInstance/RayCast
+
+onready var TWEEN = get_node("Tween")
+
 var is_reloading = false;
 var reload_time
+var ability_input = false
+
+var target
 
 func _ready():
 #	don't let this stat go beyond 100
@@ -27,6 +35,8 @@ func _physics_process(delta):
 	set_animation()
 	set_facing()
 	GetSpawnerAmmoInfo()
+	if(ABILITYMARKER.visible && ability_active):
+		ability_rotate()
 	if current_hp <= 0:
 		set_alive()
 	
@@ -35,22 +45,14 @@ func _physics_process(delta):
 #		print("Ammo: ", ammocount, "/", magsize)
 
 func use_attack():
-	SPAWNER.damage_min = weap_damage_min
-	SPAWNER.damage_max = weap_damage_max
-	SPAWNER.attack = att
-	SPAWNER.shoot = true
+	if(!ability_active):
+		SPAWNER.damage_min = weap_damage_min
+		SPAWNER.damage_max = weap_damage_max
+		SPAWNER.attack = att
+		SPAWNER.shoot = true
 	
 func reload():
-	if(is_reloading || ammocount == magsize):
-		return
-	is_reloading = true;
-	SPAWNER.shoot = false;
-	emit_signal("start_reload")
-	yield(get_tree().create_timer(reload_time,false),"timeout");
-	ammocount = magsize;
-	SPAWNER.ammocount = ammocount;
-	is_reloading = false;
-#	print("Ammo: ", ammocount, "/", magsize)
+	pass
 
 func stop_attack():
 	SPAWNER.shoot = false
@@ -65,9 +67,52 @@ func use_ability():
 		ANIMATION.travel("Ability_r")
 	
 func activate_ability():
+	if(!ability_active):
+		ABILITYMARKER.visible = true;
+		ability_active = true
+		stop_attack()
 	
-	pass
+func stop_ability():
+	if(!ability_active or !ABILITYMARKER.visible):
+		return
+	var t = 0.1
+	ABILITYMARKER.visible = false
+	GLOBALS.CHARACTER_HANDLER.control_toggle = false;
+	TWEEN.interpolate_property(GLOBALS.CHARACTER_HANDLER, 
+		"translation", 
+		GLOBALS.CHARACTER_HANDLER.global_transform.origin, 
+		GLOBALS.CHARACTER_HANDLER.translation + Vector3(target.x, 0, target.z),
+		t,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN_OUT)
+	TWEEN.start()
+	yield(get_tree().create_timer(t,false),"timeout");
+	GLOBALS.CHARACTER_HANDLER.control_toggle = true;
+	ABILITYTIMER.start()
 	
+#	if(ABILITYMARKERSPAWN.get_children()):
+#		var a = ABILITYMARKERSPAWN.get_child(0)
+#		ABILITYMARKERSPAWN.remove_child(a)
+#		a.queue_free()
+	
+func ability_rotate():
+	var a_range = 7
+	var global_pos = GLOBALS.CHARACTER_HANDLER.global_transform.origin
+	var direction_vector = -(global_pos - mouse_direction).normalized()
+	var direction_angle = rad2deg(atan2(direction_vector.x, direction_vector.z))
+	
+	
+	
+	var scale_size = global_pos.distance_to(mouse_direction)
+	
+	ABILITYMARKER.rotate_mesh(direction_angle)
+	if(scale_size < a_range):
+		target = direction_vector * scale_size
+		ABILITYMARKER.resize_mesh(scale_size*2)
+	else:
+		target = direction_vector * a_range
+		ABILITYMARKER.resize_mesh(a_range*2)
+
 func ability_cooldown():
 	ABILITYTIMER.start()
 

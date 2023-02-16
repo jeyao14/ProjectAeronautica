@@ -23,6 +23,7 @@ onready var GUI = $GUI;
 var dash_timer = false;
 var can_dash = true
 var dash_cooldown = .5
+var control_toggle = true;
 
 signal gui_set_players
 signal gui_set_active
@@ -63,24 +64,25 @@ func _physics_process(delta):
 
 func calculate_movement():
 	var l_speed = ACTIVE_CHARACTER.speed;
-	if(!dash_timer):
-		if Input.is_action_pressed("move_forward"):
-			velocity.z = -1
-		elif Input.is_action_pressed("move_back"):
-			velocity.z = 1
+	if(control_toggle):
+		if(!dash_timer):
+			if Input.is_action_pressed("move_forward"):
+				velocity.z = -1
+			elif Input.is_action_pressed("move_back"):
+				velocity.z = 1
+			else:
+				velocity.z = 0;
+			if Input.is_action_pressed("move_right"):
+				velocity.x = 1
+			elif Input.is_action_pressed("move_left"):
+				velocity.x = -1
+			else:
+				velocity.x = 0;
+			
+			if Input.is_action_just_pressed("dodgeroll") and can_dash:
+				dodge()
 		else:
-			velocity.z = 0;
-		if Input.is_action_pressed("move_right"):
-			velocity.x = 1
-		elif Input.is_action_pressed("move_left"):
-			velocity.x = -1
-		else:
-			velocity.x = 0;
-		
-		if Input.is_action_just_pressed("dodgeroll") and can_dash:
-			dodge()
-	else:
-		l_speed *= dodge_markiplier;
+			l_speed *= dodge_markiplier;
 	
 	
 	

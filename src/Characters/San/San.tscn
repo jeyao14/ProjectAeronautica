@@ -1,16 +1,14 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Characters/San/San.gd" type="Script" id=1]
+[ext_resource path="res://Characters/San/ability_marker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/Shared/HitBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Shared/BulletSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/StatusIcon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Characters/Rhodes/Assets/rhodesspritesheet.png" type="Texture" id=6]
 
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 0.605, 0.175, 1.14 )
-
-[sub_resource type="StreamTexture" id=70]
-flags = 23
-load_path = "res://.import/mariaspritesheet_v001.png-3fc95fb01b49883ce46313f77246caa0.s3tc.stex"
 
 [sub_resource type="Animation" id=51]
 resource_name = "Ability_f"
@@ -400,7 +398,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0 )
 generate_lightmap = false
 billboard = 1
 shaded = true
-texture = SubResource( 70 )
+texture = ExtResource( 6 )
 hframes = 12
 vframes = 12
 frame = 101
@@ -454,6 +452,7 @@ spread_angle = 0.0
 [node name="TurretGroup" type="Node" parent="."]
 
 [node name="AbilityCooldown" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [node name="Node2D" parent="." instance=ExtResource( 5 )]
@@ -462,6 +461,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 [node name="Quad" parent="Node2D" index="1"]
 texture = SubResource( 16 )
 
+[node name="AbilityMarkerSpawn" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1448, 0 )
+
+[node name="Spatial" parent="AbilityMarkerSpawn" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 [connection signal="timeout" from="AbilityCooldown" to="." method="_on_AbilityCooldown_timeout"]
@@ -469,3 +476,4 @@ texture = SubResource( 16 )
 [editable path="HitBox"]
 [editable path="Spawner"]
 [editable path="Node2D"]
+[editable path="AbilityMarkerSpawn/Spatial"]

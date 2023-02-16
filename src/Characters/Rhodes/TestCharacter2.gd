@@ -67,13 +67,24 @@ func _on_HitBox_area_entered(area):
 	pass # Replace with function body.
 
 func activate_ability():
+	ability_anim = true
+	ability_active = true
+	
+	ANIMATION.travel("ability_d")
+	
+func shoot_ability():
 	ASPAWNER.damage_min = ability_damage_min
 	ASPAWNER.damage_max = ability_damage_max
 	ASPAWNER.attack = att
 	ASPAWNER.shoot = true;
 	
-func stop_ability():
+func disable_ability():
+	ability_anim = false
+	ability_active = false
 	ASPAWNER.shoot = false;
+	
+func toggle_control():
+	GLOBALS.CHARACTER_HANDLER.control_toggle = !GLOBALS.CHARACTER_HANDLER.control_toggle
 
 func _on_HitBox_body_entered(body):
 #	hurt_player()

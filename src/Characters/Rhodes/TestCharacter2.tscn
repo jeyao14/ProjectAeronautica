@@ -1,6 +1,6 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=68 format=2]
 
-[ext_resource path="res://Characters/Rhodes/Assets/rhodesspritesheeta.png" type="Texture" id=1]
+[ext_resource path="res://Characters/Rhodes/Assets/rhodesspritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Rhodes/TestCharacter2.gd" type="Script" id=2]
 [ext_resource path="res://Characters/Shared/HitBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/StatusIcon.tscn" type="PackedScene" id=4]
@@ -22,6 +22,81 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=59]
+resource_name = "ability_d"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 39, 40, 41, 42, 43 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_ability"
+}, {
+"args": [  ],
+"method": "disable_ability"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "toggle_control"
+}, {
+"args": [  ],
+"method": "toggle_control"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 0.0738305, 1e-05 ),
+"update": 1,
+"values": [ 0, 10 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -163,6 +238,9 @@ tracks/0/keys = {
 "values": [ 29, 30, 31, 32 ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=63]
+animation = "ability_d"
+
 [sub_resource type="AnimationNodeAnimation" id=21]
 animation = "idle_d"
 
@@ -261,9 +339,29 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=58]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=9]
+states/ability_d/node = SubResource( 63 )
+states/ability_d/position = Vector2( 338, 429.463 )
 states/idle_d/node = SubResource( 21 )
-states/idle_d/position = Vector2( 244, 200 )
+states/idle_d/position = Vector2( 244, 221 )
 states/idle_u/node = SubResource( 5 )
 states/idle_u/position = Vector2( 244, 116 )
 states/roll_d/node = SubResource( 22 )
@@ -278,9 +376,9 @@ states/run_lr/node = SubResource( 26 )
 states/run_lr/position = Vector2( 699, 14 )
 states/run_u/node = SubResource( 27 )
 states/run_u/position = Vector2( 547, 14 )
-transitions = [ "idle_u", "run_u", SubResource( 28 ), "idle_u", "run_d", SubResource( 29 ), "idle_u", "run_lr", SubResource( 30 ), "run_u", "idle_u", SubResource( 31 ), "run_d", "idle_u", SubResource( 32 ), "run_lr", "idle_u", SubResource( 33 ), "idle_d", "run_u", SubResource( 34 ), "idle_d", "run_d", SubResource( 35 ), "idle_d", "run_lr", SubResource( 36 ), "run_u", "idle_d", SubResource( 37 ), "run_d", "idle_d", SubResource( 38 ), "run_lr", "idle_d", SubResource( 39 ), "idle_u", "roll_u", SubResource( 40 ), "idle_u", "roll_lr", SubResource( 41 ), "idle_u", "roll_d", SubResource( 42 ), "idle_d", "roll_u", SubResource( 43 ), "idle_d", "roll_lr", SubResource( 44 ), "idle_d", "roll_d", SubResource( 45 ), "roll_u", "idle_u", SubResource( 46 ), "roll_lr", "idle_u", SubResource( 47 ), "roll_d", "idle_u", SubResource( 48 ), "roll_u", "idle_d", SubResource( 49 ), "roll_lr", "idle_d", SubResource( 50 ), "roll_d", "idle_d", SubResource( 51 ), "run_u", "roll_u", SubResource( 52 ), "run_d", "roll_d", SubResource( 53 ), "run_lr", "roll_lr", SubResource( 54 ), "run_lr", "roll_u", SubResource( 55 ), "run_lr", "roll_d", SubResource( 56 ), "run_u", "roll_lr", SubResource( 57 ), "run_d", "roll_lr", SubResource( 58 ) ]
+transitions = [ "idle_u", "run_u", SubResource( 28 ), "idle_u", "run_d", SubResource( 29 ), "idle_u", "run_lr", SubResource( 30 ), "run_u", "idle_u", SubResource( 31 ), "run_d", "idle_u", SubResource( 32 ), "run_lr", "idle_u", SubResource( 33 ), "idle_d", "run_u", SubResource( 34 ), "idle_d", "run_d", SubResource( 35 ), "idle_d", "run_lr", SubResource( 36 ), "run_u", "idle_d", SubResource( 37 ), "run_d", "idle_d", SubResource( 38 ), "run_lr", "idle_d", SubResource( 39 ), "idle_u", "roll_u", SubResource( 40 ), "idle_u", "roll_lr", SubResource( 41 ), "idle_u", "roll_d", SubResource( 42 ), "idle_d", "roll_u", SubResource( 43 ), "idle_d", "roll_lr", SubResource( 44 ), "idle_d", "roll_d", SubResource( 45 ), "roll_u", "idle_u", SubResource( 46 ), "roll_lr", "idle_u", SubResource( 47 ), "roll_d", "idle_u", SubResource( 48 ), "roll_u", "idle_d", SubResource( 49 ), "roll_lr", "idle_d", SubResource( 50 ), "roll_d", "idle_d", SubResource( 51 ), "run_u", "roll_u", SubResource( 52 ), "run_d", "roll_d", SubResource( 53 ), "run_lr", "roll_lr", SubResource( 54 ), "run_lr", "roll_u", SubResource( 55 ), "run_lr", "roll_d", SubResource( 56 ), "run_u", "roll_lr", SubResource( 57 ), "run_d", "roll_lr", SubResource( 58 ), "idle_d", "idle_u", SubResource( 61 ), "idle_u", "idle_d", SubResource( 62 ), "idle_d", "ability_d", SubResource( 64 ), "run_d", "ability_d", SubResource( 65 ), "run_u", "ability_d", SubResource( 66 ), "run_lr", "ability_d", SubResource( 67 ), "idle_u", "ability_d", SubResource( 68 ), "ability_d", "idle_d", SubResource( 69 ) ]
 start_node = "idle_d"
-graph_offset = Vector2( -125, 15 )
+graph_offset = Vector2( -145, 21.5857 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
@@ -314,6 +412,7 @@ vframes = 12
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite3D")
 anims/RESET = SubResource( 13 )
+anims/ability_d = SubResource( 59 )
 anims/idle_d = SubResource( 2 )
 anims/idle_u = SubResource( 4 )
 anims/roll_d = SubResource( 19 )

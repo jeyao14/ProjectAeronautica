@@ -37,7 +37,9 @@ shape = SubResource( 3 )
 
 [node name="InteractionDetection" type="CollisionShape" parent="."]
 transform = Transform( 4.48397, 0, 0, 0, 4.48397, 0, 0, 0, 4.48397, 0, 0, 0 )
+visible = false
 shape = SubResource( 2 )
+disabled = true
 
 [node name="Node2D" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78883, 0 )
