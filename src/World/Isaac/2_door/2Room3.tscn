@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://World/Common/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Common/Floor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/Isaac/RoomTemplate.gd" type="Script" id=4]
+[ext_resource path="res://World/Common/DoorWall.tscn" type="PackedScene" id=5]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -41, 0.5, -49.5, -49.5, 0.5, -49.5, -49.5, 0.5, -40.75, -32.25, 0.5, -49.5, -41, 0.5, -49.5, -49.5, 0.5, -40.75, -32.25, 0.5, -49.5, -49.5, 0.5, -40.75, -49.5, 0.5, -32, -23.5, 0.5, -49.5, -17.25, 0.5, -16.5, -14.75, 0.5, -16.5, -14.75, 0.5, -49.5, -23.5, 0.5, -49.5, -49.5, 0.5, -32, -49.5, 0.5, -23.25, -49.5, 0.5, -14.25, -17.5, 0.5, -14.25, -17.25, 0.5, -16.5, -49.5, 0.5, -23.25, -12.25, 0.5, -9.5, -12.25, 0.5, -2.5, -6.25, 0.5, -2.5, 6.25, 0.5, -2.5, 12.5, 0.5, -2.5, 12.5, 0.5, -9.5, -12.25, 0.5, -9.5, -6.25, 0.5, -2.5, 0, 0.5, -2.5, 0, 0.5, -2.5, 6.25, 0.5, -2.5, 12.5, 0.5, -9.5, 12.5, 0.5, -16.25, -12.25, 0.5, -16.25, -12.25, 0.5, -9.5, -14.75, 0.5, -16.5, 0.25, 0.5, -49.5, -7.25, 0.5, -49.5, 15.25, 0.5, -16.5, 15.25, 0.5, -49.5, 7.75, 0.5, -49.5, -7.25, 0.5, -49.5, -14.75, 0.5, -49.5, -14.75, 0.5, -16.5, -14.75, 0.5, -16.5, -12.25, 0.5, -16.25, 12.5, 0.5, -16.25, 15.25, 0.5, -16.5, 7.75, 0.5, -49.5, 0.25, 0.5, -49.5, 49.5, 0.5, -41, 49.5, 0.5, -49.5, 40.75, 0.5, -49.5, 49.5, 0.5, -41, 40.75, 0.5, -49.5, 32.25, 0.5, -49.5, 49.5, 0.5, -32.25, 15.25, 0.5, -49.5, 15.25, 0.5, -16.5, 17.5, 0.5, -16.5, 23.75, 0.5, -49.5, 49.5, 0.5, -23.75, 49.5, 0.5, -32.25, 32.25, 0.5, -49.5, 17.5, 0.5, -16.5, 17.75, 0.5, -14.75, 49.5, 0.5, -15, 49.5, 0.5, -23.75, 32.25, 0.5, -49.5, 23.75, 0.5, -49.5, -16.5, 4.5, -3.75, -13.5, 4.5, -3.75, -13.5, 4.5, -15.5, -16.5, 4.5, -15.5, 13.5, 4.5, -3.75, 16.5, 4.5, -3.75, 16.5, 4.5, -15.5, 13.5, 4.5, -15.5, -13.5, 0.5, -7.75, -13.5, 0.5, -15.25, -16.25, 0.5, -15.25, -16.25, 0.5, -7.75, -16.25, 0.5, 0, -16.25, 0.5, 7.75, -13.5, 0.5, 7.75, -13.5, 0.5, 0, -16.25, 0.5, 7.75, -16.25, 0.5, 15.5, -13.5, 0.5, 15.5, -13.5, 0.5, 7.75, -13.5, 0.5, 0, -13.5, 0.5, -7.75, -16.25, 0.5, -7.75, -16.25, 0.5, 0, 16.5, 0.5, -7.75, 16.5, 0.5, -15.25, 13.75, 0.5, -15.25, 13.75, 0.5, -7.75, 13.75, 0.5, 0, 13.75, 0.5, 7.75, 16.5, 0.5, 7.75, 16.5, 0.5, 0, 13.75, 0.5, 7.75, 13.75, 0.5, 15.5, 16.5, 0.5, 15.5, 16.5, 0.5, 7.75, 16.5, 0.5, 0, 16.5, 0.5, -7.75, 13.75, 0.5, -7.75, 13.75, 0.5, 0, 17.75, 0.5, 14.75, 49.5, 0.5, 15, 49.5, 0.5, 7.5, 17.75, 0.5, 7.25, 17.75, 0.5, -7.5, 17.75, 0.5, 0, 49.5, 0.5, 0, 49.5, 0.5, -7.5, 17.75, 0.5, 7.25, 49.5, 0.5, 7.5, 49.5, 0.5, 0, 17.75, 0.5, 0, 17.75, 0.5, -14.75, 17.75, 0.5, -7.5, 49.5, 0.5, -7.5, 49.5, 0.5, -15, -17.5, 0.5, -7.25, -17.5, 0.5, -14.25, -49.5, 0.5, -14.25, -49.5, 0.5, -7.25, -17.5, 0.5, 0, -17.5, 0.5, -7.25, -49.5, 0.5, -7.25, -49.5, 0.5, 0, -49.5, 0.5, 14.5, -17.5, 0.5, 14.5, -17.5, 0.5, 7.25, -49.5, 0.5, 7.25, -49.5, 0.5, 0, -49.5, 0.5, 7.25, -17.5, 0.5, 7.25, -17.5, 0.5, 0, -16.5, 4.5, 3.75, -13.5, 4.5, 3.75, -13.5, 4.5, 1.75, -13.5, 4.5, -1.75, -13.5, 4.5, -3.75, -16.5, 4.5, -3.75, -13.5, 4.5, 1.75, -11.25, 4.5, 1.5, -11.25, 4.5, -1.5, -13.5, 4.5, -1.75, -16.5, 4.5, -3.75, -16.5, 4.5, 3.75, -13.5, 4.5, 1.75, -13.5, 4.5, -1.75, 13.25, 4.5, -1.5, 11.25, 4.5, -1.5, 11.25, 4.5, 1.5, 13.25, 4.5, 1.5, 13.25, 4.5, -1.5, 13.25, 4.5, 1.5, 13.5, 4.5, 3.75, 16.5, 4.5, 3.75, 16.5, 4.5, -3.75, 13.5, 4.5, -3.75, 0, 4.5, 1.5, 11.25, 4.5, 1.5, 11.25, 4.5, -1.5, 0, 4.5, -1.5, 0, 4.5, -1.5, -11.25, 4.5, -1.5, -11.25, 4.5, 1.5, 0, 4.5, 1.5, -12.25, 0.5, -1.25, -12.25, 0.5, 1.5, -6.25, 0.5, 1.5, -6.25, 0.5, -1.25, 0, 0.5, 1.5, 6.25, 0.5, 1.5, 6.25, 0.5, -1.25, 0, 0.5, -1.25, 6.25, 0.5, 1.5, 12.5, 0.5, 1.5, 12.5, 0.5, -1.25, 6.25, 0.5, -1.25, 0, 0.5, -1.25, -6.25, 0.5, -1.25, -6.25, 0.5, 1.5, 0, 0.5, 1.5, -6.25, 0.5, 2.75, -12.25, 0.5, 2.75, -12.25, 0.5, 9.5, 12.5, 0.5, 9.5, 12.5, 0.5, 2.75, 6.25, 0.5, 2.75, 0, 0.5, 2.75, -6.25, 0.5, 2.75, -12.25, 0.5, 9.5, 12.5, 0.5, 9.5, 6.25, 0.5, 2.75, 0, 0.5, 2.75, -12.25, 0.5, 9.5, -12.25, 0.5, 16.5, 12.5, 0.5, 16.5, -14, 0.5, 16.75, -7, 0.5, 49.5, 0, 0.5, 49.5, -14, 0.5, 16.75, -13.75, 0.5, 49.5, -7, 0.5, 49.5, 7, 0.5, 49.5, 14, 0.5, 49.5, 14.25, 0.5, 16.75, 14.25, 0.5, 16.75, 12.5, 0.5, 16.5, -12.25, 0.5, 16.5, -14, 0.5, 16.75, 0, 0.5, 49.5, 7, 0.5, 49.5, -13.5, 4.5, 3.75, -16.5, 4.5, 3.75, -16.5, 4.5, 15.5, -13.5, 4.5, 15.5, 16.5, 4.5, 3.75, 13.5, 4.5, 3.75, 13.5, 4.5, 15.5, 16.5, 4.5, 15.5, -49.5, 0.5, 40.75, -49.5, 0.5, 49.5, -41.25, 0.5, 49.5, -49.5, 0.5, 40.75, -41.25, 0.5, 49.5, -32.75, 0.5, 49.5, -49.5, 0.5, 32, -49.5, 0.5, 40.75, -32.75, 0.5, 49.5, -24.5, 0.5, 49.5, -16, 0.5, 49.5, -15.75, 0.5, 16.75, -17.5, 0.5, 16.5, -49.5, 0.5, 23.25, -49.5, 0.5, 32, -24.5, 0.5, 49.5, -17.5, 0.5, 16.5, -17.5, 0.5, 14.5, -49.5, 0.5, 14.5, -49.5, 0.5, 23.25, 41, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, 40.75, 32.75, 0.5, 49.5, 41, 0.5, 49.5, 49.5, 0.5, 40.75, 32.75, 0.5, 49.5, 49.5, 0.5, 40.75, 49.5, 0.5, 32.25, 24.25, 0.5, 49.5, 17.25, 0.5, 16.75, 15.75, 0.5, 16.75, 16, 0.5, 49.5, 24.25, 0.5, 49.5, 49.5, 0.5, 32.25, 49.5, 0.5, 23.5, 49.5, 0.5, 15, 17.75, 0.5, 14.75, 17.75, 0.5, 16.25, 49.5, 0.5, 15, 17.75, 0.5, 16.25, 17.25, 0.5, 16.75, 49.5, 0.5, 23.5, -16, 0.5, 49.5, -13.75, 0.5, 49.5, -14, 0.5, 16.75, -15.75, 0.5, 16.75, 14, 0.5, 49.5, 16, 0.5, 49.5, 15.75, 0.5, 16.75, 14.25, 0.5, 16.75 )
+polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 7, 6, 8 ), PoolIntArray( 8, 6, 9 ), PoolIntArray( 11, 10, 12 ), PoolIntArray( 12, 10, 13 ), PoolIntArray( 13, 10, 14 ), PoolIntArray( 14, 10, 15 ), PoolIntArray( 17, 16, 18 ), PoolIntArray( 18, 16, 19 ), PoolIntArray( 22, 21, 20 ), PoolIntArray( 25, 24, 23 ), PoolIntArray( 28, 27, 26 ), PoolIntArray( 30, 29, 31 ), PoolIntArray( 31, 29, 32 ), PoolIntArray( 32, 29, 34 ), PoolIntArray( 32, 34, 33 ), PoolIntArray( 37, 36, 35 ), PoolIntArray( 40, 39, 38 ), PoolIntArray( 43, 42, 41 ), PoolIntArray( 45, 44, 46 ), PoolIntArray( 46, 44, 47 ), PoolIntArray( 47, 44, 49 ), PoolIntArray( 47, 49, 48 ), PoolIntArray( 52, 51, 50 ), PoolIntArray( 54, 53, 55 ), PoolIntArray( 55, 53, 56 ), PoolIntArray( 58, 57, 59 ), PoolIntArray( 59, 57, 60 ), PoolIntArray( 61, 63, 62 ), PoolIntArray( 65, 64, 66 ), PoolIntArray( 66, 64, 67 ), PoolIntArray( 67, 64, 68 ), PoolIntArray( 68, 64, 69 ), PoolIntArray( 73, 72, 70 ), PoolIntArray( 70, 72, 71 ), PoolIntArray( 77, 76, 74 ), PoolIntArray( 74, 76, 75 ), PoolIntArray( 81, 80, 78 ), PoolIntArray( 78, 80, 79 ), PoolIntArray( 85, 84, 82 ), PoolIntArray( 82, 84, 83 ), PoolIntArray( 89, 88, 86 ), PoolIntArray( 86, 88, 87 ), PoolIntArray( 93, 92, 90 ), PoolIntArray( 90, 92, 91 ), PoolIntArray( 97, 96, 94 ), PoolIntArray( 94, 96, 95 ), PoolIntArray( 101, 100, 98 ), PoolIntArray( 98, 100, 99 ), PoolIntArray( 105, 104, 102 ), PoolIntArray( 102, 104, 103 ), PoolIntArray( 109, 108, 106 ), PoolIntArray( 106, 108, 107 ), PoolIntArray( 113, 112, 110 ), PoolIntArray( 110, 112, 111 ), PoolIntArray( 117, 116, 114 ), PoolIntArray( 114, 116, 115 ), PoolIntArray( 121, 120, 118 ), PoolIntArray( 118, 120, 119 ), PoolIntArray( 123, 122, 124 ), PoolIntArray( 124, 122, 125 ), PoolIntArray( 129, 128, 126 ), PoolIntArray( 126, 128, 127 ), PoolIntArray( 133, 132, 130 ), PoolIntArray( 130, 132, 131 ), PoolIntArray( 137, 136, 134 ), PoolIntArray( 134, 136, 135 ), PoolIntArray( 141, 140, 138 ), PoolIntArray( 138, 140, 139 ), PoolIntArray( 144, 143, 142 ), PoolIntArray( 147, 146, 145 ), PoolIntArray( 149, 148, 150 ), PoolIntArray( 150, 148, 151 ), PoolIntArray( 155, 154, 152 ), PoolIntArray( 152, 154, 153 ), PoolIntArray( 159, 158, 156 ), PoolIntArray( 156, 158, 157 ), PoolIntArray( 165, 164, 160 ), PoolIntArray( 160, 164, 161 ), PoolIntArray( 161, 164, 162 ), PoolIntArray( 162, 164, 163 ), PoolIntArray( 169, 168, 166 ), PoolIntArray( 166, 168, 167 ), PoolIntArray( 173, 172, 170 ), PoolIntArray( 170, 172, 171 ), PoolIntArray( 177, 176, 174 ), PoolIntArray( 174, 176, 175 ), PoolIntArray( 181, 180, 178 ), PoolIntArray( 178, 180, 179 ), PoolIntArray( 185, 184, 182 ), PoolIntArray( 182, 184, 183 ), PoolIntArray( 189, 188, 186 ), PoolIntArray( 186, 188, 187 ), PoolIntArray( 192, 191, 190 ), PoolIntArray( 195, 194, 193 ), PoolIntArray( 198, 197, 196 ), PoolIntArray( 200, 199, 201 ), PoolIntArray( 201, 199, 204 ), PoolIntArray( 201, 204, 202 ), PoolIntArray( 202, 204, 203 ), PoolIntArray( 207, 206, 205 ), PoolIntArray( 210, 209, 208 ), PoolIntArray( 213, 212, 211 ), PoolIntArray( 215, 214, 216 ), PoolIntArray( 216, 214, 217 ), PoolIntArray( 217, 214, 218 ), PoolIntArray( 218, 214, 219 ), PoolIntArray( 223, 222, 220 ), PoolIntArray( 220, 222, 221 ), PoolIntArray( 227, 226, 224 ), PoolIntArray( 224, 226, 225 ), PoolIntArray( 230, 229, 228 ), PoolIntArray( 233, 232, 231 ), PoolIntArray( 235, 234, 236 ), PoolIntArray( 236, 234, 237 ), PoolIntArray( 239, 238, 240 ), PoolIntArray( 240, 238, 243 ), PoolIntArray( 240, 243, 242 ), PoolIntArray( 240, 242, 241 ), PoolIntArray( 245, 244, 246 ), PoolIntArray( 246, 244, 247 ), PoolIntArray( 250, 249, 248 ), PoolIntArray( 253, 252, 251 ), PoolIntArray( 255, 254, 256 ), PoolIntArray( 256, 254, 257 ), PoolIntArray( 259, 258, 260 ), PoolIntArray( 260, 258, 261 ), PoolIntArray( 261, 258, 262 ), PoolIntArray( 262, 258, 263 ), PoolIntArray( 266, 265, 264 ), PoolIntArray( 268, 267, 269 ), PoolIntArray( 269, 267, 270 ), PoolIntArray( 274, 273, 271 ), PoolIntArray( 271, 273, 272 ), PoolIntArray( 278, 277, 275 ), PoolIntArray( 275, 277, 276 ) ]
+
+[node name="MediumRoom" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 1 )
+
+[node name="Floor" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+
+[node name="MidWall" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 1 )]
+transform = Transform( 6.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="MeshInstance" parent="Navigation/NavigationMeshInstance/MidWall" index="0"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0 )
+
+[node name="CollisionShape" parent="Navigation/NavigationMeshInstance/MidWall" index="1"]
+transform = Transform( 2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 0, 2, 0 )
+
+[node name="RightWall" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 1 )]
+transform = Transform( -3.49691e-07, 0, 1, 0, 1, 0, -8, 0, -4.37114e-08, 15, 0, 0 )
+
+[node name="MeshInstance" parent="Navigation/NavigationMeshInstance/RightWall" index="0"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0 )
+
+[node name="CollisionShape" parent="Navigation/NavigationMeshInstance/RightWall" index="1"]
+transform = Transform( 2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 0, 2, 0 )
+
+[node name="LeftWall" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 1 )]
+transform = Transform( -3.49691e-07, 0, 1, 0, 1, 0, -8, 0, -4.37114e-08, -15, 0, 0 )
+
+[node name="MeshInstance" parent="Navigation/NavigationMeshInstance/LeftWall" index="0"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0 )
+
+[node name="CollisionShape" parent="Navigation/NavigationMeshInstance/LeftWall" index="1"]
+transform = Transform( 2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 0, 2, 0 )
+
+[node name="TopWall" type="Spatial" parent="Navigation"]
+
+[node name="DoorWall" parent="Navigation/TopWall" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49 )
+
+[node name="Wall" parent="Navigation/TopWall/DoorWall" index="2"]
+transform = Transform( 11.5, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="Wall2" parent="Navigation/TopWall/DoorWall" index="3"]
+transform = Transform( 11.5, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="Wall" parent="Navigation/TopWall" instance=ExtResource( 1 )]
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49 )
+
+[node name="BotWall" type="Spatial" parent="Navigation"]
+
+[node name="DoorWall" parent="Navigation/BotWall" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 49 )
+
+[node name="Wall" parent="Navigation/BotWall/DoorWall" index="2"]
+transform = Transform( 11, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="Wall2" parent="Navigation/BotWall/DoorWall" index="3"]
+transform = Transform( 11, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="Wall" parent="Navigation/BotWall" instance=ExtResource( 1 )]
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 49 )
+
+[node name="RightWall" type="Spatial" parent="Navigation"]
+
+[node name="DoorWall" parent="Navigation/RightWall" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 49, 0, 0 )
+
+[node name="Wall" parent="Navigation/RightWall/DoorWall" index="2"]
+transform = Transform( 11.5, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="Wall2" parent="Navigation/RightWall/DoorWall" index="3"]
+transform = Transform( 11.5, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="Wall" parent="Navigation/RightWall" instance=ExtResource( 1 )]
+transform = Transform( -1.09278e-06, 0, 1, 0, 1, 0, -25, 0, -4.37114e-08, 49, 0, 0 )
+
+[node name="LeftWall" type="Spatial" parent="Navigation"]
+
+[node name="DoorWall" parent="Navigation/LeftWall" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -49, 0, 0 )
+
+[node name="Wall" parent="Navigation/LeftWall/DoorWall" index="2"]
+transform = Transform( 11.5, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="Wall2" parent="Navigation/LeftWall/DoorWall" index="3"]
+transform = Transform( 11.5, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="Wall" parent="Navigation/LeftWall" instance=ExtResource( 1 )]
+transform = Transform( -1.09278e-06, 0, 1, 0, 1, 0, -25, 0, -4.37114e-08, -49, 0, 0 )
+
+[editable path="Navigation/NavigationMeshInstance/Floor"]
+[editable path="Navigation/NavigationMeshInstance/MidWall"]
+[editable path="Navigation/NavigationMeshInstance/RightWall"]
+[editable path="Navigation/NavigationMeshInstance/LeftWall"]
+[editable path="Navigation/TopWall/DoorWall"]
+[editable path="Navigation/TopWall/DoorWall/Door"]
+[editable path="Navigation/TopWall/DoorWall/Wall"]
+[editable path="Navigation/TopWall/DoorWall/Wall2"]
+[editable path="Navigation/BotWall/DoorWall"]
+[editable path="Navigation/BotWall/DoorWall/Door"]
+[editable path="Navigation/BotWall/DoorWall/Wall"]
+[editable path="Navigation/BotWall/DoorWall/Wall2"]
+[editable path="Navigation/RightWall/DoorWall"]
+[editable path="Navigation/RightWall/DoorWall/Door"]
+[editable path="Navigation/RightWall/DoorWall/Wall"]
+[editable path="Navigation/RightWall/DoorWall/Wall2"]
+[editable path="Navigation/LeftWall/DoorWall"]
+[editable path="Navigation/LeftWall/DoorWall/Door"]
+[editable path="Navigation/LeftWall/DoorWall/Wall"]
+[editable path="Navigation/LeftWall/DoorWall/Wall2"]

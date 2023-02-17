@@ -12,7 +12,7 @@ polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 7, 
 
 [node name="MediumRoom" type="Spatial"]
 script = ExtResource( 4 )
-doors = [ NodePath("Navigation/DoorWall/Door"), NodePath("Navigation/DoorWall2/Door") ]
+DOORS = [ NodePath("Navigation/DoorWall/Door"), NodePath("Navigation/DoorWall2/Door") ]
 
 [node name="Navigation" type="Navigation" parent="."]
 

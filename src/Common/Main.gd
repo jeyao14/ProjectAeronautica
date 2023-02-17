@@ -21,7 +21,7 @@ func clear_menus():
 		menu.queue_free()
 
 
-func load_level(level = "TestLevel"):
+func load_level(level = "TEST_LEVEL"):
 	GLOBALS.paused = true
 	self.level = GLOBALS.load_level(level)
 	level_name = level

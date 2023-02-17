@@ -6,7 +6,7 @@ var ROOM_PATHS = GLOBALS.TEST_ROOMS
 export var max_iterations = 100
 export var room_num = 10
 export var min_rooms = 5
-export var area = Vector2(100, 100)
+export var area = Vector2(300, 300)
 onready var rng = RandomNumberGenerator.new()
 onready var ROOMS = $Rooms
 var door_positions = []
@@ -17,6 +17,7 @@ signal rooms_spawned()
 func _ready():
 	print("HELLO")
 	$CharacterSpawnPoint.global_transform.origin = $Rooms/SpawnRoom.get_node("CharacterSpawnPoint").global_transform.origin
+	
 	generate_rooms(room_num)
 	pass # Replace with function body.
 	
@@ -44,7 +45,7 @@ func generate_room():
 	var selected_room = load(ROOM_PATHS[rand_index])
 	# Choose a random position for the room within the given area.
 	randomize()
-	var position = Vector3(stepify(rand_range(-area.x, area.x), 4), 0, stepify(rand_range(-area.y, area.y), 4))
+	var position = Vector3(stepify(rand_range(-area.x, area.x), 5), 0, stepify(rand_range(-area.y, area.y), 5))
 	rng.randomize()
 	var rotation = Vector3(0, rng.randi_range(0, 3) * 90, 0)
 	# Create the room node and add it to the list of rooms.
@@ -66,7 +67,7 @@ func _on_level_rooms_spawned():
 	var room_count = ROOMS.get_child_count()
 	if room_count < min_rooms:
 		print("need more rooms")
-		area += Vector2(20, 20)
+		area += Vector2(30, 30)
 #		area *= 2
 		generate_rooms(room_count + min_rooms)
 	else:
@@ -82,37 +83,3 @@ func _on_level_rooms_spawned():
 		
 		
 		pass # Replace with function body.
-
-func store_door_positions():
-	for room in ROOMS.get_children():
-		for door in room.DOORS:
-			door_positions.append(door.global_translation)
-	pass
-
-func find_mst():
-	var nodes = door_positions
-	
-	var path = AStar.new()
-	path.add_point(path.get_available_point_id(), nodes.pop_front())
-	
-	while nodes:
-		var min_dist = INF
-		var min_pos = null
-		var curr_pos = null
-		
-		for p1 in path.get_points():
-				p1 = path.get_point_position(p1)
-				
-				for p2 in nodes:
-					if p1.distance_to(p2) < min_dist:
-						min_dist = p1.distance_to(p2)
-						min_pos = p2
-						curr_pos = p1
-		var n = path.get_available_point_id()
-		path.add_point(n, min_pos)
-		path.connect_points(path.get_closest_point(curr_pos), n)
-		nodes.erase(min_pos)
-	return path
-
-func create_halls():
-	pass

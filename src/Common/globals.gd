@@ -26,6 +26,15 @@ var TEST_ROOMS = [
 	"res://World/TestRooms/SmallRoom.tscn",
 	"res://World/TestRooms/MediumRoom.tscn"
 ]
+
+var TEST_ROOMS_V2 = [
+	"res://World/DungeonGenV3/Rooms/Tiny.tscn",
+	"res://World/DungeonGenV3/Rooms/Small.tscn",
+	"res://World/DungeonGenV3/Rooms/Medium.tscn",
+	"res://World/DungeonGenV3/Rooms/Big.tscn"
+#	"res://World/DungeonGenV3/Rooms/Giant.tscn"
+]
+
 var TEST_HALLWAYS = [
 	"res://World/TestRooms/TestHallway.tscn",
 	"res://World/TestRooms/TestLeftCornerHallway.tscn"
@@ -46,14 +55,16 @@ func ready():
 func load_level(level):
 	var instance = null
 	# Add new level types here
-	match(level):
-		"TEST_LEVEL":
+#	match(level):
+#		"TEST_LEVEL":
 #			instance = load(TEST_LEVEL).instance()
-			instance = load("res://World/TestRooms/TestLevel.tscn").instance()
-		"TEST_ROOM_1":
-			instance = load(TEST_ROOM_1).instance()
-		_:
-			return null
+##			instance = load("res://World/TestRooms/TestLevel.tscn").instance()
+#		"TEST_ROOM_1":
+#			instance = load(TEST_ROOM_1).instance()
+#		_:
+#			return null
+	
+	instance = load("res://World/DungeonGenV3/Dungeon.tscn").instance()
 	if instance == null:
 		return null
 	ROOT.add_child(instance)
