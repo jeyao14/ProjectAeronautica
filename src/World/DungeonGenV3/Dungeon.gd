@@ -40,9 +40,9 @@ func place_rooms(spawn_count):
 		place_room()
 	
 	# to-do: add check to see if total number of children in $Rooms is >= min_rooms
+	# if not, run place_rooms again until min_room quota has been met
+	# additionally, each new iteration of place_rooms, increase matrix size and area in case original area is too small
 	emit_signal("rooms_spawned")
-	
-	
 	
 
 func place_room():
@@ -77,6 +77,7 @@ func place_room():
 	ROOMS.add_child(selected_room)
 #	$CharacterSpawnPoint.global_translate(selected_room.global_translation)
 	print("created room at: ", coord.x, ", ", coord.y)
+	
 #	var position = Vector3(stepify(rand_range(-area.x, area.x), 5), 0, stepify(rand_range(-area.y, area.y), 5))
 #	rng.randomize()
 #	var rotation = Vector3(0, rng.randi_range(0, 3) * 90, 0)
@@ -106,7 +107,7 @@ func grid_occupied(coord, size):
 	for i in range(coord.x - 1, (coord.x + size.x) + 1):
 		for j in range(coord.y - 1, (coord.y + size.y) + 1):
 			if (i < area.x and i >= 0) and (j < area.y and j >= 0):
-				if matrix[i][j] == "room":
+				if matrix[i][j] != "0":
 					return true
 	return false
 
