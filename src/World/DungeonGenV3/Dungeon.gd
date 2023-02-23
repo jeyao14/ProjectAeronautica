@@ -75,17 +75,18 @@ func place_room():
 	
 	rng.randomize()
 	var size = selected_room.room_size
+	var mid_size = size/2
 	
 	# gets random top left coordinate
-	var rand_x = rng.randi_range(0, ((matrix_size.x - 1) - size.x))
+	var rand_x = rng.randi_range(mid_size.x, ((matrix_size.x - 1) - mid_size.x))
 	rng.randomize()
-	var rand_y = rng.randi_range(0, ((matrix_size.y - 1) - size.y))
-	var coord = Vector2(rand_x, rand_y)
+	var rand_y = rng.randi_range(mid_size.y, ((matrix_size.y - 1) - mid_size.y))
+	var coord = Vector2(rand_x - mid_size.x, rand_y - mid_size.y)
 	
 	if grid_occupied(coord, size):
 		return
 	
-	selected_room.translate(Vector3(5*coord.x, 0,  5*coord.y))
+	selected_room.translate(Vector3(5*(coord.x + mid_size.x), 0,  5*(coord.y + mid_size.y)))
 	
 	for i in range(coord.x, coord.x + size.x):
 		for j in range(coord.y, coord.y + size.y):
