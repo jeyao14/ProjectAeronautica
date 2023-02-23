@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World/DungeonGenV3/Rooms/Room.gd" type="Script" id=1]
 [ext_resource path="res://World/Common/RoomBoundary.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [sub_resource type="PlaneMesh" id=2]
 size = Vector2( 20, 20 )
 center_offset = Vector3( 10, 0, 10 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.101961, 0.980392, 0.180392, 1 )
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 15, 1, 15 )
@@ -15,6 +18,7 @@ data = PoolVector3Array( 20, 0, 20, 0, 0, 20, 20, 0, 0, 0, 0, 20, 0, 0, 0, 20, 0
 
 [node name="Small" type="MeshInstance"]
 mesh = SubResource( 2 )
+material/0 = SubResource( 4 )
 script = ExtResource( 1 )
 room_size = Vector2( 4, 4 )
 
