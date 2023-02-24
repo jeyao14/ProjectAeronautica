@@ -28,11 +28,11 @@ var TEST_ROOMS = [
 ]
 
 var TEST_ROOMS_V2 = [
-	"res://World/DungeonGenV3/Rooms/Tiny.tscn",
+#	"res://World/DungeonGenV3/Rooms/Tiny.tscn",
 	"res://World/DungeonGenV3/Rooms/Small.tscn",
 	"res://World/DungeonGenV3/Rooms/Medium.tscn",
-	"res://World/DungeonGenV3/Rooms/Big.tscn"
-#	"res://World/DungeonGenV3/Rooms/Giant.tscn"
+	"res://World/DungeonGenV3/Rooms/Big.tscn",
+	"res://World/DungeonGenV3/Rooms/Giant.tscn"
 ]
 
 var TEST_HALLWAYS = [

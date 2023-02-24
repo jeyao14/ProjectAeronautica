@@ -1,20 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World/DungeonGenV3/Rooms/Room.gd" type="Script" id=1]
 [ext_resource path="res://World/Common/RoomBoundary.tscn" type="PackedScene" id=2]
 
 [sub_resource type="PlaneMesh" id=2]
 size = Vector2( 40, 40 )
-center_offset = Vector3( 20, 0, 20 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 1, 0.541176, 0, 1 )
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 25, 1, 25 )
 
-[sub_resource type="ConcavePolygonShape" id=3]
-data = PoolVector3Array( 40, 0, 40, 0, 0, 40, 40, 0, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0 )
+[sub_resource type="ConcavePolygonShape" id=5]
+data = PoolVector3Array( 20, 0, 20, -20, 0, 20, 20, 0, -20, -20, 0, 20, -20, 0, -20, 20, 0, -20 )
 
 [node name="Big" type="MeshInstance"]
 mesh = SubResource( 2 )
+material/0 = SubResource( 4 )
 script = ExtResource( 1 )
 room_size = Vector2( 8, 8 )
 
@@ -26,6 +29,6 @@ shape = SubResource( 1 )
 [node name="StaticBody" type="StaticBody" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [editable path="Boundary"]
