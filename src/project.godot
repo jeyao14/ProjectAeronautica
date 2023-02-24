@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Characters/Shared/Bullet.gd"
 }, {
+"base": "Reference",
+"class": "Delaunay",
+"language": "GDScript",
+"path": "res://addons/gdDelaunay/Delaunay.gd"
+}, {
+"base": "Node",
+"class": "Delaunay2D",
+"language": "GDScript",
+"path": "res://World/DungeonGenV3/Delaunay2D.gd"
+}, {
 "base": "StaticBody",
 "class": "Door",
 "language": "GDScript",
@@ -53,9 +63,16 @@ _global_script_classes=[ {
 "class": "Room_Template",
 "language": "GDScript",
 "path": "res://World/Isaac/RoomTemplate.gd"
+}, {
+"base": "Node",
+"class": "Triangle",
+"language": "GDScript",
+"path": "res://World/DungeonGenV3/Triangle.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"Delaunay": "",
+"Delaunay2D": "",
 "Door": "",
 "Dungeon": "",
 "Enemy": "",
@@ -63,7 +80,8 @@ _global_script_class_icons={
 "Player": "",
 "RoomTemplate": "",
 "Room_Node": "",
-"Room_Template": ""
+"Room_Template": "",
+"Triangle": ""
 }
 
 [application]

@@ -4,9 +4,9 @@ extends Spatial
 var rooms = []
 var ROOM_PATHS = GLOBALS.TEST_ROOMS_V2
 export var max_iterations = 10000
-export var room_num = 15
+export var room_num = 20
 export var min_rooms = 5
-export var area = Vector2(20, 20)
+export var area = Vector2(60, 60)
 onready var rng = RandomNumberGenerator.new()
 onready var ROOMS = $Rooms
 var door_positions = []
@@ -67,14 +67,13 @@ func place_room():
 	if grid_occupied(coord, size):
 		return
 	
-	selected_room.translate(Vector3(5*coord.x, 0,  5*coord.y))
-	
 	for i in range(coord.x, coord.x + size.x):
 		for j in range(coord.y, coord.y + size.y):
 			matrix[i][j] = "room"
 #			print("[ ", i, " , ", j, " ]")
-	
 	ROOMS.add_child(selected_room)
+	
+	selected_room.translate(Vector3(5*coord.x, 0,  5*coord.y))
 #	$CharacterSpawnPoint.global_translate(selected_room.global_translation)
 	print("created room at: ", coord.x, ", ", coord.y)
 	
@@ -110,6 +109,7 @@ func grid_occupied(coord, size):
 				if matrix[i][j] != "0":
 					return true
 	return false
+	
 
 func _on_level_rooms_spawned():
 	yield(get_tree().create_timer(2), "timeout")
