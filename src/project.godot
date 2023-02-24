@@ -94,6 +94,7 @@ config/icon="res://icon.png"
 
 ImportData="*res://Characters/Shared/ImportData.gd"
 GLOBALS="*res://Common/globals.gd"
+DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
 
 [display]
 

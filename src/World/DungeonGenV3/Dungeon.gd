@@ -16,6 +16,9 @@ var iteration = 0
 var matrix = []
 var matrix_size = Vector2(0, 0)
 
+var room_location = []
+
+var path = []
 
 signal rooms_spawned()
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +32,8 @@ func _ready():
 	print(matrix_size)
 #	$CharacterSpawnPoint.global_transform.origin = $Rooms/SpawnRoom.get_node("CharacterSpawnPoint").global_transform.origin
 	place_rooms()
+	draw_debug()
+	DebugDraw.debug_enabled = true
 	pass # Replace with function body.
 	
 
@@ -62,7 +67,8 @@ func place_rooms():
 				
 #		matrix_size += Vector2(area_increment, area_increment)
 		place_rooms()
-
+	else:
+		path = find_mst()
 
 func place_room():
 	if iteration >= max_iterations:
@@ -94,6 +100,7 @@ func place_room():
 			matrix[i][j] = "room"
 #			print("[ ", i, " , ", j, " ]")
 	ROOMS.add_child(selected_room)
+	room_location.append(selected_room.global_translation)
 
 	print("created room at: ", coord.x, ", ", coord.y, " [Room Count = ", ROOMS.get_child_count(), "]")
 
@@ -163,13 +170,26 @@ func grid_occupied(coord, size):
 #			door_positions.append(door.global_translation)
 #	pass
 
+func draw_debug():
+	
+	if path:
+		for p in path.get_points():
+			for c in path.get_point_connections(p):
+				print(p, " ", c)
+				var pp = path.get_point_position(p);
+				var cp = path.get_point_position(c);
+				
+				DebugDraw.draw_line(pp, cp, Color(1,1,1),1000000000000)
+		
+
 func find_mst():
-	var nodes = door_positions
+#	var nodes = door_positions
+	var distant = []
 	
-	var path = AStar.new()
-	path.add_point(path.get_available_point_id(), nodes.pop_front())
+	path = AStar.new()
+	path.add_point(path.get_available_point_id(), room_location.pop_front())
 	
-	while nodes:
+	while room_location:
 		var min_dist = INF
 		var min_pos = null
 		var curr_pos = null
@@ -177,16 +197,21 @@ func find_mst():
 		for p1 in path.get_points():
 				p1 = path.get_point_position(p1)
 				
-				for p2 in nodes:
+				for p2 in room_location:
 					if p1.distance_to(p2) < min_dist:
 						min_dist = p1.distance_to(p2)
 						min_pos = p2
 						curr_pos = p1
+						
+				
 		var n = path.get_available_point_id()
 		path.add_point(n, min_pos)
 		path.connect_points(path.get_closest_point(curr_pos), n)
-		nodes.erase(min_pos)
+		room_location.erase(min_pos)
 	return path
+
+func aux_connect():
+	pass
 
 func create_halls():
 	pass
