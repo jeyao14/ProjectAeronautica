@@ -83,10 +83,10 @@ func place_room():
 	
 	rng.randomize()
 	var size = selected_room.room_size
-	print("SIZE: ", size)
+	
 	var mid_size = size/2
 	var mid_size_int = Vector2(int(size.x)/2, int(size.y)/2)
-	print("MID_SIZE : ", mid_size)
+	
 	
 	# gets random top left coordinate
 	var rand_x = rng.randi_range(mid_size_int.x, ((matrix_size.x - 1) - mid_size_int.x))
@@ -99,8 +99,10 @@ func place_room():
 	if(int(size.y) % 2 != 0):
 		rand_y += .5
 	var coord = Vector2(rand_x - mid_size.x, rand_y - mid_size.y)
-	print("COORD : ", coord)
 	
+#	print("SIZE: ", size)
+#	print("MID_SIZE : ", mid_size)
+#	print("COORD : ", coord)
 	if grid_occupied(coord, size):
 		return	
 	
@@ -190,7 +192,7 @@ func grid_occupied(coord, size):
 #	pass
 
 func draw_debug():
-	
+	var connections = []
 	if path:
 		for p in path.get_points():
 			for c in path.get_point_connections(p):
@@ -198,9 +200,10 @@ func draw_debug():
 				var pp = path.get_point_position(p);
 				var cp = path.get_point_position(c);
 #				print(pp, " : ", cp)
-				carve_path(pp, cp)
+				if not c in connections:
+					carve_path(pp, cp)
 				DebugDraw.draw_line(pp, cp, Color(1,1,1),1000000000000)
-		
+			connections.append(p)
 
 func find_mst():
 #	var nodes = door_positions
@@ -231,7 +234,19 @@ func find_mst():
 	return path
 
 func carve_path(pos1, pos2):
-
+	print("POS1 : ", pos1)
+	print("POS2 : ", pos2)
+	print("")
+#	print("POS : ", pos1)
+#	if pos1.x - int(pos1.x) != 0:
+#		pos1.x -= 2.5
+#	if pos1.z - int(pos1.z) == 0:
+#		pos1.z -= 2.5
+#	print("POST_POS : ", pos1)
+#	if pos2.x - int(pos2.x) == 0:
+#		pos2.x -= 2.5
+#	if pos2.z - int(pos2.z) == 0:
+#		pos2.z -= 2.5
 	# Create path between two points
 	var x_diff = sign(pos2.x - pos1.x) * 5
 	var z_diff = sign(pos2.z - pos1.z) * 5
@@ -254,9 +269,18 @@ func carve_path(pos1, pos2):
 		place_hallway(Vector2(z_x.x, z))
 
 func place_hallway(position):
+	
+#	size is 4 x 4
+#	position -= 2.5
+#	grid_cell = matrix[int(position/5)][int(position/5]
+	if position.x - int(position.x) == 0:
+		position.x -= 2.5
+	if position.y - int(position.y) == 0:
+		position.y-= 2.5
+	
 	var instance = load(HALL_PATH).instance()
 	var size = instance.room_size
-	var grid_cell = matrix[position.x/5][position.y/5]
+	var grid_cell = matrix[int(position.x/5)][int(position.y/5)]
 	if grid_cell != "0":
 		return
 	
