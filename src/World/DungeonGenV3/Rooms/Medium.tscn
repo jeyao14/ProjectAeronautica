@@ -4,19 +4,19 @@
 [ext_resource path="res://World/Common/RoomBoundary.tscn" type="PackedScene" id=2]
 
 [sub_resource type="PlaneMesh" id=1]
-size = Vector2( 30, 30 )
+size = Vector2( 25, 25 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 1, 0.964706, 0.0235294, 1 )
 
 [sub_resource type="ConcavePolygonShape" id=4]
-data = PoolVector3Array( 15, 0, 15, -15, 0, 15, 15, 0, -15, -15, 0, 15, -15, 0, -15, 15, 0, -15 )
+data = PoolVector3Array( 12.5, 0, 12.5, -12.5, 0, 12.5, 12.5, 0, -12.5, -12.5, 0, 12.5, -12.5, 0, -12.5, 12.5, 0, -12.5 )
 
 [node name="Medium" type="MeshInstance"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 3 )
 script = ExtResource( 1 )
-room_size = Vector2( 6, 6 )
+room_size = Vector2( 5, 5 )
 
 [node name="Boundary" parent="." instance=ExtResource( 2 )]
 

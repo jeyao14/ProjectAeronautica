@@ -10,6 +10,7 @@ export var area = Vector2(50, 50)
 export var area_increment = 20
 onready var rng = RandomNumberGenerator.new()
 onready var ROOMS = $Rooms
+var HALL_PATH = "res://World/DungeonGenV3/Hall.tscn"
 var door_positions = []
 var iteration = 0
 
@@ -23,13 +24,14 @@ var path = []
 signal rooms_spawned()
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	# sets init size of room matrix
 	matrix_size = area
 	for x in range(area.x):
 		matrix.append([])
 		for y in range(area.y):
 			matrix[x].append("0")
-	print(matrix_size)
+#	print(matrix_size)
 #	$CharacterSpawnPoint.global_transform.origin = $Rooms/SpawnRoom.get_node("CharacterSpawnPoint").global_transform.origin
 	place_rooms()
 	draw_debug()
@@ -53,8 +55,8 @@ func place_rooms():
 	# additionally, each new iteration of place_rooms, increase matrix size and area in case original area is too small
 	
 #	print("rooms_spawned")
-#	print("Matrix Size: ", matrix.size())
-	print("ITERATION : ", iteration)
+	print("Matrix Size: ", matrix.size())
+#	print("ITERATION : ", iteration)
 	if ROOMS.get_child_count() < min_rooms and iteration < max_iterations:
 #		var ycount = 0
 #		for x in range ((matrix_size.x - 1) + area_increment):
@@ -81,18 +83,35 @@ func place_room():
 	
 	rng.randomize()
 	var size = selected_room.room_size
+	print("SIZE: ", size)
 	var mid_size = size/2
+	var mid_size_int = Vector2(int(size.x)/2, int(size.y)/2)
+	print("MID_SIZE : ", mid_size)
 	
 	# gets random top left coordinate
-	var rand_x = rng.randi_range(mid_size.x, ((matrix_size.x - 1) - mid_size.x))
+	var rand_x = rng.randi_range(mid_size_int.x, ((matrix_size.x - 1) - mid_size_int.x))
 	rng.randomize()
-	var rand_y = rng.randi_range(mid_size.y, ((matrix_size.y - 1) - mid_size.y))
+	var rand_y = rng.randi_range(mid_size_int.y, ((matrix_size.y - 1) - mid_size_int.y))
+	
+	if(int(size.x) % 2 != 0) :
+		rand_x += .5
+		
+	if(int(size.y) % 2 != 0):
+		rand_y += .5
 	var coord = Vector2(rand_x - mid_size.x, rand_y - mid_size.y)
+	print("COORD : ", coord)
 	
 	if grid_occupied(coord, size):
 		return	
-
-	selected_room.translate(Vector3(5*(coord.x + mid_size.x), 0,  5*(coord.y + mid_size.y)))
+	
+	var global_pos = Vector3(5*(coord.x + mid_size.x), 0,  5*(coord.y + mid_size.y))
+#	if(int(size.x) % 2 != 0) :
+#		global_pos.x += 2.5
+#
+#	if(int(size.y) % 2 != 0):
+#		global_pos.z += 2.5
+	print("GLOBAL_POS : ", global_pos)
+	selected_room.translate(global_pos)
 	
 	for i in range(coord.x, coord.x + size.x):
 		for j in range(coord.y, coord.y + size.y):
@@ -102,7 +121,7 @@ func place_room():
 	ROOMS.add_child(selected_room)
 	room_location.append(selected_room.global_translation)
 
-	print("created room at: ", coord.x, ", ", coord.y, " [Room Count = ", ROOMS.get_child_count(), "]")
+#	print("created room at: ", coord.x, ", ", coord.y, " [Room Count = ", ROOMS.get_child_count(), "]")
 
 #	var position = Vector3(stepify(rand_range(-area.x, area.x), 5), 0, stepify(rand_range(-area.y, area.y), 5))
 #	rng.randomize()
@@ -175,10 +194,11 @@ func draw_debug():
 	if path:
 		for p in path.get_points():
 			for c in path.get_point_connections(p):
-				print(p, " ", c)
+#				print(p, " ", c)
 				var pp = path.get_point_position(p);
 				var cp = path.get_point_position(c);
-				
+#				print(pp, " : ", cp)
+				carve_path(pp, cp)
 				DebugDraw.draw_line(pp, cp, Color(1,1,1),1000000000000)
 		
 
@@ -209,6 +229,47 @@ func find_mst():
 		path.connect_points(path.get_closest_point(curr_pos), n)
 		room_location.erase(min_pos)
 	return path
+
+func carve_path(pos1, pos2):
+
+	# Create path between two points
+	var x_diff = sign(pos2.x - pos1.x) * 5
+	var z_diff = sign(pos2.z - pos1.z) * 5
+	if x_diff == 0: x_diff = pow(-1.0, randi() % 2)
+	if z_diff == 0: z_diff = pow(-1.0, randi() % 2)
+	
+	# Choose x => z OR z => x
+	var x_z = pos1
+	var z_x = pos2
+	if (randi() % 2) > 0:
+		x_z = pos2
+		z_x = pos1
+	for x in range(pos1.x, pos2.x, x_diff):
+		# add hallway to grid using x_z
+		# ex: Map.set_cell(x, x_z, 0)
+#		print("x : ", x)
+		place_hallway(Vector2(x, x_z.z))
+	for z in range(pos1.z, pos2.z, z_diff):
+		# add hallway to grid using z_x
+		place_hallway(Vector2(z_x.x, z))
+
+func place_hallway(position):
+	var instance = load(HALL_PATH).instance()
+	var size = instance.room_size
+	var grid_cell = matrix[position.x/5][position.y/5]
+	if grid_cell != "0":
+		return
+	
+#	print(position)
+	# Cell is empty and a hallway can be placed
+	grid_cell = "hall"
+#	var instance = load(HALL_PATH).instance()
+	var mid_size = instance.room_size
+	instance.global_translation = Vector3(position.x, 0, position.y)
+	ROOMS.add_child(instance)
+	
+	pass
+
 
 func aux_connect():
 	pass

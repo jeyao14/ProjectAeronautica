@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://World/DungeonGenV3/Hall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Common/CharacterSpawnPoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/DungeonGenV3/Dungeon.gd" type="Script" id=3]
 
@@ -11,3 +12,5 @@ script = ExtResource( 3 )
 
 [node name="CharacterSpawnPoint" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47386, 0 )
+
+[node name="Tiny" parent="." instance=ExtResource( 1 )]
