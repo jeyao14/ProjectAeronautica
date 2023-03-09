@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gdDelaunay/Delaunay.gd"
 }, {
-"base": "Node",
-"class": "Delaunay2D",
-"language": "GDScript",
-"path": "res://World/DungeonGenV3/Delaunay2D.gd"
-}, {
 "base": "StaticBody",
 "class": "Door",
 "language": "GDScript",
@@ -68,16 +63,10 @@ _global_script_classes=[ {
 "class": "Room_Template",
 "language": "GDScript",
 "path": "res://World/Isaac/RoomTemplate.gd"
-}, {
-"base": "Node",
-"class": "Triangle",
-"language": "GDScript",
-"path": "res://World/DungeonGenV3/Triangle.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
 "Delaunay": "",
-"Delaunay2D": "",
 "Door": "",
 "Dungeon": "",
 "Enemy": "",
@@ -86,8 +75,7 @@ _global_script_class_icons={
 "PriorityQueue": "",
 "RoomTemplate": "",
 "Room_Node": "",
-"Room_Template": "",
-"Triangle": ""
+"Room_Template": ""
 }
 
 [application]
@@ -110,6 +98,10 @@ mouse_cursor/custom_image="res://Assets/target_cursor.png"
 mouse_cursor/tooltip_position_offset=Vector2( 0, 0 )
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gdDelaunay/plugin.cfg" )
 
 [gui]
 

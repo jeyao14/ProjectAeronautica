@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://World/DungeonGenV3/Rooms/Room.gd" type="Script" id=1]
+[ext_resource path="res://World/Common/RoomBoundary.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/DungeonGenV3/Rooms/textures/treasure_room.png" type="Texture" id=3]
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 20, 20 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 1, 0.980392, 1, 1 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 15, 1, 15 )
+
+[sub_resource type="ConcavePolygonShape" id=5]
+data = PoolVector3Array( 10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10 )
+
+[node name="Small" type="MeshInstance"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 4 )
+script = ExtResource( 1 )
+room_size = Vector2( 4, 4 )
+type = "troom"
+
+[node name="Boundary" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape" parent="Boundary" index="0"]
+shape = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 5 )
+
+[editable path="Boundary"]

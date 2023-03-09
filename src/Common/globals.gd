@@ -28,12 +28,14 @@ var TEST_ROOMS = [
 ]
 
 var TEST_ROOMS_V2 = [
-#	"res://World/DungeonGenV3/Rooms/Tiny.tscn",
-	"res://World/DungeonGenV3/Rooms/Small.tscn",
-	"res://World/DungeonGenV3/Rooms/Medium.tscn",
-	"res://World/DungeonGenV3/Rooms/Big.tscn",
-	"res://World/DungeonGenV3/Rooms/Giant.tscn"
+	"res://World/DungeonGenV3/Rooms/placeholderrooms/Medium.tscn",
+	"res://World/DungeonGenV3/Rooms/placeholderrooms/Small.tscn",
+	"res://World/DungeonGenV3/Rooms/placeholderrooms/Big.tscn",
+	"res://World/DungeonGenV3/Rooms/TRoom.tscn"	
 ]
+
+var SPAWN_ROOM = "res://World/DungeonGenV3/Rooms/SpawnRoom.tscn"
+var BOSS_ROOM = "res://World/DungeonGenV3/Rooms/BossRoom.tscn"
 
 var TEST_HALLWAYS = [
 	"res://World/TestRooms/TestHallway.tscn",

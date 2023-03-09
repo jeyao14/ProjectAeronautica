@@ -6,8 +6,8 @@ export var spawn_active = false
 export (Array, NodePath) var DOORS
 
 var size = Vector3.ZERO
-
 var position = Vector3.ZERO setget set_position
+export var type : String = ""
 
 var locked_in = false
 
