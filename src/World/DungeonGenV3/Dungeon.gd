@@ -179,17 +179,6 @@ func carve_path(pos1, pos2, p_id, c_id):
 	print("c_id: ", c_id)
 	print("POS1 : ", pos1)
 	print("POS2 : ", pos2)
-#	print("")
-#	print("POS : ", pos1)
-#	if pos1.x - int(pos1.x) != 0:
-#		pos1.x -= 2.5
-#	if pos1.z - int(pos1.z) == 0:
-#		pos1.z -= 2.5
-#	print("POST_POS : ", pos1)
-#	if pos2.x - int(pos2.x) == 0:
-#		pos2.x -= 2.5
-#	if pos2.z - int(pos2.z) == 0:
-#		pos2.z -= 2.5
 	# Create path between two points
 	var x_diff : float = sign(pos2.x - pos1.x) * 5.0
 	var z_diff : float = sign(pos2.z - pos1.z) * 5.0
@@ -223,17 +212,10 @@ func carve_path(pos1, pos2, p_id, c_id):
 
 func place_hallway(position):
 	
-#	size is 4 x 4
-#	position -= 2.5
-#	grid_cell = matrix[int(position/5)][int(position/5]
 	if fmod(position.x, 5) == 0:
-#		print("offsetting x: ", position.x)
-#		print("offsetting x int: ", int(position.x))
 		position.x -= 2.5
 	if fmod(position.y, 5) == 0:
-#		print("offsetting y: ", position.y)
-#		print("offsetting  int: ", int(position.y))
-		position.y-= 2.5
+		position.y -= 2.5
 	
 	var instance = load(HALL_PATH).instance()
 	var size = instance.room_size
@@ -291,7 +273,10 @@ func path_hallways():
 	rng.randomize()
 	
 	var start = graph.get_points()
-	var start_point = rng.randi_range(0, start.size()-1)
+	var start_point
+	for s in start:
+		if vertex[s][1] == "spawn":
+			start_point = s;
 	path.add_point(start_point, graph.get_point_position(start_point))
 	start.erase(start_point)
 	
