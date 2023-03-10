@@ -38,6 +38,7 @@ func _ready():
 	place_spawn()
 	place_boss()
 	place_rooms()
+#	place_odd_even()
 	
 	triangulate()
 	
@@ -54,7 +55,7 @@ func place_rooms():
 	iteration += 1
 	# Generate rooms until the minimum number of rooms is reached, the specified number of rooms has been generated,
 	# or the maximum number of iterations has been reached.
-	var iter = 2;
+	var iter = 0;
 	while iter < room_num:
 		place_room()
 		iter += 1
@@ -67,6 +68,14 @@ func place_rooms():
 		place_rooms()
 #	else:
 #		path = find_mst()
+
+func place_odd_even():
+	var selected_room = load(ROOM_PATHS[0]).instance()
+	randomize_loc(selected_room)
+	selected_room = load(ROOM_PATHS[2]).instance()
+	randomize_loc(selected_room)
+	selected_room = load(ROOM_PATHS[0]).instance()
+	randomize_loc(selected_room)
 
 func place_spawn():
 	var spawn_room = load(GLOBALS.SPAWN_ROOM).instance();
@@ -82,7 +91,6 @@ func place_room():
 	
 	rng.randomize()
 	var rand_index = rng.randi_range(0, len(ROOM_PATHS) - 1)
-	print("rand_index: ", rand_index)
 	var selected_room = load(ROOM_PATHS[rand_index]).instance()
 	# Choose a random position for the room within the given area.
 	randomize_loc(selected_room)
@@ -126,8 +134,8 @@ func randomize_loc(selected_room):
 	room_data.append(selected_room.global_translation)
 	room_data.append(selected_room.type)
 	vertex[room_count] = room_data
+	print("vertex[", room_count, "]: ",vertex[room_count])
 	room_count += 1;
-	print("vertex[", room_count, "]: ",vertex[room_count-1])
 	
 func grid_occupied(coord, size):
 	var xtest = -1
@@ -162,41 +170,15 @@ func draw_debug():
 				var cp = path.get_point_position(c);
 #				print(pp, " : ", cp)
 				if not c in connections:
-					carve_path(pp, cp)
+					carve_path(pp, cp, p, c)
 				DebugDraw.draw_line(pp, cp, Color(1,0,0),1000000000000)
 			connections.append(p)
 
-#func find_mst():
-##	var nodes = door_positions
-#	var distant = []
-#
-#	path = AStar.new()
-#	path.add_point(path.get_available_point_id(), room_location.pop_front())
-#
-#	while room_location:
-#		var min_dist = INF
-#		var min_pos = null
-#		var curr_pos = null
-#
-#		for p1 in path.get_points():
-#				p1 = path.get_point_position(p1)
-#
-#				for p2 in room_location:
-#					if p1.distance_to(p2) < min_dist:
-#						min_dist = p1.distance_to(p2)
-#						min_pos = p2
-#						curr_pos = p1
-#
-#
-#		var n = path.get_available_point_id()
-#		path.add_point(n, min_pos)
-#		path.connect_points(path.get_closest_point(curr_pos), n)
-#		room_location.erase(min_pos)
-#	return path
-
-func carve_path(pos1, pos2):
-#	print("POS1 : ", pos1)
-#	print("POS2 : ", pos2)
+func carve_path(pos1, pos2, p_id, c_id):
+	print("p_id: ", p_id)
+	print("c_id: ", c_id)
+	print("POS1 : ", pos1)
+	print("POS2 : ", pos2)
 #	print("")
 #	print("POS : ", pos1)
 #	if pos1.x - int(pos1.x) != 0:
@@ -209,8 +191,8 @@ func carve_path(pos1, pos2):
 #	if pos2.z - int(pos2.z) == 0:
 #		pos2.z -= 2.5
 	# Create path between two points
-	var x_diff = sign(pos2.x - pos1.x) * 5
-	var z_diff = sign(pos2.z - pos1.z) * 5
+	var x_diff : float = sign(pos2.x - pos1.x) * 5.0
+	var z_diff : float = sign(pos2.z - pos1.z) * 5.0
 	if x_diff == 0: x_diff = pow(-1.0, randi() % 2)
 	if z_diff == 0: z_diff = pow(-1.0, randi() % 2)
 	
@@ -220,23 +202,37 @@ func carve_path(pos1, pos2):
 	if (randi() % 2) > 0:
 		x_z = pos2
 		z_x = pos1
-	for x in range(pos1.x, pos2.x, x_diff):
+	var x = pos1.x
+#	for i in range(pos1.x, pos2.x)
+	var rounds_x = int(abs(pos2.x - pos1.x)/5)
+	for i in range(0,rounds_x):
+		var diff = i * x_diff;
 		# add hallway to grid using x_z
 		# ex: Map.set_cell(x, x_z, 0)
-#		print("x : ", x)
-		place_hallway(Vector2(x, x_z.z))
-	for z in range(pos1.z, pos2.z, z_diff):
+		print("x : ", pos1.x+x_diff)
+		print("x_z.z : ", x_z.z)
+		place_hallway(Vector2(pos1.x+diff, x_z.z))
+#		x += x_diff
+#	var z = pos1.z
+#	while z <= pos2.z:
+	var rounds_z = int(abs(pos2.z - pos1.z)/5)
+	for j in range(0,rounds_z):
+		var diff = j * z_diff;
 		# add hallway to grid using z_x
-		place_hallway(Vector2(z_x.x, z))
+		place_hallway(Vector2(z_x.x, pos1.z+diff))
 
 func place_hallway(position):
 	
 #	size is 4 x 4
 #	position -= 2.5
 #	grid_cell = matrix[int(position/5)][int(position/5]
-	if position.x - int(position.x) == 0:
+	if fmod(position.x, 5) == 0:
+#		print("offsetting x: ", position.x)
+#		print("offsetting x int: ", int(position.x))
 		position.x -= 2.5
-	if position.y - int(position.y) == 0:
+	if fmod(position.y, 5) == 0:
+#		print("offsetting y: ", position.y)
+#		print("offsetting  int: ", int(position.y))
 		position.y-= 2.5
 	
 	var instance = load(HALL_PATH).instance()
@@ -284,6 +280,8 @@ func create_graph():
 		if(!graph.has_point(e.y)):
 			graph.add_point(e.y, vertex[e.y as int][0]);
 		graph.connect_points(e.x, e.y)
+		
+	print("graph: ", graph.get_points())
 	path_hallways()
 
 func path_hallways():
@@ -295,9 +293,7 @@ func path_hallways():
 	var start = graph.get_points()
 	var start_point = rng.randi_range(0, start.size()-1)
 	path.add_point(start_point, graph.get_point_position(start_point))
-	start.pop_at(start_point)
-	print("start_point: ", start_point)
-	print("start: ", start)
+	start.erase(start_point)
 	
 	while start:
 		var min_dist = INF
@@ -309,13 +305,10 @@ func path_hallways():
 		for p1 in path.get_points():
 			var p1_c = graph.get_point_connections(p1)
 			var p1_p = graph.get_point_position(p1)
-			print("p1: ", p1)
-			print("p1_c:", p1_c)
 			for p2 in p1_c:
 				if !path.has_point(p2):
 					var p2_p = graph.get_point_position(p2)
 					if p1_p.distance_to(p2_p) < min_dist:
-						print("p2: ", p2)
 						min_dist = p1_p.distance_to(p2_p)
 						min_pos = p2_p
 						min_id = p2
@@ -326,7 +319,6 @@ func path_hallways():
 		path.add_point(min_id, min_pos)
 		path.connect_points(curr_id, min_id)
 		start.erase(min_id)
-		print("erased:", min_id, " start: ", start)
 		
 	for p in graph.get_points():
 		var edges = graph.get_point_connections(p)
