@@ -11,7 +11,7 @@ script = ExtResource( 3 )
 [node name="Rooms" type="Spatial" parent="."]
 
 [node name="CharacterSpawnPoint" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47386, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4407, 1.47386, 0 )
 
 [node name="Tiny" parent="." instance=ExtResource( 1 )]
 

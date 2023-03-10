@@ -42,7 +42,7 @@ func _ready():
 			matrix[x].append("0")
 			var instance = WALL.instance()
 			instance.location = Vector2(x, y)
-			instance.translate = Vector3(x*5, instance.translation.y, y*5)
+			instance.translation = Vector3(x*5, instance.translation.y, y*5)
 			WALLS.add_child(instance)
 		
 	place_spawn()
@@ -130,6 +130,8 @@ func randomize_loc(selected_room):
 	if grid_occupied(coord, size):
 		return	
 	
+	
+	
 	var global_pos = Vector3(5*(coord.x + mid_size.x), 0,  5*(coord.y + mid_size.y))
 	selected_room.translate(global_pos)
 	
@@ -137,6 +139,7 @@ func randomize_loc(selected_room):
 		for j in range(coord.y, coord.y + size.y):
 #			matrix[i][j] = "room"
 			matrix[i][j] = "room"
+			remove_wall(Vector2(i, j))
 #			print("[ ", i, " , ", j, " ]")
 	ROOMS.add_child(selected_room)
 	room_location.append(selected_room.global_translation)
@@ -258,6 +261,7 @@ func place_hallway(position):
 	if grid_cell != "0":
 		return
 	
+	remove_wall(Vector2(int(position.x/5), int(position.y/5)))
 #	print(position)
 	# Cell is empty and a hallway can be placed
 	grid_cell = "hall"
@@ -349,4 +353,7 @@ func path_hallways():
 	return path
 
 func remove_wall(grid_position):
+	for wall in WALLS.get_children():
+		if wall.location == grid_position:
+			wall.queue_free()
 	pass
