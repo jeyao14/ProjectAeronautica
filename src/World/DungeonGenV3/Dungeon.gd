@@ -23,7 +23,7 @@ var matrix = []
 var matrix_size = Vector2(0, 0)
 
 var room_location = []
-var vertex = {} #first index: node_id // second index = 0:room_location, 1:room type
+var vertex = {} #first index: node_id // second index = 0:room_location, 1:room type, 2+ = hallway nodes
 var edges = []
 var graph = []
 
@@ -188,17 +188,10 @@ func draw_debug():
 			connections.append(p)
 
 func carve_path(pos1, pos2, p_id, c_id):
-	print("p_id: ", p_id)
-	print("c_id: ", c_id)
-	print("POS1 : ", pos1)
-	print("POS2 : ", pos2)
-#	print("")
-#	print("POS : ", pos1)
 	if fmod(pos1.x, 5) == 0:
 		pos1.x -= 2.5
 	if fmod(pos1.z, 5) == 0:
 		pos1.z -= 2.5
-	print("POST_POS : ", pos1)
 	if fmod(pos2.x, 5) == 0:
 		pos2.x -= 2.5
 	if fmod(pos2.z, 5) == 0:
@@ -225,8 +218,6 @@ func carve_path(pos1, pos2, p_id, c_id):
 		var diff = i * x_diff;
 		# add hallway to grid using x_z
 		# ex: Map.set_cell(x, x_z, 0)
-		print("x : ", pos1.x+x_diff)
-		print("x_z.z : ", x_z.z)
 		place_hallway(Vector2(pos1.x+diff, x_z.z))
 #		x += x_diff
 #	var z = pos1.z
@@ -240,20 +231,6 @@ func carve_path(pos1, pos2, p_id, c_id):
 		place_hallway(Vector2(z_x.x, pos1.z+diff))
 
 func place_hallway(position):
-	
-#	size is 4 x 4
-#	position -= 2.5
-#	grid_cell = matrix[int(position/5)][int(position/5]
-	
-	
-#	if fmod(position.x, 5) == 0:
-##		print("offsetting x: ", position.x)
-##		print("offsetting x int: ", int(position.x))
-#		position.x -= 2.5
-#	if fmod(position.y, 5) == 0:
-##		print("offsetting y: ", position.y)
-##		print("offsetting  int: ", int(position.y))
-#		position.y-= 2.5
 	
 	var instance = load(HALL_PATH).instance()
 	var size = instance.room_size
@@ -302,7 +279,7 @@ func create_graph():
 			graph.add_point(e.y, vertex[e.y as int][0]);
 		graph.connect_points(e.x, e.y)
 		
-	print("graph: ", graph.get_points())
+#	print("graph: ", graph.get_points())
 	path_hallways()
 
 func path_hallways():
@@ -312,7 +289,14 @@ func path_hallways():
 	rng.randomize()
 	
 	var start = graph.get_points()
-	var start_point = rng.randi_range(0, start.size()-1)
+	var start_point
+	var end_point
+	for s in start:
+		if vertex[s][1] == "spawn":
+			print("spawn room node: ", s)
+			start_point = s;
+		if vertex[s][1] == "boss":
+			end_point = s;
 	path.add_point(start_point, graph.get_point_position(start_point))
 	start.erase(start_point)
 	
@@ -324,10 +308,17 @@ func path_hallways():
 		var curr_id = null
 
 		for p1 in path.get_points():
+			if(vertex[p1][1] == "boss"):
+				continue
 			var p1_c = graph.get_point_connections(p1)
 			var p1_p = graph.get_point_position(p1)
 			for p2 in p1_c:
 				if !path.has_point(p2):
+					if vertex[p2][1] == "boss":
+						if vertex[p1][1] == "spawn":
+							continue
+						if start.size() > 1:
+							continue;
 					var p2_p = graph.get_point_position(p2)
 					if p1_p.distance_to(p2_p) < min_dist:
 						min_dist = p1_p.distance_to(p2_p)
@@ -340,15 +331,39 @@ func path_hallways():
 		path.add_point(min_id, min_pos)
 		path.connect_points(curr_id, min_id)
 		start.erase(min_id)
-		
+		print("start size: ", start.size())
+	
+	#12.5% chance of adding unused connections to path	
 	for p in graph.get_points():
+		if vertex[p][1] == "boss" or vertex[p][1] == "spawn":
+			continue
 		var edges = graph.get_point_connections(p)
 		for e in edges:
 			if path.are_points_connected(p, e):
 				continue;
+			if vertex[e][1] == "boss" or vertex[e][1] == "spawn":
+				continue
 			rng.randomize()
 			if rng.randf_range(0,1) < 0.125:
 				path.connect_points(p, e)
+				
+#	var boss_connections = path.get_point_connections(end_point)
+#	if(boss_connections.size() == 0):
+#		var pot_connect = graph.get_point_connections(end_point)
+#		var boss_loc = graph.get_point_position(end_point)
+#		var min_dist = INF
+#		var min_pos = null
+#		var min_id = null
+#		for c in pot_connect:
+#			if boss_loc.distance_to(graph.get_point_position(c)) < min_dist:
+#				if vertex[c][1] == "spawn":
+#					continue
+#				min_dist = boss_loc.distance_to(graph.get_point_position(c))
+#				min_pos = graph.get_point_position(c)
+#				min_id = c
+##
+#		path.connect_points(min_id, end_point)
+
 
 	return path
 
