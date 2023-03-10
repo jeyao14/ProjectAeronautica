@@ -2,6 +2,7 @@ extends Spatial
 
 
 var rooms = []
+
 var ROOM_PATHS = GLOBALS.TEST_ROOMS_V2
 export var max_iterations = 100
 export var room_num = 5
@@ -10,7 +11,10 @@ export var area = Vector2(50, 50)
 export var area_increment = 20
 onready var rng = RandomNumberGenerator.new()
 onready var ROOMS = $Rooms
+onready var WALLS = $Walls
+
 var HALL_PATH = "res://World/DungeonGenV3/Hall.tscn"
+var WALL_PATH = "res://World/DungeonGenV3/Wall.tscn"
 var door_positions = []
 var iteration = 0
 var room_count = 0
@@ -28,6 +32,7 @@ var path = []
 signal rooms_spawned()
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var WALL = load(WALL_PATH)
 	
 	# sets init size of room matrix
 	matrix_size = area
@@ -35,6 +40,11 @@ func _ready():
 		matrix.append([])
 		for y in range(area.y):
 			matrix[x].append("0")
+			var instance = WALL.instance()
+			instance.location = Vector2(x, y)
+			instance.translate = Vector3(x*5, instance.translation.y, y*5)
+			WALLS.add_child(instance)
+		
 	place_spawn()
 	place_boss()
 	place_rooms()
@@ -175,10 +185,16 @@ func draw_debug():
 			connections.append(p)
 
 func carve_path(pos1, pos2, p_id, c_id):
-	print("p_id: ", p_id)
-	print("c_id: ", c_id)
-	print("POS1 : ", pos1)
-	print("POS2 : ", pos2)
+	if fmod(pos1.x, 5) == 0:
+		pos1.x -= 2.5
+	if fmod(pos1.z, 5) == 0:
+		pos1.z -= 2.5
+	print("POST_POS : ", pos1)
+	if fmod(pos2.x, 5) == 0:
+		pos2.x -= 2.5
+	if fmod(pos2.z, 5) == 0:
+		pos2.z -= 2.5
+
 	# Create path between two points
 	var x_diff : float = sign(pos2.x - pos1.x) * 5.0
 	var z_diff : float = sign(pos2.z - pos1.z) * 5.0
@@ -191,6 +207,8 @@ func carve_path(pos1, pos2, p_id, c_id):
 	if (randi() % 2) > 0:
 		x_z = pos2
 		z_x = pos1
+	
+	
 	var x = pos1.x
 #	for i in range(pos1.x, pos2.x)
 	var rounds_x = int(abs(pos2.x - pos1.x)/5)
@@ -204,6 +222,8 @@ func carve_path(pos1, pos2, p_id, c_id):
 #		x += x_diff
 #	var z = pos1.z
 #	while z <= pos2.z:
+	
+	
 	var rounds_z = int(abs(pos2.z - pos1.z)/5)
 	for j in range(0,rounds_z):
 		var diff = j * z_diff;
@@ -211,11 +231,6 @@ func carve_path(pos1, pos2, p_id, c_id):
 		place_hallway(Vector2(z_x.x, pos1.z+diff))
 
 func place_hallway(position):
-	
-	if fmod(position.x, 5) == 0:
-		position.x -= 2.5
-	if fmod(position.y, 5) == 0:
-		position.y -= 2.5
 	
 	var instance = load(HALL_PATH).instance()
 	var size = instance.room_size
@@ -315,3 +330,6 @@ func path_hallways():
 				path.connect_points(p, e)
 
 	return path
+
+func remove_wall(grid_position):
+	pass
