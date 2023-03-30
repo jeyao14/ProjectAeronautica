@@ -5,9 +5,9 @@ var rooms = []
 
 var ROOM_PATHS = GLOBALS.TEST_ROOMS_V2
 export var max_iterations = 100
-export var room_num = 5
+export var room_num = 20
 export var min_rooms = 10
-export var area = Vector2(50, 50)
+export var area = Vector2(35, 35)
 export var area_increment = 20
 onready var rng = RandomNumberGenerator.new()
 onready var ROOMS = $Rooms
@@ -15,6 +15,7 @@ onready var WALLS = $Walls
 
 var HALL_PATH = "res://World/DungeonGenV3/Hall.tscn"
 var WALL_PATH = "res://World/DungeonGenV3/Wall.tscn"
+var GRID_WALL_PATH = "res://World/DungeonGenV3/GridWall.tscn"
 var door_positions = []
 var iteration = 0
 var room_count = 0
@@ -27,6 +28,9 @@ var vertex = {} #first index: node_id // second index = 0:room_location, 1:room 
 var edges = []
 var graph = []
 
+var grid = []
+#RIGHT, UP, LEFT, DOWN
+var offsets = [Vector2(1,0),Vector2(0,1),Vector2(-1,0),Vector2(0,-1)]
 var path = []
 
 signal rooms_spawned()
@@ -49,10 +53,11 @@ func _ready():
 	place_boss()
 	place_rooms()
 #	place_odd_even()
-	
 	triangulate()
+	create_grid()
 	
-	draw_debug()
+	pathfind_hallways()
+#	draw_debug()
 	DebugDraw.debug_enabled = true
 	pass # Replace with function body.
 	
@@ -129,25 +134,36 @@ func randomize_loc(selected_room):
 #	print("COORD : ", coord)
 	if grid_occupied(coord, size):
 		return	
-	
-	
-	
+
 	var global_pos = Vector3(5*(coord.x + mid_size.x), 0,  5*(coord.y + mid_size.y))
 	selected_room.translate(global_pos)
 	
-	for i in range(coord.x, coord.x + size.x):
-		for j in range(coord.y, coord.y + size.y):
+	for i in range(coord.x-1, coord.x + size.x+1):
+		for j in range(coord.y-1, coord.y + size.y+1):
 #			matrix[i][j] = "room"
+			if(i < 0 || j < 0 || i > area.x-1 || j > area.y-1):
+				continue;
+			if(i == coord.x-1 || j == coord.y-1 || i == coord.x + size.x || j == coord.y + size.y):
+				matrix[i][j] = "border"
+				remove_wall(Vector2(i, j))
+				var instance = load(GRID_WALL_PATH).instance()
+				instance.location = Vector2(i, j)
+				instance.translation = Vector3(i*5, instance.translation.y, j*5)
+				WALLS.add_child(instance)
+				continue
 			matrix[i][j] = "room"
 			remove_wall(Vector2(i, j))
 #			print("[ ", i, " , ", j, " ]")
 	ROOMS.add_child(selected_room)
+	print(selected_room.type)
 	room_location.append(selected_room.global_translation)
 	var room_data = []
 	room_data.append(selected_room.global_translation)
 	room_data.append(selected_room.type)
+	var room_cell_center = Vector2(int(room_data[0].x/5), int(room_data[0].z/5))
+	room_data.append(room_cell_center)
 	vertex[room_count] = room_data
-	print("vertex[", room_count, "]: ",vertex[room_count])
+#	print("vertex[", room_count, "]: ",vertex[room_count])
 	room_count += 1;
 	
 func grid_occupied(coord, size):
@@ -186,6 +202,93 @@ func draw_debug():
 					carve_path(pp, cp, p, c)
 				DebugDraw.draw_line(pp, cp, Color(1,0,0),1000000000000)
 			connections.append(p)
+			
+func create_grid():
+	grid = AStar.new()
+	var weight;
+	for i in matrix.size():
+		for j in matrix[i].size():
+			var coord = Vector2(i,j)
+			var id = coord_to_id(coord, area)
+			match matrix[i][j]:
+				"room":
+					weight = 10
+				"border":
+					weight = 20
+				_:
+					weight = 5
+					
+			if !grid.has_point(id):
+				grid.add_point(id, Vector3(i*5, 5, j*5), weight)
+				
+#				print("grid weight: ", grid.get_point_weight_scale(id))
+			for offset in offsets:
+				var adjacent = coord + offset
+				if adjacent.x >= area.x or adjacent.y >= area.x or adjacent.x < 0 or adjacent.y < 0:
+					continue; 
+				var adjacent_id = coord_to_id(adjacent, area)
+				match matrix[adjacent.x][adjacent.y]:
+					"room":
+						weight = 10
+					"border":
+						weight = 20
+					_:
+						weight = 5
+				
+				if !grid.has_point(adjacent_id):
+					grid.add_point(adjacent_id, Vector3(adjacent.x*5,5,adjacent.y*5), weight)
+#				print("grid weight offset: ", grid.get_point_weight_scale(adjacent_id))
+				if !grid.are_points_connected(adjacent_id, id):
+					grid.connect_points(adjacent_id, id, true)
+	
+#	if grid:
+#		for g in grid.get_points():
+#			for h in grid.get_point_connections(g):
+#				var gp = grid.get_point_position(g);
+#				var hp = grid.get_point_position(h);
+#				DebugDraw.draw_line(gp, hp, Color(0,0,1),1000000000000)
+
+
+func coord_to_id(coord:Vector2, size:Vector2):
+	return int(coord.x)+int(coord.y) * int(size.x)
+ 
+func id_to_coord(id:int, size:Vector2):
+	var y:int = int(id / size.x+1)
+	var x:int = id % int(size.x+1)
+	return Vector2(x,y)
+	
+func check_connectivity():
+	pass
+
+func pathfind_hallways():
+	var paths = AStar.new()
+	if path:
+		for p in path.get_points():
+			for c in path.get_point_connections(p):
+#				print(p, " ", c)
+				var p_matrix_pos = vertex[p][2]
+				var c_matrix_pos = vertex[c][2]
+#				print("p_matrix_pos: ", p_matrix_pos, " c_matrix_pos: ", c_matrix_pos)
+#				print(pp, " : ", cp)
+				var p_id = coord_to_id(Vector2(p_matrix_pos.x, p_matrix_pos.y), area)
+				var c_id = coord_to_id(Vector2(c_matrix_pos.x, c_matrix_pos.y), area)
+				var found_path = grid.get_point_path(p_id, c_id)
+#				print(found_path)
+				for f in found_path:
+					var f_id = coord_to_id(Vector2(f.x/5,f.z/5), area)
+					print("f: ", f, ", f_id: ", f_id, " f_pos: ", grid.get_point_position(f_id))
+					print("weight: ", grid.get_point_weight_scale(f_id))
+					print(matrix[f.x/5][f.z/5])
+					if(matrix[f.x/5][f.z/5] != "room"):
+						print("not a room")
+						grid.set_point_weight_scale(f_id, 1)
+						matrix[f.x/5][f.z/5] = "hallway"
+						var instance = load(HALL_PATH).instance()
+						instance.global_translation = Vector3(f.x+2.5, 0, f.z+2.5)
+						remove_wall(Vector2(int(f.x/5), int(f.z/5)))
+						ROOMS.add_child(instance)
+#				print("p:", p_matrix_pos, ", c: ", c_matrix_pos, ", p_id: ", p_id, ", c_id: ", c_id)
+#				path.disconnect_points(p, c)
 
 func carve_path(pos1, pos2, p_id, c_id):
 	if fmod(pos1.x, 5) == 0:
@@ -222,16 +325,14 @@ func carve_path(pos1, pos2, p_id, c_id):
 #		x += x_diff
 #	var z = pos1.z
 #	while z <= pos2.z:
-	
-	
 	var rounds_z = int(abs(pos2.z - pos1.z)/5)
 	for j in range(0,rounds_z):
 		var diff = j * z_diff;
 		# add hallway to grid using z_x
 		place_hallway(Vector2(z_x.x, pos1.z+diff))
 
+
 func place_hallway(position):
-	
 	var instance = load(HALL_PATH).instance()
 	var size = instance.room_size
 	var grid_cell = matrix[int(position.x/5)][int(position.y/5)]
@@ -329,9 +430,8 @@ func path_hallways():
 #		print("min_id: ", min_id, " min_pos:", min_pos)
 #		print("curr_id: ", curr_id, " curr_pos:", curr_pos)
 		path.add_point(min_id, min_pos)
-		path.connect_points(curr_id, min_id)
+		path.connect_points(curr_id, min_id, false)
 		start.erase(min_id)
-		print("start size: ", start.size())
 	
 	#12.5% chance of adding unused connections to path	
 	for p in graph.get_points():
@@ -345,7 +445,7 @@ func path_hallways():
 				continue
 			rng.randomize()
 			if rng.randf_range(0,1) < 0.125:
-				path.connect_points(p, e)
+				path.connect_points(p, e, false)
 				
 #	var boss_connections = path.get_point_connections(end_point)
 #	if(boss_connections.size() == 0):
@@ -370,5 +470,6 @@ func path_hallways():
 func remove_wall(grid_position):
 	for wall in WALLS.get_children():
 		if wall.location == grid_position:
+			print(wall.location,  " ", grid_position)
 			wall.queue_free()
 	pass
